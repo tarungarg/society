@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @member.name %>
+</p>
+
+<p>
+  <strong>Flat no:</strong>
+  <%= @member.flat_no %>
+</p>
+
+<p>
+  <strong>Tower no:</strong>
+  <%= @member.tower_no %>
+</p>
+
+<p>
+  <strong>Mob num:</strong>
+  <%= @member.mob_num %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @member.email %>
+</p>
+
+<p>
+  <strong>Alt no:</strong>
+  <%= @member.alt_no %>
+</p>
+
+<p>
+  <strong>Blood group:</strong>
+  <%= @member.blood_group %>
+</p>
+
+<p>
+  <strong>Occupation:</strong>
+  <%= @member.occupation %>
+</p>
+
+<p>
+  <strong>Family memebers:</strong>
+  <%= @member.family_memebers %>
+</p>
+
+<p>
+  <strong>Adult:</strong>
+  <%= @member.adult %>
+</p>
+
+<p>
+  <strong>Kids:</strong>
+  <%= @member.kids %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @member.bio %>
+</p>
+
+<p>
+  <strong>Roles:</strong>
+  <%= @member.roles.collect{|m| m.name.camelize}.join(', ') %>
+</p>
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>
