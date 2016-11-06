@@ -16,7 +16,7 @@
             <td><%= truncate_text(complaint.desc, 50) %></td>
             <td><%= complaint.status %></td>
             <td><%= link_to 'Show', complaint %></td>
-            <% if current_user.id == complaint.id %>
+            <% if current_user.id == complaint.id || current_user.has_role?(:president) %>
               <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
               <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>

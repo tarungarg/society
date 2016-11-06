@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   enum profile_roles: [:president, :member, :labour, :POE]
 
   acts_as_commontator
+  acts_as_voter
 
 ####
 # filterrific gem for search sort and pagination

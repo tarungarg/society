@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     end
 
     resources :complaints do
-      collection do
-        get 'public_complaints'
+      member do
+        put 'upvote'
       end
     end
 

@@ -13,8 +13,13 @@
   <%= @complaint.status %>
 </p>
 
-<%= link_to 'Edit', edit_complaint_path(@complaint) %> |
-<%= link_to 'Back', complaints_path %>
+<%= link_to 'Edit', edit_complaint_path(@complaint) if @complaint.user_id == current_user.id%> |
+<%= link_to 'Back', complaints_path %> |
+
+<span class='upvote-comment-section'>
+  <%= link_to_unless current_user.voted_for?(@complaint),'Upvote', upvote_complaint_path(@complaint), method: 'PUT', remote: true %>
+</span>
+(<span id="complaint_vote_<%=@complaint.id%>"><%= @complaint.get_upvotes.size %></span>)
 
 <br/>
 <br/>

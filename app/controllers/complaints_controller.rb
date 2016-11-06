@@ -1,5 +1,5 @@
 class ComplaintsController < BaseController
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :upvote]
 
   # GET /complaints
   # GET /complaints.json
@@ -69,12 +69,9 @@ class ComplaintsController < BaseController
     end
   end
 
-  def public_complaints
-    @filterrific = initialize_filterrific(
-        Complaint,
-        params[:filterrific]
-      ) or return
-      @complaints = @filterrific.find.where("view_publically = ?", true).page(params[:page])
+  def upvote
+    @complaint.vote_by :voter => current_user unless current_user.voted_for?(@complaint)
+    @size = @complaint.get_upvotes.size
   end
 
   private
