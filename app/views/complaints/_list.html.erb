@@ -1,0 +1,27 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th>Status</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% complaints.each do |complaint| %>
+          <tr>
+            <td><%= truncate_text(complaint.title, 30) %></td>
+            <td><%= truncate_text(complaint.desc, 50) %></td>
+            <td><%= complaint.status %></td>
+            <td><%= link_to 'Show', complaint %></td>
+            <% if current_user.id == complaint.id %>
+              <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
+              <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

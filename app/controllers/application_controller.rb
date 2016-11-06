@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :set_timezone
 
   def after_sign_in_path_for(resource)
     domain = resource.tenant_domain
@@ -22,4 +23,9 @@ class ApplicationController < ActionController::Base
     request.subdomain.blank? || FORBIDDEN_SUBDOMAINS.include?(request.subdomain)
   end
 
+  private
+
+    def set_timezone
+      Time.zone = cookies["time_zone"]
+    end
 end

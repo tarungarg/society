@@ -1,5 +1,4 @@
 <div class="member-index-data">
-  <p id="notice"><%= notice %></p>
   <div class="pull-right"><%= link_to 'New Member', new_member_path, class: 'btn btn-primary' %></div>
 
   <div class="well well-small">
@@ -25,7 +24,7 @@
 
 
   <h1>Listing Members</h1>
-   <div id="filterrific_results"><%= render partial: 'members/list', locals: { members: @members } %></div>
+  <div id="filterrific_results"><%= render partial: 'members/list', locals: { members: @members } %></div>
 
   <br>
 

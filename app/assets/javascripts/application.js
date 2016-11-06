@@ -17,4 +17,11 @@
 //= require filterrific/filterrific-jquery
 //= require turbolinks
 //= require bootstrap-datepicker/core
+//= require rails.validations
+//= require commontator/application
 //= require_tree .
+
+
+$(document).ready(function(){
+  document.cookie = 'time_zone='+jstz.determine().name()+';';
+});

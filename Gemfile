@@ -35,6 +35,11 @@ gem 'will_paginate-bootstrap'
 gem 'tabs_on_rails'
 gem "rolify"
 gem 'bootstrap-datepicker-rails'
+gem 'cancancan', '~> 1.10'
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'client_side_validations'
+
+gem 'commontator', '~> 4.11.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

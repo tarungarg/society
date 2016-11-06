@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :complaints
   devise_for :users, controllers: { registrations: 'registrations' } 
   # as :user do
   #   get 'users/sign_up', constraints: lambda { |request| request.subd) }
@@ -16,6 +15,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :complaints do
+      collection do
+        get 'public_complaints'
+      end
+    end
+
+    mount Commontator::Engine => '/commontator'
   end
 
   constraints PublicDomainConstraint do

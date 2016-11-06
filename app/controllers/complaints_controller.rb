@@ -4,7 +4,15 @@ class ComplaintsController < BaseController
   # GET /complaints
   # GET /complaints.json
   def index
-    @complaints = Complaint.all
+    @filterrific = initialize_filterrific(
+        Complaint,
+        params[:filterrific]
+      ) or return
+      if params[:public_data]
+        @complaints = @filterrific.find.where(view_publically: true).page(params[:page])
+      else
+        @complaints = @filterrific.find.where(user_id: current_user.id).page(params[:page])
+      end
   end
 
   # GET /complaints/1
@@ -14,7 +22,7 @@ class ComplaintsController < BaseController
 
   # GET /complaints/new
   def new
-    @complaint = Complaint.new
+    @complaint = current_user.complaints.new
   end
 
   # GET /complaints/1/edit
@@ -24,7 +32,7 @@ class ComplaintsController < BaseController
   # POST /complaints
   # POST /complaints.json
   def create
-    @complaint = Complaint.new(complaint_params)
+    @complaint = current_user.complaints.new(complaint_params)
 
     respond_to do |format|
       if @complaint.save
@@ -61,6 +69,14 @@ class ComplaintsController < BaseController
     end
   end
 
+  def public_complaints
+    @filterrific = initialize_filterrific(
+        Complaint,
+        params[:filterrific]
+      ) or return
+      @complaints = @filterrific.find.where("view_publically = ?", true).page(params[:page])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_complaint
@@ -69,6 +85,6 @@ class ComplaintsController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
-      params.require(:complaint).permit(:title, :desc, :status)
+      params.require(:complaint).permit(:title, :desc, :status, :view_publically, :random)
     end
 end

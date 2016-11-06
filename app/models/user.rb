@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   belongs_to :tenant
   has_one :society_profile, dependent: :destroy
+  has_many :complaints
 
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank
@@ -15,6 +16,8 @@ class User < ActiveRecord::Base
   after_create :add_tenant_to_apartment
 
   enum profile_roles: [:president, :member, :labour, :POE]
+
+  acts_as_commontator
 
 ####
 # filterrific gem for search sort and pagination

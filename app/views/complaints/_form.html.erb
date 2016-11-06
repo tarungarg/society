@@ -1,13 +1,20 @@
-<%= simple_form_for(@complaint) do |f| %>
+<%= simple_form_for @complaint, validate: true do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :desc %>
-    <%= f.input :status %>
+    <%= f.input :random, as: :boolean, hint: 'Check random will hide your name from complaint' %>
+    <%= f.input :view_publically, as: :boolean, inline_label: 'View To Public',hint: 'Check it, If you want your complaint to see by everybody in society' %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
+  </div>
+<% end %>
+
+<% if current_user.has_role? :presindent%>
+  <div class="pull-right">
+    <button class="btn btn-primary"> Mark Resolve</button>
   </div>
 <% end %>
