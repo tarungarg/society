@@ -19,6 +19,8 @@
 //= require bootstrap-datepicker/core
 //= require rails.validations
 //= require commontator/application
+//= require toastr
+//= require js-routes
 //= require_tree .
 
 

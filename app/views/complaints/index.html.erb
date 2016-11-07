@@ -10,11 +10,11 @@
     <div>
       Registered after:
       <%= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
-    </div>
+    </div><br/>
 
-    <div> <%= link_to('Reset filters', reset_filterrific_url) %> </div>
-    <div> <%= link_to('Public', complaints_path(public_data: true), class: 'btn btn-primary') %> </div>
-    <div> <%= link_to('Own', complaints_path, class: 'btn btn-primary') %> </div>
+    <%= link_to('Reset filters', reset_filterrific_url) %>
+    <%= link_to('Public', complaints_path(public_data: true), class: 'btn btn-primary') %>
+    <%= link_to('Own', complaints_path, class: 'btn btn-primary') %>
 
     <%= render_filterrific_spinner %>
   <% end %>

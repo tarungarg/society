@@ -40,6 +40,8 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'client_side_validations'
 
 gem 'commontator', '~> 4.11.1'
+gem 'toastr-rails'
+gem "js-routes"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

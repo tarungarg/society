@@ -1,0 +1,5 @@
+<% js = escape_javascript(
+  render(partial: 'complaints/partials/list_review', locals: { review: @review })
+) %>
+$(".complaint-reviews").append("<%= js %>");
+$('#president-review-form')[0].reset();

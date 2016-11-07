@@ -10,6 +10,10 @@ class Complaint < ActiveRecord::Base
 
   belongs_to :user
 
+  # after_destroy :destroy_other_contents
+  has_many :reviews
+
+
 ####
 # filterrific gem for search sort and pagination
 #### 
@@ -67,4 +71,8 @@ class Complaint < ActiveRecord::Base
   }
 
 
+  private
+
+    def destroy_other_contents
+    end
 end

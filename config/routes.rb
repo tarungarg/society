@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :complaints do
       member do
         put 'upvote'
+        put 'mark_as_resolve'
+        put 'mark_as_unresolve'
+        post 'create_review'
       end
     end
 

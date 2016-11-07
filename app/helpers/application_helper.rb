@@ -25,4 +25,9 @@ module ApplicationHelper
   def convert_to_timezone(time)
     Time.utc_to_local(time)
   end
+
+  def convert_time_to_basic(time)
+    time.strftime("%b %d, %Y at %I:%M%p")
+  end
+
 end

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_timezone
 
+  helper_method :user_is_president
+
   def after_sign_in_path_for(resource)
     domain = resource.tenant_domain
     if request.subdomain.blank? || request.subdomain == domain
@@ -15,8 +17,12 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def user_is_president
+    @user_is_president ||= current_user.has_role? :president
+  end
+
   def current_tenant
-    Tenant.find_by(domain: request.subdomain) unless main_domain?
+    @current_tenant = Tenant.find_by(domain: request.subdomain) unless main_domain?
   end
 
   def main_domain?

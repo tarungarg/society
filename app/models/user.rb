@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
     tenant.domain
   end
 
-    def set_default_role
+  def set_default_role
     self.add_role :president
   end
 

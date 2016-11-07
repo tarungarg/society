@@ -12,7 +12,7 @@ class MembersController < BaseController
         Member,
         params[:filterrific]
       ) or return
-      @members = @filterrific.find.where(tenant_id: current_tenant.id).page(params[:page])
+      @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
   end
 
   # GET /members/1

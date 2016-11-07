@@ -1,5 +1,8 @@
 class ComplaintsController < BaseController
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy, 
+                                        :upvote, :mark_as_resolve, :mark_as_unresolve,
+                                        :create_review
+                                      ]
 
   # GET /complaints
   # GET /complaints.json
@@ -74,14 +77,59 @@ class ComplaintsController < BaseController
     @size = @complaint.get_upvotes.size
   end
 
+  def mark_as_resolve
+    update_complaint_status(1)
+  end
+
+  def mark_as_unresolve
+    update_complaint_status(0)
+  end
+
+  def create_review
+    if user_is_president
+      @review = @complaint.reviews.build(review: params[:review])
+      if @review.save
+        respond_to do |format|
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.js {  render js: "toastr.info('Please contact support')" }
+        end
+      end
+    else
+      respond_to do |format|
+        format.js {  render js: "toastr.info('Not Authorized')" }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_complaint
-      @complaint = Complaint.find(params[:id])
+      @complaint = Complaint.includes(:user, :reviews).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def complaint_params
       params.require(:complaint).permit(:title, :desc, :status, :view_publically, :random)
+    end
+
+    def update_complaint_status(status)
+      if user_is_president && Complaint.statuses[@complaint.status] != status
+        if @complaint.update(status: status)
+          respond_to do |format|
+            format.js {  render status: 200, js: "toastr.success('Success')" }
+          end
+        else
+          respond_to do |format|
+            format.js {  render js: "toastr.info('Please contact support')" }
+          end
+        end
+      else
+        respond_to do |format|
+          format.js {  render js: "toastr.info('Not Authorized')" }
+        end
+      end
     end
 end
