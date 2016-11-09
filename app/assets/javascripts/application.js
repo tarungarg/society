@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require announcements
 //= require jquery.turbolinks
 //= require bootstrap
 //= require filterrific/filterrific-jquery

@@ -6,13 +6,17 @@ class Complaint < ActiveRecord::Base
   acts_as_votable
   acts_as_commontable
 
+  acts_as_readable :on => :updated_at
+
   enum status: [ 'Not Resolved', 'Resolved']
 
   belongs_to :user
 
-  # after_destroy :destroy_other_contents
   has_many :reviews
 
+  scope :public_comaplaints, ->  { where('view_publically >= ?', true) }
+
+  default_scope { order("complaints.status asc") }
 
 ####
 # filterrific gem for search sort and pagination
@@ -25,7 +29,6 @@ class Complaint < ActiveRecord::Base
     available_filters: [
       :search_query,
       :sorted_by,
-      # :search_public_complaints,
       :with_created_at_gte
     ]
   )
@@ -61,6 +64,8 @@ class Complaint < ActiveRecord::Base
     case sort_key.to_s
     when /^created_at_/
       order("complaints.created_at #{ direction }")
+    when /^group_by_/
+      order("complaints.status #{ direction }")
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_key.inspect }")
     end
@@ -70,9 +75,8 @@ class Complaint < ActiveRecord::Base
     where('complaints.created_at >= ?', ref_date)
   }
 
+  def self.clean_up_read_complains
+    Complaint.cleanup_read_marks!
+  end
 
-  private
-
-    def destroy_other_contents
-    end
 end

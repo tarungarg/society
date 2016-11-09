@@ -2,3 +2,32 @@
   pointer-events: none;
   cursor: default;
 }
+
+.info {
+    background: #D5EDF8;
+    color: #205791;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 2px solid #92CAE4;
+}
+
+.hide_announcement {
+    cursor: pointer;
+    float: right;
+}
+
+.new-tag{
+  background: red;
+  border-radius: 5px;
+}
+
+
+.nav-sidebar > li > span {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav > li > span {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}

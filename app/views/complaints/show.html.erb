@@ -47,7 +47,7 @@
 <p>
   <% if user_is_president %>
     <%= form_tag create_review_complaint_path(@complaint), :id=>"president-review-form", :remote=>true do %>
-      <%= text_area_tag :review, '', cols: 50, rows: 5 %><br>
+      <%= text_area_tag :review, '', cols: 50, rows: 5, required: true %><br>
       <%= submit_tag 'Submit Your Review', class: 'btn btn-default' %>
     <% end %>
   <% end %>

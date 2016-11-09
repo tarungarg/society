@@ -26,3 +26,7 @@ $(document).on('ready page:load', function() {
 document.addEventListener("turbolinks:load", function() {
   updateComplaintStatus();
 })
+
+$(document).ready(function() {
+  updateComplaintStatus();
+})

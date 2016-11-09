@@ -1,0 +1,23 @@
+<p>
+  <strong>Name:</strong>
+  <%= @policy.name %>
+</p>
+
+<%if @policy.file.url%>
+<p>
+  <strong>File:</strong>
+  <%= link_to File.basename(@policy.file.path), @policy.file.url %>
+</p>
+<%end%>
+
+<p>
+  <strong>Body:</strong>
+  <%= @policy.body %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @policy.user.name %>
+</p>
+
+<%= link_to 'Back', policies_path %>

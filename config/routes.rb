@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :banners
   devise_for :users, controllers: { registrations: 'registrations' } 
   # as :user do
   #   get 'users/sign_up', constraints: lambda { |request| request.subd) }
@@ -22,9 +23,21 @@ Rails.application.routes.draw do
         put 'mark_as_unresolve'
         post 'create_review'
       end
+      collection do
+        get 'mark_all_read'
+      end
+    end
+
+    resources :announcements
+
+    resources :policies do
+      member do
+        get 'download'
+      end
     end
 
     mount Commontator::Engine => '/commontator'
+
   end
 
   constraints PublicDomainConstraint do

@@ -17,6 +17,8 @@
     <%= link_to('Own', complaints_path, class: 'btn btn-primary') %>
 
     <%= render_filterrific_spinner %>
+
+    <%= link_to('Mark All Read', mark_all_read_complaints_path, class: 'btn btn-primary', data: { remote: true } ) %>
   <% end %>
 </div>
 

@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107140825) do
+ActiveRecord::Schema.define(version: 20161109115942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.text     "body"
+    t.text     "desc"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "banners", force: :cascade do |t|
+    t.json     "images"
+    t.string   "mobile_key"
+    t.string   "desktop_key"
+    t.string   "desktop_size"
+    t.string   "mobile_size"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "commontator_comments", force: :cascade do |t|
     t.string   "creator_type"
@@ -72,6 +90,25 @@ ActiveRecord::Schema.define(version: 20161107140825) do
 
   add_index "complaints", ["status"], name: "index_complaints_on_status", using: :btree
   add_index "complaints", ["title"], name: "index_complaints_on_title", using: :btree
+
+  create_table "policies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "file"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "read_marks", force: :cascade do |t|
+    t.integer  "readable_id"
+    t.string   "readable_type", null: false
+    t.integer  "reader_id"
+    t.string   "reader_type",   null: false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true, using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.text     "review"

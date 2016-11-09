@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  images: 
+  mobile_key: MyString
+  desktop_key: MyString
+  desktop_size: MyString
+  mobile_size: MyString
+
+two:
+  images: 
+  mobile_key: MyString
+  desktop_key: MyString
+  desktop_size: MyString
+  mobile_size: MyString

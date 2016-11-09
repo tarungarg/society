@@ -1,0 +1,32 @@
+<h1>Listing Announcements</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @announcements.each do |announcement| %>
+        <tr>
+          <td><%= announcement.title %> <span class="new-tag"><%= "   New" if (@unread_announcement_ids).include?(announcement.id)%></span></td>
+          <td><%= announcement.desc %></td>
+          <td><%= link_to 'Show', announcement %></td>
+          <% if user_is_president %>
+            <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
+            <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<% if user_is_president %>
+  <%= link_to 'New Announcement', new_announcement_path %>
+<% end %>

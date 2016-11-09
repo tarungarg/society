@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
 
   acts_as_commontator
   acts_as_voter
+  acts_as_reader
+
+  has_many :policies
 
 ####
 # filterrific gem for search sort and pagination

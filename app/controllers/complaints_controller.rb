@@ -16,11 +16,14 @@ class ComplaintsController < BaseController
       else
         @complaints = @filterrific.find.where(user_id: current_user.id).page(params[:page])
       end
+    @unread_complain_ids = Complaint.unread_by(current_user).map(&:id)
   end
 
   # GET /complaints/1
   # GET /complaints/1.json
   def show
+    @complaint.mark_as_read! :for => current_user
+    @unread_complain_ids = Complaint.unread_by(current_user).map(&:id)
   end
 
   # GET /complaints/new
@@ -101,6 +104,12 @@ class ComplaintsController < BaseController
       respond_to do |format|
         format.js {  render js: "toastr.info('Not Authorized')" }
       end
+    end
+  end
+
+  def mark_all_read
+    Complaint.unread_by(current_user).each do |complaint|
+      complaint.mark_as_read! :for => current_user
     end
   end
 

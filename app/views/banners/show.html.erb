@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Images:</strong>
+  <%= @banner.images %>
+</p>
+
+<p>
+  <strong>Mobile key:</strong>
+  <%= @banner.mobile_key %>
+</p>
+
+<p>
+  <strong>Desktop key:</strong>
+  <%= @banner.desktop_key %>
+</p>
+
+<p>
+  <strong>Desktop size:</strong>
+  <%= @banner.desktop_size %>
+</p>
+
+<p>
+  <strong>Mobile size:</strong>
+  <%= @banner.mobile_size %>
+</p>
+
+<%= link_to 'Edit', edit_banner_path(@banner) %> |
+<%= link_to 'Back', banners_path %>
