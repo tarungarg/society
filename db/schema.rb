@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109115942) do
+ActiveRecord::Schema.define(version: 20161112141005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(version: 20161109115942) do
   end
 
   create_table "banners", force: :cascade do |t|
-    t.json     "images"
+    t.string   "desktop_image"
+    t.string   "mobile_image"
     t.string   "mobile_key"
     t.string   "desktop_key"
     t.string   "desktop_size"
     t.string   "mobile_size"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "commontator_comments", force: :cascade do |t|
@@ -185,6 +186,7 @@ ActiveRecord::Schema.define(version: 20161109115942) do
     t.integer  "tenant_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "candidate"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

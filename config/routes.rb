@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       collection do
         get 'emergency_contacts'
       end
+      member do
+        put 'update_candidate'
+      end
     end
 
     resources :complaints do

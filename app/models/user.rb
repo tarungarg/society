@@ -115,6 +115,10 @@ class User < ActiveRecord::Base
     self.add_role :president
   end
 
+  def is_candidate?
+    candidate
+  end
+
   private
 
     def add_tenant_to_apartment

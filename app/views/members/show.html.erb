@@ -64,4 +64,8 @@
 </p>
 
 <%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Back', members_path %>
+<%= link_to 'Back', members_path %> | 
+
+<div id="mark-as-pres">
+  <%=render partial: 'members/partials/select_candidate', locals: { member: @member} %>
+</div>

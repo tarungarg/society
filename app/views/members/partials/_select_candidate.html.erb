@@ -1,0 +1,7 @@
+<% if user_is_president %>
+  <% if member.is_candidate? %>
+    <%= link_to 'Remove From Candidate', update_candidate_member_path(member, candidate: false), remote: true, method: :put %>
+  <% else %>
+    <%= link_to 'Mark As Candidate', update_candidate_member_path(member, candidate: true), remote: true, method: :put %>
+  <% end %>
+<% end %>

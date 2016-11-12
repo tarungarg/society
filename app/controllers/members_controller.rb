@@ -3,7 +3,7 @@ class MembersController < BaseController
 
   before_action :authenticate_user!
 
-  before_action :set_member, only: [:edit, :show, :update, :destroy]
+  before_action :set_member, only: [:edit, :show, :update, :destroy, :update_candidate]
 
   # GET /members
   # GET /members.json
@@ -77,6 +77,18 @@ class MembersController < BaseController
   def emergency_contacts
     @members = User.where(['created_at < ?', 30.days.ago]).order('created_at desc')
     render :index
+  end
+
+  def update_candidate
+    if @member.update(candidate: params[:candidate])
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js {  render status: 200, js: "toastr.info('Please Contact Support')" }
+      end
+    end
   end
 
   private

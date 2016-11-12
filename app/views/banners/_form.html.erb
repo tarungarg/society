@@ -2,7 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :images %>
+    <div>
+      <img class="desktop_image_preview" class="img-responsive"  />
+    </div>
+    <%= f.input :desktop_image %>
+    <div>
+      <img class="mobile_image_preview" class="img-responsive"/>
+    </div>
+    <%= f.input :mobile_image %>
     <%= f.input :mobile_key %>
     <%= f.input :desktop_key %>
     <%= f.input :desktop_size %>

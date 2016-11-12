@@ -1,35 +1,34 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Banners</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Images</th>
-      <th>Mobile key</th>
-      <th>Desktop key</th>
-      <th>Desktop size</th>
-      <th>Mobile size</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @banners.each do |banner| %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= banner.images %></td>
-        <td><%= banner.mobile_key %></td>
-        <td><%= banner.desktop_key %></td>
-        <td><%= banner.desktop_size %></td>
-        <td><%= banner.mobile_size %></td>
-        <td><%= link_to 'Show', banner %></td>
-        <td><%= link_to 'Edit', edit_banner_path(banner) %></td>
-        <td><%= link_to 'Destroy', banner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Images</th>
+        <th>Mobile key</th>
+        <th>Desktop key</th>
+        <th>Desktop size</th>
+        <th>Mobile size</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @banners.each do |banner| %>
+        <tr>
+          <td><%= banner.images %></td>
+          <td><%= banner.mobile_key %></td>
+          <td><%= banner.desktop_key %></td>
+          <td><%= banner.desktop_size %></td>
+          <td><%= banner.mobile_size %></td>
+          <td><%= link_to 'Show', banner %></td>
+          <td><%= link_to 'Edit', edit_banner_path(banner) %></td>
+          <td><%= link_to 'Destroy', banner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 
-<%= link_to 'New Banner', new_banner_path %>
+  <%= link_to 'New Banner', new_banner_path %>

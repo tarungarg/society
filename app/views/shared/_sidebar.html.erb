@@ -34,5 +34,13 @@
       </span>
     </li>
 
+    <% if user_is_president %>
+      <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+        <span>
+          <%= link_to 'Banners', banners_path %>
+        </span>
+      </li>
+    <% end %>
+
   </ul>
 </div>
