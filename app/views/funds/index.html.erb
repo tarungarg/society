@@ -1,0 +1,40 @@
+<div class="col">
+  <ul class="nav nav-pills">
+    <li class="active"><a href="javascript:void(0);">Balance</a></li>
+    <li><%= link_to 'Funds', trusts_path %></li>
+    <li><%= link_to 'Charges', charges_path %></li>
+  </ul>
+</div>
+
+<br>
+
+<div class="well well-small">
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div>
+      Search:
+      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed') %>
+    </div><br>
+    <div>
+      Search By Amount:
+      <%= f.text_field(:amount_search, class: 'filterrific-periodically-observed') %>
+    </div>
+    <%= render_filterrific_spinner %>
+
+    Spent after:
+    <%= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
+  <% end %>
+
+  <%= link_to('Reset filters', reset_filterrific_url) %>
+</div>
+
+
+<h1>Listing Spent Funds</h1>
+<div class="">
+  <span>Total Spent:</span> <span><%= number_with_delimiter(Fund.total_spent, delimiter: ',') %></span> | 
+  <span>Spent This Year:</span> <span><%= number_with_delimiter(Fund.yearly_spent(Time.now.year), delimiter: ',') %></span> | 
+<!--   <span>This Month Spent:</span> <span><%#= number_with_delimiter(Fund.month_spent(Time.now.month), delimiter: ',') %></span> -->
+</div>
+
+<div id="filterrific_results">
+  <%= render partial: 'funds/partials/list', locals: { funds: @funds } %>
+</div>

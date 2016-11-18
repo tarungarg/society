@@ -1,0 +1,38 @@
+<div class="">
+Election: <%= Time.now.year%>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Occupation</th>
+        <th>Email</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each_with_index do |member, index| %>
+        <tr>
+          <td><%= index + 1  %></td>
+          <td><%= member.name %></td>
+          <td><%= member.mob_num %></td>
+          <td><%= member.occupation %></td>
+          <td><%= member.email %></td>
+          <td><%= member.votes.size %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div>
+  <% @user.name %> < <%= @user.email%>> Winning!
+</div>
+<% if user_is_president %>
+  <div class="pull-right">
+    <%= link_to 'Declare Result', votes_declare_path, remote: true, onclick: "$(this).text('Declared')" %>
+  </div>
+<% end %>

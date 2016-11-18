@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :banners
-  devise_for :users, controllers: { registrations: 'registrations' } 
-  # as :user do
-  #   get 'users/sign_up', constraints: lambda { |request| request.subd) }
-  #   end
-  # end
+  devise_for :users, controllers: { registrations: 'registrations',  :invitations => 'users/invitations' }
 
   constraints SubDomainConstraint do
     root 'dashboard#index'
@@ -31,13 +26,25 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :announcements
-
     resources :policies do
       member do
         get 'download'
       end
     end
+
+    get 'votes/index'
+    put 'votes/vote'
+    get 'votes/detail'
+    put 'votes/visible'
+    get 'votes/declare'
+    get 'charges/invite'
+    get 'charges/invite_all'
+
+    resources :announcements
+    resources :banners
+    resources :funds
+    resources :trusts
+    resources :charges
 
     mount Commontator::Engine => '/commontator'
 

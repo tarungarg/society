@@ -1,17 +1,52 @@
+# == Schema Information
+#
+# Table name: public.users
+#
+#  id                     :integer          not null, primary key
+#  name                   :string
+#  flat_no                :string
+#  tower_no               :string
+#  alt_no                 :string
+#  blood_group            :string
+#  occupation             :string
+#  family_memebers        :integer          default(0)
+#  adult                  :integer          default(0)
+#  kids                   :integer          default(0)
+#  bio                    :text
+#  candidate              :boolean          default(FALSE)
+#  mob_num                :string           default("")
+#  email                  :string           default("")
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  tenant_id              :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  voting_visble          :boolean
+#
+
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :tenant
   has_one :society_profile, dependent: :destroy
   has_many :complaints
+  has_one :user_setting
+  has_many :policies
+  has_many :invitations, :class_name => self.to_s, :as => :invited_by
 
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank
-
 
   after_create :add_tenant_to_apartment
 
@@ -20,8 +55,8 @@ class User < ActiveRecord::Base
   acts_as_commontator
   acts_as_voter
   acts_as_reader
+  acts_as_votable
 
-  has_many :policies
 
 ####
 # filterrific gem for search sort and pagination
@@ -42,7 +77,7 @@ class User < ActiveRecord::Base
   scope :search_query, lambda { |query|
     return nil  if query.blank?
     # condition query, parse into individual keywords
-    terms = query.downcase.split(/\s+/)
+    terms = query.to_s.downcase.split(/\s+/)
     # replace "*" with "%" for wildcard searches,
     # append '%', remove duplicate '%'s
     terms = terms.map { |e|
@@ -111,22 +146,31 @@ class User < ActiveRecord::Base
     tenant.domain
   end
 
-  def set_default_role
-    self.add_role :president
-  end
-
   def is_candidate?
     candidate
+  end
+
+  def has_voted?
+    !votes.up.for_type(User).blank?
   end
 
   private
 
     def add_tenant_to_apartment
       unless Tenant.current
-        set_default_role
         Apartment::Tenant.create(tenant.domain)
         Apartment::Tenant.switch!(tenant.domain)
+        set_default_role
+        set_default_setting
       end
+    end
+
+    def set_default_role
+      self.add_role :president
+    end
+
+    def set_default_setting
+      UserSetting.create(tenant_id: Tenant.current.id)
     end
 
 end

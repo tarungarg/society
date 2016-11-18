@@ -1,0 +1,7 @@
+<% unless current_user.has_voted? %>
+  <%= link_to 'Vote', votes_vote_path(candidate_id: member.id), remote: true, method: :put %>
+<% end %>
+
+ <% if current_user.voted_for? member %>
+  Voted
+ <% end %>

@@ -1,0 +1,21 @@
+<p>
+  <strong>Amount:</strong>
+  <%= @fund.amount %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @fund.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @fund.desc %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= basic_date_only @fund.date %>
+</p>
+
+<%= link_to 'Back', funds_path %>

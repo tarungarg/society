@@ -37,6 +37,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     acts_as_votable (0.10.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     announcements (0.2.0)
       jquery-rails
       rails (>= 3.1.0)
@@ -85,6 +87,9 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise_invitable (1.7.0)
+      actionmailer (>= 4.0.0)
+      devise (>= 4.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
     filterrific (2.0.5)
@@ -108,6 +113,10 @@ GEM
     js_regex (1.0.18)
       regexp_parser (= 0.3.6)
     json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     libv8 (3.16.14.15)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -123,6 +132,7 @@ GEM
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     pg (0.19.0)
+    public_suffix (2.0.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -226,11 +236,13 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   commontator (~> 4.11.1)
   devise
+  devise_invitable
   filterrific
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
   js-routes
+  letter_opener
   pg (~> 0.15)
   rails (= 4.2.5)
   rolify

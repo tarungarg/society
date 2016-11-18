@@ -94,7 +94,11 @@ class MembersController < BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      @member = User.find(params[:id])
+      begin
+        @member = User.where(id: params[:id], tenant_id: current_tenant.id).first
+      rescue Exception
+        puts Exception
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

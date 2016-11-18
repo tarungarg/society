@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  voting_visble: false
+  user_id: 1
+
+two:
+  voting_visble: false
+  user_id: 1

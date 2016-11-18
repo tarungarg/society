@@ -1,0 +1,26 @@
+<!-- <p>
+  <strong>From date:</strong>
+  <%#= @charge.from_date %>
+</p>
+
+<p>
+  <strong>To date:</strong>
+  <%#= @charge.to_date %>
+</p> -->
+
+<p>
+  <strong>Period:</strong>
+  <%= @charge.period %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @charge.amount %>
+</p>
+
+<%= link_to 'Edit', edit_charge_path(@charge) %> |
+<%= link_to 'Back', charges_path %>
+
+
+<br><br>
+<%= render "members/index"%>

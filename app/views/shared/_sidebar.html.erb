@@ -42,5 +42,25 @@
       </li>
     <% end %>
 
+    <% if current_tenant.user_setting.send(:voting_visible) %>
+      <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+        <span>
+          <%= link_to 'Voting', votes_index_path %>
+        </span>
+      </li>
+    <% end %>
+
+    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+      <span>
+        <%= link_to 'Voting Details', votes_detail_path %>
+      </span>
+    </li>
+
+    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+      <span>
+        <%= link_to 'Funds', funds_path %>
+      </span>
+    </li>
+
   </ul>
 </div>

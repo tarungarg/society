@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>title:</strong>
+  <%= @trust.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @trust.desc %>
+</p>
+
+
+<p>
+  <strong>To date:</strong>
+  <%= @trust.to_date %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @trust.amount %>
+</p>
+
+<%= link_to 'Edit', edit_trust_path(@trust) %> |
+<%= link_to 'Back', trusts_path %>

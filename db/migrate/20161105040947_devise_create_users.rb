@@ -12,6 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :adult, default: 0
       t.integer :kids, default: 0
       t.text :bio
+      t.boolean :candidate, default: false
       
       t.string :mob_num,            default: ""
       t.string :email,              default: ""

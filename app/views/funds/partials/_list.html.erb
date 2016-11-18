@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% funds.each do |fund| %>
+        <tr>
+          <td><%= truncate_text(fund.title, 20) %></td>
+          <td><%= truncate_text(fund.desc, 50) %></td>
+          <td><%= number_with_delimiter(fund.amount, delimiter: ',') %></td>
+          <td><%= basic_date_only fund.date %></td>
+          <td><%= link_to 'Show', fund %></td>
+          <td><%= link_to 'Edit', edit_fund_path(fund) if user_is_president %></td>
+          <td><%= link_to 'Destroy', fund, method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <div class="pull-right">
+    <b>Amount: <%= funds.map(&:amount).sum%></b>
+  </div>
+</div>
+<br>
+<%if user_is_president %>
+  <%= link_to 'New Fund', new_fund_path %>
+<% end %>
+

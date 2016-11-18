@@ -9,6 +9,6 @@ class RoleRouteConstraint
   end
 
   def current_user(request)
-    User.find_by_id(request.session[:user_id])
+    User.find_by_id(request.session[:user_id]).includes(:user_setting)
   end
 end

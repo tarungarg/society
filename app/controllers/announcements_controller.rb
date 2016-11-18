@@ -4,7 +4,7 @@ class AnnouncementsController < BaseController
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.all
+    @announcements = Announcement.order('id desc').all
     @unread_announcement_ids = Announcement.unread_by(current_user).map(&:id)
   end
 

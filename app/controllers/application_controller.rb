@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :user_is_president
 
+  helper_method :current_tenant
+
   def after_sign_in_path_for(resource)
     domain = resource.tenant_domain
     if request.subdomain.blank? || request.subdomain == domain
@@ -27,6 +29,10 @@ class ApplicationController < ActionController::Base
 
   def main_domain?
     request.subdomain.blank? || FORBIDDEN_SUBDOMAINS.include?(request.subdomain)
+  end
+
+  def largest_hash_key(hash)
+     hash.max_by{|k,v| v}[0]
   end
 
   private

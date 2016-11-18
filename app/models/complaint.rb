@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: complaints
+#
+#  id              :integer          not null, primary key
+#  title           :string
+#  desc            :text
+#  status          :integer          default(0)
+#  random          :integer          default(0)
+#  view_publically :boolean          default(FALSE)
+#  user_id         :integer          not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class Complaint < ActiveRecord::Base
 
   validates :title, :desc, presence: true
@@ -36,7 +51,7 @@ class Complaint < ActiveRecord::Base
   scope :search_query, lambda { |query|
     return nil  if query.blank?
     # condition query, parse into individual keywords
-    terms = query.downcase.split(/\s+/)
+    terms = query.to_s.downcase.split(/\s+/)
     # replace "*" with "%" for wildcard searches,
     # append '%', remove duplicate '%'s
     terms = terms.map { |e|

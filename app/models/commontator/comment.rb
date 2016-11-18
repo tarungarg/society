@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: commontator_comments
+#
+#  id                :integer          not null, primary key
+#  creator_type      :string
+#  creator_id        :integer
+#  editor_type       :string
+#  editor_id         :integer
+#  thread_id         :integer          not null
+#  body              :text             not null
+#  deleted_at        :datetime
+#  cached_votes_up   :integer          default(0)
+#  cached_votes_down :integer          default(0)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 module Commontator
   class Comment < ActiveRecord::Base
     belongs_to :creator, :polymorphic => true

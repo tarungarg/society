@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titte: MyString
+  desc: MyText
+  from_date: 2016-11-15
+  to_date: 2016-11-15
+  amount: 2016-11-15 17:28:11
+
+two:
+  titte: MyString
+  desc: MyText
+  from_date: 2016-11-15
+  to_date: 2016-11-15
+  amount: 2016-11-15 17:28:11

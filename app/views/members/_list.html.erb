@@ -31,9 +31,13 @@
           <td><%= member.blood_group %></td>
           <td><%= member.created_at.year  %> - Current</td>
           <td><%= member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
-          <td><%= link_to 'Show', member_path(member) %></td>
-          <td><%= link_to 'Edit', edit_member_path(member) %></td>
-          <td><%= link_to 'Destroy', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if params[:controller] == 'charges' %>
+            <td><%= link_to 'Invite', charges_invite_path(user_id: member.id), remote: true, onclick: "this.text('Invited')" %></td>
+          <% else %>
+            <td><%= link_to 'Show', member_path(member) %></td>
+            <td><%= link_to 'Edit', edit_member_path(member) %></td>
+            <td><%= link_to 'Destroy', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

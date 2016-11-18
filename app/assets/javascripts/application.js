@@ -28,3 +28,13 @@
 $(document).ready(function(){
   document.cookie = 'time_zone='+jstz.determine().name()+';';
 });
+
+$('button').click(function(){
+  this.addClass('active-now');
+});
+
+
+$('a').click(function(){
+  this.addClass('active-now');
+});
+

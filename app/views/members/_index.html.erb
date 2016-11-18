@@ -1,0 +1,26 @@
+<div class="well well-small">
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div>
+      Search:
+      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed') %>
+    </div><br>
+    <div>
+      Search By Flat no:
+      <%= f.text_field(:flat_no_search, class: 'filterrific-periodically-observed') %>
+    </div>
+    <%= render_filterrific_spinner %>
+
+      Registered after:
+      <%= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
+  <% end %>
+
+  <%= link_to('Reset filters', reset_filterrific_url) %>
+</div>
+
+
+<h1>Listing Members</h1>
+<div id="filterrific_results"><%= render partial: 'members/list', locals: { members: @members } %></div>
+
+<br>
+
+<%= link_to 'New Member', new_member_path %>
