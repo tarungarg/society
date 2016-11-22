@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @carpool.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @carpool.desc %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @carpool.user_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @carpool.date %>
+</p>
+
+<p>
+  <strong>Routes:</strong>
+  <%= @carpool.tag_list %>
+</p>
+
+<%= link_to 'Edit', edit_carpool_path(@carpool) %> |
+<%= link_to 'Back', carpools_path %>

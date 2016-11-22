@@ -22,6 +22,7 @@
 //= require commontator/application
 //= require toastr
 //= require js-routes
+//= require select2-full
 //= require_tree .
 
 

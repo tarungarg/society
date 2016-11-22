@@ -1,6 +1,6 @@
 <%= will_paginate members, renderer: BootstrapPagination::Rails %>
 
-<div class="table-responsive" id="filterrific_results">
+<div class="table-responsive">
 
   <div>
     <%= page_entries_info members %>
@@ -32,7 +32,11 @@
           <td><%= member.created_at.year  %> - Current</td>
           <td><%= member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
           <% if params[:controller] == 'charges' %>
-            <td><%= link_to 'Invite', charges_invite_path(user_id: member.id), remote: true, onclick: "this.text('Invited')" %></td>
+            <% if @subscription_ids.include? [member.id, @charge.id]%>
+            <td>Invited</td>
+            <% else %>
+              <td><span id="<%= member.id.to_s%>_invite_<%=@charge.id.to_s%>"><%= link_to 'Invite', charges_invite_path(user_id: member.id, charge_id: @charge.id), remote: true %></td>
+            <% end %>
           <% else %>
             <td><%= link_to 'Show', member_path(member) %></td>
             <td><%= link_to 'Edit', edit_member_path(member) %></td>

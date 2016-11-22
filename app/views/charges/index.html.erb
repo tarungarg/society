@@ -1,4 +1,4 @@
-<div class="col">
+<div class="">
   <ul class="nav nav-pills">
     <li><%= link_to 'Balance', funds_path %></li>
     <li><%= link_to 'Funds', trusts_path %></li>
@@ -12,7 +12,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <!-- <th>From date</th> -->
+        <th>From date</th>
         <!-- <th>To date</th> -->
         <th>Period</th>
         <th>Amount</th>
@@ -22,19 +22,27 @@
 
     <tbody>
       <% @charges.each do |charge| %>
-        <tr>
-          <!-- <td><%#= charge.from_date %></td> -->
-          <!-- <td><%#= charge.to_date %></td> -->
-          <td><%= charge.period %></td>
-          <td><%= charge.amount %></td>
-          <td><%= link_to 'Show', charge %></td>
-          <td><%= link_to 'Edit', edit_charge_path(charge) %></td>
-          <td><%= link_to 'Destroy', charge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+        <%if user_is_president || @charge_ids.include?(charge.id) %>
+          <tr>
+            <td><%= charge.from_date %></td>
+            <!-- <td><%#= charge.to_date %></td> -->
+            <td><%= charge.period %></td>
+            <td><%= charge.amount %></td>
+            <td><%= link_to 'Show', charge %></td>
+            <td><%= link_to 'Pay', charge %></td>
+            <% if user_is_president %>
+              <td><%= link_to 'Edit', edit_charge_path(charge) %></td>
+              <td><%= link_to 'Destroy', charge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
+
+<br>
+
 <br>
 
 <%= link_to 'New Charge', new_charge_path %>

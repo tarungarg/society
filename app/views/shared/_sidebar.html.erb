@@ -62,5 +62,29 @@
       </span>
     </li>
 
+    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+      <span>
+        <%= link_to 'Jobs/Suggestions', jobs_path %>
+      </span>
+    </li>
+
+    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+      <span>
+        <%= link_to 'Buy/Sell', products_path %>
+      </span>
+    </li>
+
+    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+      <span>
+        <%= link_to 'Carpool', carpools_path %>
+      </span>
+    </li>
+
+    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
+      <span>
+        <%= link_to 'Rent & Sale', rents_path %>
+      </span>
+    </li>
+
   </ul>
 </div>

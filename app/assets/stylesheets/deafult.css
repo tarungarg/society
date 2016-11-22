@@ -31,3 +31,7 @@
     display: block;
     padding: 10px 15px;
 }
+.img-thumb{
+  height: 150px; 
+  width: 150px;
+}

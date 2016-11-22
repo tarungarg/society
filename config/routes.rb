@@ -45,6 +45,12 @@ Rails.application.routes.draw do
     resources :funds
     resources :trusts
     resources :charges
+    resources :suggestions
+    resources :jobs
+    resources :subscriptions
+    resources :products
+    resources :rents
+    resources :carpools
 
     mount Commontator::Engine => '/commontator'
 

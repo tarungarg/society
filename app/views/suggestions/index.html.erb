@@ -1,0 +1,36 @@
+<div class="col">
+  <ul class="nav nav-pills">
+    <li><%= link_to 'Jobs', jobs_path %></li>
+    <li class="active"><%= link_to 'Suggestions', suggestions_path %></li>
+  </ul>
+</div>
+
+<br>
+
+<h1>Listing Suggestions</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @suggestions.each do |suggestion| %>
+        <tr>
+          <td><%= suggestion.title %></td>
+          <td><%= suggestion.desc %></td>
+          <td><%= link_to 'Show', suggestion %></td>
+          <td><%= link_to 'Edit', edit_suggestion_path(suggestion) %></td>
+          <td><%= link_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+
+<%= link_to 'New Suggestion', new_suggestion_path %>

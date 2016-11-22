@@ -1,12 +1,22 @@
-<!-- <p>
-  <strong>From date:</strong>
-  <%#= @charge.from_date %>
+<p>
+  <strong>From date (yyyy-mm-dd):</strong>
+  <%= @charge.from_date %>
 </p>
 
 <p>
-  <strong>To date:</strong>
-  <%#= @charge.to_date %>
-</p> -->
+  <strong>To date (yyyy-mm-dd):</strong>
+  <%= @charge.to_date %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @charge.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @charge.desc %>
+</p>
 
 <p>
   <strong>Period:</strong>
@@ -18,9 +28,17 @@
   <%= @charge.amount %>
 </p>
 
+<p>
+  <%= link_to 'Pay', edit_charge_path(@charge) %> |
+</p>
+
 <%= link_to 'Edit', edit_charge_path(@charge) %> |
 <%= link_to 'Back', charges_path %>
 
 
-<br><br>
-<%= render "members/index"%>
+<br>
+<% if user_is_president %>
+  <%= link_to 'Invite All', charges_invite_all_path(charge_id: @charge.id), remote: :true %>
+  <br>
+  <%= render "members/index"%>
+<% end %>

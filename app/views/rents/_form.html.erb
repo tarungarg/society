@@ -1,0 +1,14 @@
+<%= simple_form_for(@rent) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :desc %>
+    <%= f.input :images, as: :file, input_html: { multiple: true } %>
+    <%= f.input :amount %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

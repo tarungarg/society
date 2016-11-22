@@ -27,9 +27,9 @@ module Commontator
     validates_presence_of :thread
     validates_presence_of :body
 
-    validates_uniqueness_of :body,
-      :scope => [:creator_type, :creator_id, :thread_id, :deleted_at],
-      :message => I18n.t('commontator.comment.errors.double_posted')
+    # validates_uniqueness_of :body,
+    # #   :scope => [:creator_type, :creator_id, :thread_id, :deleted_at],
+    #   :message => I18n.t('commontator.comment.errors.double_posted')
 
     protected
 

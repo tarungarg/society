@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_one :user_setting
   has_many :policies
   has_many :invitations, :class_name => self.to_s, :as => :invited_by
+  has_many :charge_subscriptions, class_name: 'Subscription'
 
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank
@@ -56,7 +57,6 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_reader
   acts_as_votable
-
 
 ####
 # filterrific gem for search sort and pagination

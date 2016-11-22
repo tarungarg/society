@@ -44,6 +44,8 @@ gem 'toastr-rails'
 gem "js-routes"
 gem 'unread'
 gem 'announcements'
+gem 'acts-as-taggable-on', '~> 4.0'
+gem "select2-rails"
 
 gem 'whenever', :require => false
 

@@ -6,16 +6,28 @@ class ChargesController < BaseController
   # GET /charges.json
   def index
     @charges = Charge.all
+    @charge_ids =  current_user.charge_subscriptions.map(&:charge_id)
   end
 
   # GET /charges/1
   # GET /charges/1.json
   def show
+    @subscription_ids = Subscription.all.collect{|k| [k.user_id, k.charge_id]}
+    respond_to do |format|
+      format.html
+      format.js { render :index }
+    end
+
   end
 
   # GET /charges/new
   def new
     @charge = Charge.new
+
+    respond_to do |format|
+      format.html
+      format.js { render :index }
+    end
   end
 
   # GET /charges/1/edit
@@ -64,14 +76,28 @@ class ChargesController < BaseController
   end
 
   def invite
-    byebug
-    @user = User.find(params[:user_id])
-    User.invite!({email: @user.email}, current_user)
-    render nothing: true
+    respond_to do |format|
+      if Subscription.where(charge_id: params[:charge_id], user_id: params[:user_id]).blank?
+        if Subscription.create_subscription(params[:charge_id], params[:user_id])
+          format.js
+        else
+          format.js {  render status: 200, js: "toastr.info('Please Contact Support')" }
+        end
+      else
+        format.js {  render status: 200, js: "toastr.info('Don't Play)" }
+      end
+    end
   end
 
   def invite_all
-
+    User.where(tenant_id: current_tenant.id).each do |user|
+      if Subscription.where(charge_id: params[:charge_id], user_id: user.id).blank?
+        Subscription.create_subscription(params[:charge_id], user.id)
+      end
+    end
+    respond_to do |format|
+      format.js {  render status: 200, js: "toastr.info('Success')" }
+    end
   end
 
   private
@@ -83,14 +109,16 @@ class ChargesController < BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def charge_params
       params[:charge][:period] = params[:charge][:period].to_i
-      params.require(:charge).permit(:from_date, :to_date, :period, :amount)
+      params.require(:charge).permit(:from_date, :to_date, :period, :amount, :title, :desc)
     end
 
     def list_users
-      @filterrific = initialize_filterrific(
-        Member,
-        params[:filterrific]
-      ) or return
-      @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
+      if user_is_president
+        @filterrific = initialize_filterrific(
+          Member,
+          params[:filterrific]
+        ) or return
+        @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
+      end
     end
 end
