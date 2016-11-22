@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def largest_hash_key(hash)
-     hash.max_by{|k,v| v}[0]
+    hash.blank? ? '' : hash.max_by{|k,v| v}[0]
   end
 
   private

@@ -50,7 +50,7 @@ class VotesController < BaseController
       hash[user.id] = user.votes.size
     end
     id = largest_hash_key(hash)
-    @user = User.find(id)
+    @user = User.find(id) unless id.blank?
   end
 
   def declare

@@ -165,9 +165,15 @@ ActiveRecord::Schema.define(version: 20161121120758) do
     t.text     "desc"
     t.integer  "flat_type"
     t.json     "images"
+    t.string   "street_addr"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "bhk"
+    t.integer  "sale_by"
     t.integer  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -305,7 +311,6 @@ ActiveRecord::Schema.define(version: 20161121120758) do
     t.integer  "tenant_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.boolean  "voting_visble"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"

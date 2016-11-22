@@ -5,6 +5,12 @@ class CreateRents < ActiveRecord::Migration
       t.text :desc
       t.integer :flat_type
       t.json :images
+      t.string :street_addr
+      t.string :city
+      t.string :state
+      t.string :zip
+      t.integer :bhk
+      t.integer :sale_by
       t.integer :amount
 
       t.timestamps null: false

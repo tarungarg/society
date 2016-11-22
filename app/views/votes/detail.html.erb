@@ -28,9 +28,11 @@ Election: <%= Time.now.year%>
     </tbody>
   </table>
 </div>
-<div>
-  <% @user.name %> < <%= @user.email%>> Winning!
-</div>
+<% if @user %>
+  <div>
+    <% @user.name %> < <%= @user.email%>> Winning!
+  </div>
+<% end %>
 <% if user_is_president %>
   <div class="pull-right">
     <%= link_to 'Declare Result', votes_declare_path, remote: true, onclick: "$(this).text('Declared')" %>
