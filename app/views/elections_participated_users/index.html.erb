@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Elections Participated Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Electon</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @elections_participated_users.each do |elections_participated_user| %>
+      <tr>
+        <td><%= elections_participated_user.user_id %></td>
+        <td><%= elections_participated_user.electon_id %></td>
+        <td><%= link_to 'Show', elections_participated_user %></td>
+        <td><%= link_to 'Edit', edit_elections_participated_user_path(elections_participated_user) %></td>
+        <td><%= link_to 'Destroy', elections_participated_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Elections participated user', new_elections_participated_user_path %>

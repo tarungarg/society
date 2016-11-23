@@ -63,8 +63,12 @@
   <%= @member.roles.collect{|m| m.name.camelize}.join(', ') %>
 </p>
 
-<%= link_to 'Back', members_path %> 
+<%= link_to 'Back', members_path %>
+<% if user_is_president%>
+  <%= link_to 'Edit', edit_member_path(@member) %>
+  <%= link_to 'Destroy', member_path(@member), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 
-<div id="mark-as-pres pull-right">
+<div id="mark-as-pres" class="pull-right">
  <%=render partial: 'members/partials/select_candidate', locals: { member: @member} %>
 </div>

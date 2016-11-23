@@ -1,4 +1,6 @@
 class PoliciesController < BaseController
+  load_and_authorize_resource
+
   before_action :set_policy, only: [:show, :edit, :update, :destroy, :download]
   before_action :check_user_is_president, only: [:create, :update, :destroy]
 

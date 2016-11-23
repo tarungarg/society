@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122092236) do
+ActiveRecord::Schema.define(version: 20161123084316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,22 @@ ActiveRecord::Schema.define(version: 20161122092236) do
 
   add_index "complaints", ["status"], name: "index_complaints_on_status", using: :btree
   add_index "complaints", ["title"], name: "index_complaints_on_title", using: :btree
+
+  create_table "elections", force: :cascade do |t|
+    t.date     "voting_start_date"
+    t.date     "voting_end_date"
+    t.string   "years_range"
+    t.integer  "win_user"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "elections_participated_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "electon_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "funds", force: :cascade do |t|
     t.integer  "amount"

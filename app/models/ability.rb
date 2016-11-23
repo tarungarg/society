@@ -11,10 +11,12 @@ class Ability
   private
 
   def president_privileges
-    can :manage, [Member]
+    can :manage, [Member, Announcement, Policy, VotesController]
   end
 
   def member_privileges
-    can [:show, :index], [Member]
+    can [:show, :index], [Member, Announcement]
+    can [:show, :download, :index], Policy
+    can [:index, :vote, :detail], VotesController
   end
 end

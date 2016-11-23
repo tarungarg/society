@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Voting start date:</strong>
+  <%= @election.voting_start_date %>
+</p>
+
+<p>
+  <strong>Voting end date:</strong>
+  <%= @election.voting_end_date %>
+</p>
+
+<p>
+  <strong>Years range:</strong>
+  <%= @election.years_range %>
+</p>
+
+<p>
+  <strong>Win user:</strong>
+  <%= @election.win_user %>
+</p>
+
+<%= link_to 'Edit', edit_election_path(@election) %> |
+<%= link_to 'Back', elections_path %>

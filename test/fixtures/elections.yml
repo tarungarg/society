@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  voting_start_date: 2016-11-23
+  voting_end_date: 2016-11-23
+  years_range: MyString
+  win_user: 1
+
+two:
+  voting_start_date: 2016-11-23
+  voting_end_date: 2016-11-23
+  years_range: MyString
+  win_user: 1

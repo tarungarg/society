@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @elections_participated_user.user_id %>
+</p>
+
+<p>
+  <strong>Electon:</strong>
+  <%= @elections_participated_user.electon_id %>
+</p>
+
+<%= link_to 'Edit', edit_elections_participated_user_path(@elections_participated_user) %> |
+<%= link_to 'Back', elections_participated_users_path %>

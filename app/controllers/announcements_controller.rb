@@ -1,4 +1,6 @@
 class AnnouncementsController < BaseController
+  load_and_authorize_resource
+
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
 
   # GET /announcements

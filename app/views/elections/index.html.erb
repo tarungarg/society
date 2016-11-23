@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Elections</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Years</th>
+        <th>Win user</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @elections.each do |election| %>
+        <tr>
+          <td><%= election.years_range %></td>
+          <td><%= election.win_user %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Election', new_election_path %>

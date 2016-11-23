@@ -1,3 +1,6 @@
+<div class="pull-right">
+  <%= link_to('Mark All Read', mark_all_read_complaints_path, class: 'btn btn-primary', data: { remote: true } ) %>
+</div>
 <div class="col">
   <ul class="nav nav-pills">
     <li class="active"><%= link_to 'Complaints', complaints_path %></li>
@@ -27,7 +30,6 @@
 
     <%= render_filterrific_spinner %>
 
-    <%= link_to('Mark All Read', mark_all_read_complaints_path, class: 'btn btn-primary', data: { remote: true } ) %>
   <% end %>
 </div>
 

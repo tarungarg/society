@@ -21,3 +21,5 @@
 </p>
 
 <%= link_to 'Back', policies_path %>
+<%= link_to 'Edit', edit_policy_path(policy) if user_is_president %>
+<%= link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %>

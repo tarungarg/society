@@ -1,4 +1,6 @@
 class VotesController < BaseController
+  load_and_authorize_resource class: VotesController
+
   before_action :set_user, only: [:vote, :visible]
   before_action :list_users, only: [:index, :detail, :declare]
 
@@ -15,7 +17,7 @@ class VotesController < BaseController
             format.js {  render status: 200, js: "Please Contact Support" }
           end
         else
-            format.js {  render status: 200, js: "toastr.info('You can not vote more than once')" }
+            format.js {  render status: 200 }
         end
       else
         format.js {  render status: 200, js: "toastr.info('Voting has closed. Please refresh page ')" }
