@@ -1,7 +1,7 @@
 <div class="col">
   <ul class="nav nav-pills">
-    <li class="active"><%= link_to 'Complaints', complaints_path %></li>
-    <li><%= link_to 'Public Complaints', public_complaints_path %></li>
+    <li><%= link_to 'Complaints', complaints_path %></li>
+    <li class="active"><%= link_to 'Public Complaints', public_complaints_path %></li>
   </ul>
 </div>
 
@@ -31,10 +31,10 @@
   <% end %>
 </div>
 
-  <h1>Listing Complaints</h1>
-  <div id="filterrific_results">
-    <%= render partial: 'complaints/list', locals: { complaints: @complaints } %>
-  </div>
+<h1>Listing Complaints</h1>
+<div id="filterrific_results">
+  <%= render partial: 'public_complaints/list', locals: { complaints: @complaints } %>
+</div>
 
 <br>
 

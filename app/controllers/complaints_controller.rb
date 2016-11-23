@@ -13,15 +13,9 @@ class ComplaintsController < BaseController
         Complaint,
         params[:filterrific]
       ) or return
-      if params[:public_data]
-        @complaints = @filterrific.find.where(view_publically: true).page(params[:page])
-      else
-        if user_is_president
-          @complaints = @filterrific.find.page(params[:page])
-        else
-          @complaints = @filterrific.find.where(user_id: current_user.id).page(params[:page])
-        end
-      end
+      @complaints =  user_is_president ?
+        @filterrific.find.where.not(view_publically: true).page(params[:page]) :
+        @filterrific.find.where(user_id: current_user.id).page(params[:page])
     @unread_complain_ids = Complaint.unread_by(current_user).map(&:id)
   end
 

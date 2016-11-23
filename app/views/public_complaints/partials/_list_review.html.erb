@@ -1,0 +1,9 @@
+<h4>Review on #<%= convert_time_to_basic(review.created_at) %></h4>
+<p>
+  <strong>Reviews:</strong>
+  <%= review.review %>
+</p>
+<p>
+  <strong>Posted By:</strong>
+  <%= current_user.name %> < <%= current_user.email %> >
+</p>

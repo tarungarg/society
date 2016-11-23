@@ -1,0 +1,79 @@
+<input type="hidden" id='complaint_id' value="<%= @complaint.id%>"></input>
+
+<% if user_is_president %>
+  <% if @complaint.random == 0%>
+    <p>
+      <strong>Submitted By:</strong>
+      <%= @complaint.user.name %>
+    </p>
+    <p>
+      <strong>Flat No:</strong>
+      <%= @complaint.user.flat_no %>
+    </p>
+  <% else %>
+    <p>
+      <strong>Anonymous</strong>
+    </p>
+  <% end %>
+
+<% end %>
+
+<p>
+  <strong>Posted on:</strong>
+  <%= convert_time_to_basic(@complaint.created_at) %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @complaint.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @complaint.desc %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @complaint.status %>
+</p>
+  
+<div class="complaint-reviews">
+  <% @complaint.reviews.each_with_index do |review, index| %>
+    <%= render partial: 'complaints/partials/list_review', locals: {review: review} %>
+  <% end %>
+</div>
+
+<p>
+  <% if user_is_president %>
+    <%= form_tag create_review_complaint_path(@complaint), :id=>"president-review-form", :remote=>true do %>
+      <%= text_area_tag :review, '', cols: 50, rows: 5, required: true %><br>
+      <%= submit_tag 'Submit Your Review', class: 'btn btn-default' %>
+    <% end %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_complaint_path(@complaint) if @complaint.user_id == current_user.id%> |
+<%= link_to 'Back', public_complaints_path %> |
+
+<span class='upvote-comment-section'>
+  <%= link_to_unless current_user.voted_for?(@complaint),'Upvote', upvote_complaint_path(@complaint), method: 'PUT', remote: true %>
+</span>
+(<span id="complaint_vote_<%=@complaint.id%>"><%= @complaint.get_upvotes.size %></span>)
+
+<!-- User can mark as resolve -->
+<% if current_user.id == @complaint.user_id %>
+  <div class="pull-right">
+    <% if @complaint.status == 'Resolved' %>
+     <%= link_to 'Open', mark_as_unresolve_complaint_path(@complaint.id), class: 'btn btn-success resolve-complaint-btn', method: 'PUT', remote: true %>
+    <% else %>
+     <%= link_to 'Mark As Resolve', mark_as_resolve_complaint_path(@complaint.id), class: 'btn btn-success resolve-complaint-btn', method: 'PUT', remote: true %>
+    <% end %>
+  </div>
+<% end %>
+<!-- User can mark as resolve -->
+
+<br/>
+<br/>
+
+<%= commontator_thread(@complaint) if @complaint.view_publically %>

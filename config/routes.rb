@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :clubs
   devise_for :users, controllers: { registrations: 'registrations',  :invitations => 'users/invitations' }
 
   constraints SubDomainConstraint do
@@ -27,6 +26,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :public_complaints
+
     resources :policies do
       member do
         get 'download'
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
     resources :products
     resources :rents
     resources :carpools
+    resources :clubs
 
     mount Commontator::Engine => '/commontator'
 
