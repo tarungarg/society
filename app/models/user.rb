@@ -157,7 +157,7 @@ class User < ActiveRecord::Base
   private
 
     def add_tenant_to_apartment
-      unless Tenant.current
+      if !Tenant.current || Tenant.current.domain == "me"
         Apartment::Tenant.create(tenant.domain)
         Apartment::Tenant.switch!(tenant.domain)
         set_default_role

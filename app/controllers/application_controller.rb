@@ -11,7 +11,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     domain = resource.tenant_domain
-    if request.subdomain.blank? || request.subdomain == domain
+    if domain == "me"
+      # sign_out resource
+      new_user_registration_url(subdomain: domain)
+    elsif request.subdomain.blank? || request.subdomain == domain
       root_url(subdomain: domain)
     else
       raise "User doen't not belong to this socity. Please contect society president for this"
