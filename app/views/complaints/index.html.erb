@@ -1,4 +1,6 @@
-<div class="pull-right"><%= link_to 'New Complaint', new_complaint_path, class: 'btn btn-primary' %></div>
+<div class="pull-right">
+  <%= link_to 'New Complaint', new_complaint_path, class: 'btn btn-primary' %>
+</div>
 
 <div class="well well-small">
   <%= form_for_filterrific @filterrific do |f| %>
@@ -22,9 +24,10 @@
   <% end %>
 </div>
 
-
   <h1>Listing Complaints</h1>
-  <div id="filterrific_results"><%= render partial: 'complaints/list', locals: { complaints: @complaints } %></div>
+  <div id="filterrific_results">
+    <%= render partial: 'complaints/list', locals: { complaints: @complaints } %>
+  </div>
 
 <br>
 

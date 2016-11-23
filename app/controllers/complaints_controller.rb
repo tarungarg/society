@@ -1,4 +1,6 @@
 class ComplaintsController < BaseController
+  # load_and_authorize_resource
+
   before_action :set_complaint, only: [:show, :edit, :update, :destroy, 
                                         :upvote, :mark_as_resolve, :mark_as_unresolve,
                                         :create_review
@@ -14,7 +16,11 @@ class ComplaintsController < BaseController
       if params[:public_data]
         @complaints = @filterrific.find.where(view_publically: true).page(params[:page])
       else
-        @complaints = @filterrific.find.where(user_id: current_user.id).page(params[:page])
+        if user_is_president
+          @complaints = @filterrific.find.page(params[:page])
+        else
+          @complaints = @filterrific.find.where(user_id: current_user.id).page(params[:page])
+        end
       end
     @unread_complain_ids = Complaint.unread_by(current_user).map(&:id)
   end

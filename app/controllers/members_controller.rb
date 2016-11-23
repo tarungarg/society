@@ -1,7 +1,6 @@
 require 'will_paginate/array'
 class MembersController < BaseController
-
-  before_action :authenticate_user!
+  load_and_authorize_resource
 
   before_action :set_member, only: [:edit, :show, :update, :destroy, :update_candidate]
 
@@ -51,7 +50,9 @@ class MembersController < BaseController
   # PATCH/PUT /members/1.json
   def update
     respond_to do |format|
-      if @member.update(member_params)
+      if @member.has_role?(:president) && !Tenant.current.has_presidents
+        format.html { redirect_to member_path(@member), notice: 'Please select other user as President.' }
+      elsif @member.update(member_params)
         remove_roles
         add_roles(params[:roles])
         format.html { redirect_to member_path(@member), notice: 'Member was successfully updated.' }
@@ -66,11 +67,15 @@ class MembersController < BaseController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
-    @member.destroy
-    remove_roles
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
+    if @member.has_role?(:president) && Tenant.current.has_presidents
+      destroy_user
+    elsif !@member.has_role?(:president)
+      destroy_user
+    else
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Please select other user as President.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -116,4 +121,12 @@ class MembersController < BaseController
       @member.roles.delete_all
     end
 
+    def destroy_user
+      @member.destroy
+      remove_roles
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
 end

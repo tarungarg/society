@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @club.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @club.desc %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @club.date %>
+</p>
+
+<p>
+  <strong>From time:</strong>
+  <%= @club.from_time %>
+</p>
+
+<p>
+  <strong>To time:</strong>
+  <%= @club.to_time %>
+</p>
+
+<%= link_to 'Edit', edit_club_path(@club) %> |
+<%= link_to 'Back', clubs_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :clubs
   devise_for :users, controllers: { registrations: 'registrations',  :invitations => 'users/invitations' }
 
   constraints SubDomainConstraint do

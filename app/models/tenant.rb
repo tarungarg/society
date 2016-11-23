@@ -21,6 +21,13 @@ class Tenant < ActiveRecord::Base
     tenant
   end
 
+  def has_presidents
+    roles = Tenant.current.users.map(&:roles)
+    count = 0
+    roles.flatten.each{|c| count += 1 if c.name == 'president' }
+    count > 1
+  end
+
   private
 
     def drop_tenant_from_apartment

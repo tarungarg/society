@@ -1,0 +1,2 @@
+module PublicComplaintsHelper
+end
