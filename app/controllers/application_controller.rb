@@ -35,7 +35,10 @@ class ApplicationController < ActionController::Base
   end
 
   def largest_hash_key(hash)
-    hash.blank? ? '' : hash.max_by{|k,v| v}[0]
+    unless hash.blank?
+      max = hash.values.max
+      Hash[hash.select { |k, v| v == max }]
+    end
   end
 
   private

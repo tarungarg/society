@@ -29,10 +29,14 @@ Election: <%= Time.now.year%>
   </table>
 </div>
 
-<% if @user %>
+<% if @max_hash && @max_hash.length == 1 %>
   <div>
     <% @user.name %> < <%= @user.email%>> Winning!
   </div>
+<% end %>
+
+<% if @max_hash && @max_hash.length > 1 %>
+  There is Tie between <%= @max_hash.length%> members. Result will be on lottary based system if tie continues.
 <% end %>
 
 <% if user_is_president %>

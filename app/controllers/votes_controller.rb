@@ -51,8 +51,10 @@ class VotesController < BaseController
     @users.each do |user|
       hash[user.id] = user.calculate_votes_size
     end
-    id = largest_hash_key(hash)
-    @user = User.find(id) unless id.blank?
+    @max_hash = largest_hash_key(hash)
+    if @max_hash && @max_hash.length == 1
+      @user = User.find(@max_hash.keys[0])
+    end
   end
 
   def declare
@@ -60,8 +62,16 @@ class VotesController < BaseController
     @users.each do |user|
       hash[user.id] = user.votes.size
     end
+  
+    max_hash = largest_hash_key(hash)
+    user_id = ''
+    if max_hash && max_hash.length == 1
+      user_id = max_hash.keys[0]
+    else
+      user_id = Hash[max_hash.to_a.shuffle].keys[0]
+    end
 
-    user = @users.find(largest_hash_key(hash))
+    user = User.find(user_id)
     
     election = Election.last
     election.update(win_user: user.id, win_by: user.calculate_votes_size)
