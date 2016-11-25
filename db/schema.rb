@@ -128,15 +128,16 @@ ActiveRecord::Schema.define(version: 20161123084316) do
     t.date     "voting_end_date"
     t.string   "years_range"
     t.integer  "win_user"
+    t.integer  "win_by"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
   create_table "elections_participated_users", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "electon_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "election_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "funds", force: :cascade do |t|

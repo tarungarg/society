@@ -1,0 +1,37 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Occupation</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @epu.each_with_index do |epu, index| %>
+        <tr>
+          <td><%= index + 1  %></td>
+          <td><%= epu.user.name %></td>
+          <td><%= epu.user.mob_num %></td>
+          <td><%= epu.user.occupation %></td>
+          <td><%= epu.user.email %></td>
+          <td><%= epu.user.roles.collect{|m| m.name.camelize}.join(', ') %></td>
+          <td>
+            <span id="mark-as-pres-<%=epu.user.id%>">
+              <%= render partial: 'members/partials/select_candidate', locals: { member: epu.user} %>
+            </span>
+          </td>
+            <td>
+              <span id="vote-pre=#{epu.user.id} voter-pre">
+                <%= render partial: 'votes/partials/vote', locals: { member: epu.user} %>
+              </span>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

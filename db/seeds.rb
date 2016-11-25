@@ -11,6 +11,6 @@ u=User.create(email: 'tarungarg402@gmail.com', password: 'password', password_co
 
 u.add_role :me
 
-u1=User.create(email: 't.garg28@gmail.com', password: 'password', password_confirmation: 'password', tenant_attributes: {domain: 'tarun'})
+# u1=User.create(email: 't.garg28@gmail.com', password: 'password', password_confirmation: 'password', tenant_attributes: {domain: 'tarun'})
 
 

@@ -85,6 +85,7 @@ class MembersController < BaseController
   end
 
   def update_candidate
+    ElectionsParticipatedUser.add_participations(params[:candidate], @member.id)
     if @member.update(candidate: params[:candidate])
       respond_to do |format|
         format.js

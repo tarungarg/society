@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   has_many :policies
   has_many :invitations, :class_name => self.to_s, :as => :invited_by
   has_many :charge_subscriptions, class_name: 'Subscription'
+  has_many :elections_participated_users
 
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank
@@ -151,7 +152,15 @@ class User < ActiveRecord::Base
   end
 
   def has_voted?
-    !votes.up.for_type(User).blank?
+    !votes.up.for_type(User).where(vote_scope: 'elect').blank?
+  end
+
+  def has_voted_to?(member)
+    voted_for? member, vote_scope: 'elect'
+  end
+
+  def calculate_votes_size
+    find_votes_for(:vote_scope => 'elect').size
   end
 
   private

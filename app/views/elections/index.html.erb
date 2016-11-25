@@ -7,7 +7,8 @@
     <thead>
       <tr>
         <th>Years</th>
-        <th>Win user</th>
+        <th>Winner</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -15,7 +16,9 @@
       <% @elections.each do |election| %>
         <tr>
           <td><%= election.years_range %></td>
-          <td><%= election.win_user %></td>
+          <td><%= link_to User.find(election.win_user).name || User.find(election.win_user).email, member_path(election.win_user) if election.win_user%></td>
+          <td><%= link_to 'Show', election_path(election) %></td>
+          <td> <%= link_to 'Destroy', election_path(election), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

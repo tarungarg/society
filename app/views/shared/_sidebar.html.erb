@@ -50,6 +50,12 @@
       </li>
     <% end %>
 
+    <li>
+      <span>
+        <%= link_to 'Voting Details', votes_detail_path %>
+      </span>
+    </li>
+
     <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
       <span>
         <%= link_to 'Election', elections_path %>

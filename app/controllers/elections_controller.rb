@@ -10,6 +10,12 @@ class ElectionsController < BaseController
   # GET /elections/1
   # GET /elections/1.json
   def show
+    @epu = Election.find(params[:id]).elections_participated_users.includes(:user)
+    @filterrific = initialize_filterrific(
+        Member,
+        params[:filterrific]
+      ) or return
+      @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
   end
 
   # GET /elections/new

@@ -39,7 +39,7 @@
             <% end %>
           <% else %>
             <td><%= link_to 'Show', member_path(member) %></td>
-            <% if user_is_president%>
+            <% if user_is_president && params[:controller] == 'members' %>
               <td>
                   <%= link_to 'Edit', edit_member_path(member) %>
               </td>
@@ -48,6 +48,17 @@
               </td>
             <% end %>
           <% end %>
+
+          <!-- For Election -->
+          <% if user_is_president && params[:controller] == 'elections' %>
+            <td>
+               <div id="mark-as-pres-<%=member.id%>" class="pull-right">
+                  <%=render partial: 'members/partials/select_candidate', locals: { member: member} %>
+                </div>
+            </td>
+
+          <% end %>
+
         </tr>
       <% end %>
     </tbody>

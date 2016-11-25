@@ -1,6 +1,8 @@
 <% js = escape_javascript(
   render(partial: 'members/partials/select_candidate', locals: { member: @member})
 ) %>
-$("#mark-as-pres").html("<%= js %>");
+$("#mark-as-pres-<%=@member.id%>").html("<%= js %>");
 
-toastr.success('Success')
+toastr.success('Success');
+
+location.reload();

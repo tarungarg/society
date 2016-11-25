@@ -1,7 +1,3 @@
-<div class="">
-Election: <%= Time.now.year%>
-</div>
-
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -11,7 +7,8 @@ Election: <%= Time.now.year%>
         <th>Number</th>
         <th>Occupation</th>
         <th>Email</th>
-        <th>Votes</th>
+        <th>Role</th>
+        <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
@@ -22,21 +19,19 @@ Election: <%= Time.now.year%>
           <td><%= member.mob_num %></td>
           <td><%= member.occupation %></td>
           <td><%= member.email %></td>
-          <td><%= member.calculate_votes_size %></td>
+          <td><%= member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
+          <td>
+            <span id="mark-as-pres">
+              <%=render partial: 'members/partials/select_candidate', locals: { member: member} %>
+            </span>
+          </td>
+            <td>
+              <span id="vote-pre-<%=member.id%> voter-pre">
+                <%= render partial: 'votes/partials/vote', locals: { member: member} %>
+              </span>
+            </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
-<% if @user %>
-  <div>
-    <% @user.name %> < <%= @user.email%>> Winning!
-  </div>
-<% end %>
-
-<% if user_is_president %>
-  <div class="pull-right">
-    <%= link_to 'Declare Result', votes_declare_path, remote: true, onclick: "$(this).text('Declared')" %>
-  </div>
-<% end %>

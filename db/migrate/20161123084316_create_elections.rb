@@ -5,6 +5,7 @@ class CreateElections < ActiveRecord::Migration
       t.date :voting_end_date
       t.string :years_range
       t.integer :win_user
+      t.integer :win_by
 
       t.timestamps null: false
     end
