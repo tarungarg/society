@@ -96,6 +96,8 @@ GEM
     execjs (2.7.0)
     filterrific (2.0.5)
       rails (>= 3.1.0)
+    font-awesome-rails (4.7.0.0)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -132,6 +134,7 @@ GEM
     multi_json (1.12.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    nprogress-rails (0.2.0.2)
     orm_adapter (0.5.0)
     pg (0.19.0)
     public_suffix (2.0.4)
@@ -223,6 +226,9 @@ GEM
     will_paginate (3.1.5)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
+    wysiwyg-rails (2.3.5)
+      font-awesome-rails (~> 4.4, >= 4.4.0.0)
+      railties (>= 3.2, < 6.0)
 
 PLATFORMS
   ruby
@@ -248,6 +254,7 @@ DEPENDENCIES
   jquery-turbolinks
   js-routes
   letter_opener
+  nprogress-rails
   pg (~> 0.15)
   rails (= 4.2.5)
   rolify
@@ -266,3 +273,4 @@ DEPENDENCIES
   whenever
   will_paginate
   will_paginate-bootstrap
+  wysiwyg-rails

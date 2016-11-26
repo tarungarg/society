@@ -31,17 +31,24 @@ class MembersController < BaseController
   # POST /members
   # POST /members.json
   def create
-    @member = User.new(member_params)
-    @member.tenant_id = current_tenant.id
-
-    respond_to do |format|
-      if @member.save
-        add_roles(params[:roles])
-        format.html { redirect_to member_path(@member), notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
-      else
+    if check_if_field_empty(member_params)
+      respond_to do |format|
         format.html { render :new }
         format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    else
+      @member = User.new(member_params)
+      @member.tenant_id = current_tenant.id
+
+      respond_to do |format|
+        if @member.save
+          add_roles(params[:roles])
+          format.html { redirect_to member_path(@member), notice: 'Member was successfully created.' }
+          format.json { render :show, status: :created, location: @member }
+        else
+          format.html { render :new }
+          format.json { render json: @member.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -130,4 +137,9 @@ class MembersController < BaseController
         format.json { head :no_content }
       end
     end
+
+    def check_if_field_empty(params)
+      params[:name] == "" || params[:flat_no] == "" || params[:tower_no] == "" || params[:mob_num] == ""
+    end
+
 end

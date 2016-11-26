@@ -23,8 +23,16 @@
 //= require toastr
 //= require js-routes
 //= require select2-full
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
 
+
+NProgress.configure({
+  showSpinner: true,
+  ease: 'ease',
+  speed: 200
+});
 
 $(document).ready(function(){
   document.cookie = 'time_zone='+jstz.determine().name()+';';
@@ -38,4 +46,3 @@ $('button').click(function(){
 $('a').click(function(){
   this.addClass('active-now');
 });
-

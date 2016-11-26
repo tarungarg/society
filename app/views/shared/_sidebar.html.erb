@@ -10,7 +10,7 @@
     </li>
 
     <li class="<%= params[:controller].include? ['complaints', 'feedbacks'] ? 'active' : '' %>">
-      <span><%= link_to 'Complaints/Suggestions', complaints_path %>
+      <span><%= link_to 'Complaints & Suggestions', complaints_path %>
 
       <% if user_is_president %>
         (<%= Complaint.unread_by(current_user).public_comaplaints.count %>)</span>
@@ -50,11 +50,13 @@
       </li>
     <% end %>
 
-    <li>
-      <span>
-        <%= link_to 'Voting Details', votes_detail_path %>
-      </span>
-    </li>
+    <% if Election.new_or_recent_election %>
+      <li>
+        <span>
+          <%= link_to 'Voting Details', votes_detail_path %>
+        </span>
+      </li>
+    <% end %>
 
     <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
       <span>

@@ -39,7 +39,7 @@ Election: <%= Time.now.year%>
   There is Tie between <%= @max_hash.length%> members. Result will be on lottary based system if tie continues.
 <% end %>
 
-<% if user_is_president %>
+<% if user_is_president && current_tenant.user_setting.voting_visible %>
   <div class="pull-right">
     <%= link_to 'Declare Result', votes_declare_path, remote: true, onclick: "$(this).text('Declared')" %>
   </div>

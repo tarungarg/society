@@ -72,6 +72,8 @@ class VotesController < BaseController
     end
 
     user = User.find(user_id)
+
+    current_tenant.user_setting.update(voting_visible: false)
     
     election = Election.last
     election.update(win_user: user.id, win_by: user.calculate_votes_size)
@@ -81,7 +83,7 @@ class VotesController < BaseController
       votes.destroy_all if votes
     end
 
-    @users.update_all(candidate: false)
+    @users.where(candidate: true).update_all(candidate: false)
 
     Announcement.create(
             title: "Hurry!! #{user.name} win",
@@ -89,7 +91,7 @@ class VotesController < BaseController
             )
 
     respond_to do |format|
-      format.js {  render status: 200, js: "toastr.info('Declared')" }
+      format.js {  render status: 200, js: "toastr.info('Declared'); location.reload();" }
     end
   end
 

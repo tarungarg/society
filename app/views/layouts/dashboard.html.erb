@@ -10,11 +10,11 @@
 <body>
 
   <div class="container-fluid">
-
+  <div class="abc"></div>
     <div class="row">
       <%= render partial: 'layouts/dashboard_header'%>
       <%= render  partial: 'shared/sidebar' %>
-
+      <div id="spinner-cont" class="loading not-display"></div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <%= announce Announcement.newest  %>
 

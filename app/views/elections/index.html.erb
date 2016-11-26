@@ -8,6 +8,7 @@
       <tr>
         <th>Years</th>
         <th>Winner</th>
+        <th>Total Votes</th>
         <th></th>
       </tr>
     </thead>
@@ -17,8 +18,9 @@
         <tr>
           <td><%= election.years_range %></td>
           <td><%= link_to User.find(election.win_user).name || User.find(election.win_user).email, member_path(election.win_user) if election.win_user%></td>
-          <td><%= link_to 'Show', election_path(election) %></td>
-          <td> <%= link_to 'Destroy', election_path(election), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= election.win_by %></td>
+          <td><%= link_to 'Show', election_path(election) if user_is_president %></td>
+          <td> <%= link_to 'Destroy', election_path(election), method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
         </tr>
       <% end %>
     </tbody>

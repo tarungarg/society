@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
 
   belongs_to :tenant
   has_one :society_profile, dependent: :destroy
-  has_many :complaints
   has_one :user_setting
+  has_many :complaints
   has_many :policies
   has_many :invitations, :class_name => self.to_s, :as => :invited_by
   has_many :charge_subscriptions, class_name: 'Subscription'

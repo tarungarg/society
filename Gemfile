@@ -53,6 +53,8 @@ gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 gem 'devise_invitable'
 
+gem 'nprogress-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,5 +1,5 @@
 <% js = escape_javascript(
   render(partial: 'votes/partials/vote', locals: { member: @user})
 ) %>
-$(".voter-pre").html('');
-$('#vote-pre-#{@user.id}').html("<%= js %>")
+
+location.reload();
