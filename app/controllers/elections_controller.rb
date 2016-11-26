@@ -11,11 +11,11 @@ class ElectionsController < BaseController
   # GET /elections/1.json
   def show
     @epu = Election.find(params[:id]).elections_participated_users.includes(:user)
-    @filterrific = initialize_filterrific(
-        Member,
-        params[:filterrific]
-      ) or return
-      @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
+    (@filterrific = initialize_filterrific(
+      Member,
+      params[:filterrific]
+    )) || return
+    @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
   end
 
   # GET /elections/new
@@ -68,13 +68,14 @@ class ElectionsController < BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_election
-      @election = Election.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def election_params
-      params.require(:election).permit(:voting_start_date, :voting_end_date, :years_range, :win_user)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_election
+    @election = Election.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def election_params
+    params.require(:election).permit(:voting_start_date, :voting_end_date, :years_range, :win_user)
+  end
 end

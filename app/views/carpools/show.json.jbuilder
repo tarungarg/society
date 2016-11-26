@@ -1,1 +1,1 @@
-json.partial! "carpools/carpool", carpool: @carpool
+json.partial! 'carpools/carpool', carpool: @carpool

@@ -7,6 +7,6 @@ class CreateReviews < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :reviews, :complaint_id,       using: :btree
+    add_index :reviews, :complaint_id, using: :btree
   end
 end

@@ -5,18 +5,18 @@ class BannersControllerTest < ActionController::TestCase
     @banner = banners(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:banners)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create banner" do
+  test 'should create banner' do
     assert_difference('Banner.count') do
       post :create, banner: { desktop_key: @banner.desktop_key, desktop_size: @banner.desktop_size, images: @banner.images, mobile_key: @banner.mobile_key, mobile_size: @banner.mobile_size }
     end
@@ -24,22 +24,22 @@ class BannersControllerTest < ActionController::TestCase
     assert_redirected_to banner_path(assigns(:banner))
   end
 
-  test "should show banner" do
+  test 'should show banner' do
     get :show, id: @banner
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @banner
     assert_response :success
   end
 
-  test "should update banner" do
+  test 'should update banner' do
     patch :update, id: @banner, banner: { desktop_key: @banner.desktop_key, desktop_size: @banner.desktop_size, images: @banner.images, mobile_key: @banner.mobile_key, mobile_size: @banner.mobile_size }
     assert_redirected_to banner_path(assigns(:banner))
   end
 
-  test "should destroy banner" do
+  test 'should destroy banner' do
     assert_difference('Banner.count', -1) do
       delete :destroy, id: @banner
     end

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     domain = resource.tenant_domain
-    if domain == "me"
+    if domain == 'me'
       # sign_out resource
       new_user_registration_url(subdomain: domain)
     elsif request.subdomain.blank? || request.subdomain == domain
@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
     else
       raise "User doen't not belong to this socity. Please contect society president for this"
     end
-
   end
 
   def user_is_president
@@ -37,13 +36,13 @@ class ApplicationController < ActionController::Base
   def largest_hash_key(hash)
     unless hash.blank?
       max = hash.values.max
-      Hash[hash.select { |k, v| v == max }]
+      Hash[hash.select { |_k, v| v == max }]
     end
   end
 
   private
 
-    def set_timezone
-      Time.zone = cookies["time_zone"]
-    end
+  def set_timezone
+    Time.zone = cookies['time_zone']
+  end
 end

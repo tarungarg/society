@@ -1,28 +1,27 @@
 class ComplaintsController < BaseController
   # load_and_authorize_resource
 
-  before_action :set_complaint, only: [:show, :edit, :update, :destroy, 
-                                        :upvote, :mark_as_resolve, :mark_as_unresolve,
-                                        :create_review
-                                      ]
+  before_action :set_complaint, only: [:show, :edit, :update, :destroy,
+                                       :upvote, :mark_as_resolve, :mark_as_unresolve,
+                                       :create_review]
 
   # GET /complaints
   # GET /complaints.json
   def index
-    @filterrific = initialize_filterrific(
-        Complaint,
-        params[:filterrific]
-      ) or return
-      @complaints =  user_is_president ?
-        @filterrific.find.where.not(view_publically: true).page(params[:page]) :
-        @filterrific.find.where(user_id: current_user.id).page(params[:page])
+    (@filterrific = initialize_filterrific(
+      Complaint,
+      params[:filterrific]
+    )) || return
+    @complaints = user_is_president ?
+      @filterrific.find.where.not(view_publically: true).page(params[:page]) :
+      @filterrific.find.where(user_id: current_user.id).page(params[:page])
     @unread_complain_ids = Complaint.unread_by(current_user).map(&:id)
   end
 
   # GET /complaints/1
   # GET /complaints/1.json
   def show
-    @complaint.mark_as_read! :for => current_user
+    @complaint.mark_as_read! for: current_user
     @unread_complain_ids = Complaint.unread_by(current_user).map(&:id)
   end
 
@@ -76,7 +75,7 @@ class ComplaintsController < BaseController
   end
 
   def upvote
-    @complaint.vote_by :voter => current_user unless current_user.voted_for?(@complaint)
+    @complaint.vote_by voter: current_user unless current_user.voted_for?(@complaint)
     @size = @complaint.get_upvotes.size
   end
 
@@ -97,48 +96,49 @@ class ComplaintsController < BaseController
         end
       else
         respond_to do |format|
-          format.js {  render js: "toastr.info('Please contact support')" }
+          format.js { render js: "toastr.info('Please contact support')" }
         end
       end
     else
       respond_to do |format|
-        format.js {  render js: "toastr.info('Not Authorized')" }
+        format.js { render js: "toastr.info('Not Authorized')" }
       end
     end
   end
 
   def mark_all_read
     Complaint.unread_by(current_user).each do |complaint|
-      complaint.mark_as_read! :for => current_user
+      complaint.mark_as_read! for: current_user
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_complaint
-      @complaint = Complaint.includes(:user, :reviews).find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def complaint_params
-      params.require(:complaint).permit(:title, :desc, :status, :view_publically, :random)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_complaint
+    @complaint = Complaint.includes(:user, :reviews).find(params[:id])
+  end
 
-    def update_complaint_status(status)
-      if user_is_president && Complaint.statuses[@complaint.status] != status
-        if @complaint.update(status: status)
-          respond_to do |format|
-            format.js {  render status: 200, js: "toastr.success('Success')" }
-          end
-        else
-          respond_to do |format|
-            format.js {  render js: "toastr.info('Please contact support')" }
-          end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def complaint_params
+    params.require(:complaint).permit(:title, :desc, :status, :view_publically, :random)
+  end
+
+  def update_complaint_status(status)
+    if user_is_president && Complaint.statuses[@complaint.status] != status
+      if @complaint.update(status: status)
+        respond_to do |format|
+          format.js {  render status: 200, js: "toastr.success('Success')" }
         end
       else
         respond_to do |format|
-          format.js {  render js: "toastr.info('Not Authorized')" }
+          format.js {  render js: "toastr.info('Please contact support')" }
         end
       end
+    else
+      respond_to do |format|
+        format.js { render js: "toastr.info('Not Authorized')" }
+      end
     end
+  end
 end

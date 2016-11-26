@@ -4,5 +4,4 @@ class Election < ActiveRecord::Base
   def self.new_or_recent_election
     Tenant.current.user_setting.voting_visible
   end
-
 end

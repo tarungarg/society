@@ -13,7 +13,7 @@ class AnnouncementsController < BaseController
   # GET /announcements/1
   # GET /announcements/1.json
   def show
-    @announcement.mark_as_read! :for => current_user
+    @announcement.mark_as_read! for: current_user
     @unread_complain_ids = Announcement.unread_by(current_user).map(&:id)
   end
 
@@ -67,13 +67,14 @@ class AnnouncementsController < BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_announcement
-      @announcement = Announcement.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def announcement_params
-      params.require(:announcement).permit(:title, :desc)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_announcement
+    @announcement = Announcement.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def announcement_params
+    params.require(:announcement).permit(:title, :desc)
+  end
 end

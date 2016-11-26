@@ -6,11 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-u=User.create(email: 'tarungarg402@gmail.com', password: 'password', password_confirmation: 'password', tenant_attributes: {domain: 'me'})
+u = User.create(email: 'tarungarg402@gmail.com', password: 'password', password_confirmation: 'password', tenant_attributes: { domain: 'me' })
 
 u.add_role :me
 
 # u1=User.create(email: 't.garg28@gmail.com', password: 'password', password_confirmation: 'password', tenant_attributes: {domain: 'tarun'})
-
-

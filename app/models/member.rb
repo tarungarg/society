@@ -32,5 +32,4 @@
 #
 
 class Member < User
-
 end

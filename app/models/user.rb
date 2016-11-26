@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   has_one :user_setting
   has_many :complaints
   has_many :policies
-  has_many :invitations, :class_name => self.to_s, :as => :invited_by
+  has_many :invitations, class_name: to_s, as: :invited_by
   has_many :charge_subscriptions, class_name: 'Subscription'
   has_many :elections_participated_users
 
@@ -59,9 +59,9 @@ class User < ActiveRecord::Base
   acts_as_reader
   acts_as_votable
 
-####
-# filterrific gem for search sort and pagination
-#### 
+  ####
+  # filterrific gem for search sort and pagination
+  ####
 
   self.per_page = 10
 
@@ -76,62 +76,61 @@ class User < ActiveRecord::Base
   )
 
   scope :search_query, lambda { |query|
-    return nil  if query.blank?
+    return nil if query.blank?
     # condition query, parse into individual keywords
     terms = query.to_s.downcase.split(/\s+/)
     # replace "*" with "%" for wildcard searches,
     # append '%', remove duplicate '%'s
-    terms = terms.map { |e|
-      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
-    }
+    terms = terms.map do |e|
+      ('%' + e.tr('*', '%') + '%').gsub(/%+/, '%')
+    end
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
     num_or_conditions = 5
     where(
-      terms.map {
+      terms.map do
         or_clauses = [
-          "LOWER(users.name) LIKE ?",
-          "LOWER(users.email) LIKE ?",
-          "LOWER(users.mob_num) LIKE ?",
-          "LOWER(users.occupation) LIKE ?",
-          "LOWER(users.bio) LIKE ?"
+          'LOWER(users.name) LIKE ?',
+          'LOWER(users.email) LIKE ?',
+          'LOWER(users.mob_num) LIKE ?',
+          'LOWER(users.occupation) LIKE ?',
+          'LOWER(users.bio) LIKE ?'
         ].join(' OR ')
-        "(#{ or_clauses })"
-      }.join(' AND '),
+        "(#{or_clauses})"
+      end.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
     )
   }
 
   scope :flat_no_search, lambda { |query|
-    return nil  if query.blank?
-    where(["users.flat_no = ?", query.to_s])
+    return nil if query.blank?
+    where(['users.flat_no = ?', query.to_s])
   }
 
   scope :sorted_by, lambda { |sort_key|
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     case sort_key.to_s
     when /^created_at_/
-      order("users.created_at #{ direction }")
+      order("users.created_at #{direction}")
     when /^name_/
-      order("LOWER(users.name) #{ direction }")
+      order("LOWER(users.name) #{direction}")
     when /^number_/
-      order("LOWER(users.mob_num) #{ direction }")
+      order("LOWER(users.mob_num) #{direction}")
     when /^flat_no_/
-      order("LOWER(users.flat_no) #{ direction }")
+      order("LOWER(users.flat_no) #{direction}")
     when /^email_/
-      order("LOWER(users.email) #{ direction }")
+      order("LOWER(users.email) #{direction}")
     when /^blood_/
-      order("LOWER(users.blood_group) #{ direction }")
+      order("LOWER(users.blood_group) #{direction}")
     else
-      raise(ArgumentError, "Invalid sort option: #{ sort_key.inspect }")
+      raise(ArgumentError, "Invalid sort option: #{sort_key.inspect}")
     end
   }
 
   scope :with_created_at_gte, lambda { |ref_date|
     where('users.created_at >= ?', ref_date)
   }
-
 
   # to show society profile attributes with user
   # Showing signup for with society profile attributes
@@ -160,26 +159,25 @@ class User < ActiveRecord::Base
   end
 
   def calculate_votes_size
-    find_votes_for(:vote_scope => 'elect').size
+    find_votes_for(vote_scope: 'elect').size
   end
 
   private
 
-    def add_tenant_to_apartment
-      if !Tenant.current || Tenant.current.domain == "me"
-        Apartment::Tenant.create(tenant.domain)
-        Apartment::Tenant.switch!(tenant.domain)
-        set_default_role
-        set_default_setting
-      end
+  def add_tenant_to_apartment
+    if !Tenant.current || Tenant.current.domain == 'me'
+      Apartment::Tenant.create(tenant.domain)
+      Apartment::Tenant.switch!(tenant.domain)
+      set_default_role
+      set_default_setting
     end
+  end
 
-    def set_default_role
-      self.add_role :president
-    end
+  def set_default_role
+    add_role :president
+  end
 
-    def set_default_setting
-      UserSetting.create(tenant_id: Tenant.current.id)
-    end
-
+  def set_default_setting
+    UserSetting.create(tenant_id: Tenant.current.id)
+  end
 end

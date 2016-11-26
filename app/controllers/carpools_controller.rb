@@ -62,13 +62,14 @@ class CarpoolsController < BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_carpool
-      @carpool = Carpool.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def carpool_params
-      params.require(:carpool).permit(:title, :desc, :user_id, :date, :routes, :tag_list)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_carpool
+    @carpool = Carpool.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def carpool_params
+    params.require(:carpool).permit(:title, :desc, :user_id, :date, :routes, :tag_list)
+  end
 end

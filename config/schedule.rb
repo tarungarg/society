@@ -19,7 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-
-every 1.day, :at => '4:30 am' do
-  runner "Complaint.clean_up_read_complains"
+every 1.day, at: '4:30 am' do
+  runner 'Complaint.clean_up_read_complains'
 end

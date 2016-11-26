@@ -1,1 +1,1 @@
-json.partial! "trusts/trust", trust: @trust
+json.partial! 'trusts/trust', trust: @trust

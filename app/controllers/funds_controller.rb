@@ -4,11 +4,11 @@ class FundsController < BaseController
   # GET /funds
   # GET /funds.json
   def index
-    @filterrific = initialize_filterrific(
-        Fund,
-        params[:filterrific]
-      ) or return
-      @funds = @filterrific.find.page(params[:page])
+    (@filterrific = initialize_filterrific(
+      Fund,
+      params[:filterrific]
+    )) || return
+    @funds = @filterrific.find.page(params[:page])
   end
 
   # GET /funds/1
@@ -66,13 +66,14 @@ class FundsController < BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_fund
-      @fund = Fund.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def fund_params
-      params.require(:fund).permit(:amount, :title, :desc, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_fund
+    @fund = Fund.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def fund_params
+    params.require(:fund).permit(:amount, :title, :desc, :date)
+  end
 end

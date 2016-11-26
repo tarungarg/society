@@ -12,13 +12,13 @@
 #
 
 class Fund < ActiveRecord::Base
-  validates :title , :amount, presence: true
+  validates :title, :amount, presence: true
 
-  scope :created_between, lambda {|start_date, end_date| where("created_at >= ? AND created_at <= ?", start_date, end_date )}
+  scope :created_between, ->(start_date, end_date) { where('created_at >= ? AND created_at <= ?', start_date, end_date) }
 
-####
-# filterrific gem for search sort and pagination
-#### 
+  ####
+  # filterrific gem for search sort and pagination
+  ####
 
   self.per_page = 10
 
@@ -34,59 +34,58 @@ class Fund < ActiveRecord::Base
   )
 
   scope :search_query, lambda { |query|
-    return nil  if query.blank?
+    return nil if query.blank?
     # condition query, parse into individual keywords
     terms = query.to_s.downcase.split(/\s+/)
     # replace "*" with "%" for wildcard searches,
     # append '%', remove duplicate '%'s
-    terms = terms.map { |e|
-      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
-    }
+    terms = terms.map do |e|
+      ('%' + e.tr('*', '%') + '%').gsub(/%+/, '%')
+    end
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
     num_or_conditions = 2
     where(
-      terms.map {
+      terms.map do
         or_clauses = [
-          "LOWER(funds.title) LIKE ?",
-          "LOWER(funds.desc) LIKE ?",
+          'LOWER(funds.title) LIKE ?',
+          'LOWER(funds.desc) LIKE ?'
         ].join(' OR ')
-        "(#{ or_clauses })"
-      }.join(' AND '),
+        "(#{or_clauses})"
+      end.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
     )
   }
 
   scope :amount_search, lambda { |query|
-    return nil  if query.blank?
-    where(["funds.amount = ?", query])
+    return nil if query.blank?
+    where(['funds.amount = ?', query])
   }
 
   scope :sorted_by, lambda { |sort_key|
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     case sort_key.to_s
     when /^created_at_/
-      order("funds.created_at #{ direction }")
+      order("funds.created_at #{direction}")
     when /^name_/
-      order("LOWER(funds.name) #{ direction }")
+      order("LOWER(funds.name) #{direction}")
     when /^number_/
-      order("LOWER(funds.mob_num) #{ direction }")
+      order("LOWER(funds.mob_num) #{direction}")
     when /^flat_no_/
-      order("LOWER(funds.flat_no) #{ direction }")
+      order("LOWER(funds.flat_no) #{direction}")
     when /^email_/
-      order("LOWER(funds.email) #{ direction }")
+      order("LOWER(funds.email) #{direction}")
     when /^blood_/
-      order("LOWER(funds.blood_group) #{ direction }")
+      order("LOWER(funds.blood_group) #{direction}")
     else
-      raise(ArgumentError, "Invalid sort option: #{ sort_key.inspect }")
+      raise(ArgumentError, "Invalid sort option: #{sort_key.inspect}")
     end
   }
 
   scope :with_created_at_gte, lambda { |ref_date|
     where('funds.date >= ?', ref_date)
   }
-
 
   scope :with_dates, lambda { |date|
     where('funds.date >= ?', date)
@@ -107,5 +106,4 @@ class Fund < ActiveRecord::Base
   # def self.month_spent(month)
   #   Fund.where('extract(month from date) = ?', month).sum(:amount)
   # end
-
 end

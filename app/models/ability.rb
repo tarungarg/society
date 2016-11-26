@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user = nil)
-    @user = user #|| User.new # guest user (not logged in)
+    @user = user # || User.new # guest user (not logged in)
     president_privileges if @user.has_role?(:president)
     member_privileges if @user.has_role?(:member)
     instructor_privileges if @user.has_role?('instructor')

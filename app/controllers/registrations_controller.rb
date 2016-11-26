@@ -35,26 +35,24 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-    def sign_up_params
-      params.require(:user).permit(:email, :password, :subdomain,
-                                   society_profile_attributes:
-                                         [:society_name, :mobile_number, :street_addr, :city, :state, :zip],
-                                    tenant_attributes:
-                                          [:domain]
-                                  )
-    end
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :subdomain,
+                                 society_profile_attributes:
+                                       [:society_name, :mobile_number, :street_addr, :city, :state, :zip],
+                                 tenant_attributes:
+                                        [:domain])
+  end
 
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(_resource)
     root_url
   end
 
   def check_if_me
     unless current_user && current_user.has_role?(:me)
       respond_to do |format|
-        format.html { redirect_to root_url, notice: "You are not authorized to access this page" }
+        format.html { redirect_to root_url, notice: 'You are not authorized to access this page' }
         format.js { render js: "location.href = '/';toastr.error('Not authorized');" }
       end
     end
   end
-
 end

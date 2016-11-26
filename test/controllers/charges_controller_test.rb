@@ -5,18 +5,18 @@ class ChargesControllerTest < ActionController::TestCase
     @charge = charges(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:charges)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create charge" do
+  test 'should create charge' do
     assert_difference('Charge.count') do
       post :create, charge: { amount: @charge.amount, from_date: @charge.from_date, period: @charge.period, to_date: @charge.to_date }
     end
@@ -24,22 +24,22 @@ class ChargesControllerTest < ActionController::TestCase
     assert_redirected_to charge_path(assigns(:charge))
   end
 
-  test "should show charge" do
+  test 'should show charge' do
     get :show, id: @charge
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @charge
     assert_response :success
   end
 
-  test "should update charge" do
+  test 'should update charge' do
     patch :update, id: @charge, charge: { amount: @charge.amount, from_date: @charge.from_date, period: @charge.period, to_date: @charge.to_date }
     assert_redirected_to charge_path(assigns(:charge))
   end
 
-  test "should destroy charge" do
+  test 'should destroy charge' do
     assert_difference('Charge.count', -1) do
       delete :destroy, id: @charge
     end

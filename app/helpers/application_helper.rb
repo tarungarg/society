@@ -1,19 +1,18 @@
 module ApplicationHelper
-
   def background_image_url
     Tenant.current.image_url
   end
 
-  def bootstrap_class_for flash_type
-    { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
+  def bootstrap_class_for(flash_type)
+    { success: 'alert-success', error: 'alert-danger', alert: 'alert-warning', notice: 'alert-info' }[flash_type.to_sym] || flash_type.to_s
   end
 
-  def flash_messages(opts = {})
+  def flash_messages(_opts = {})
     flash.each do |msg_type, message|
-      concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} fade in") do 
-              concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
-              concat message 
-            end)
+      concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} fade in") do
+               concat content_tag(:button, 'x', class: 'close', data: { dismiss: 'alert' })
+               concat message
+             end)
     end
     nil
   end
@@ -27,11 +26,10 @@ module ApplicationHelper
   end
 
   def convert_time_to_basic(time)
-    time.strftime("%b %d, %Y at %I:%M%p")
+    time.strftime('%b %d, %Y at %I:%M%p')
   end
 
   def basic_date_only(time)
-    time.strftime("%b %d, %Y")
+    time.strftime('%b %d, %Y')
   end
-
 end

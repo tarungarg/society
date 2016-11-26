@@ -7,11 +7,11 @@ class MembersController < BaseController
   # GET /members
   # GET /members.json
   def index
-    @filterrific = initialize_filterrific(
-        Member,
-        params[:filterrific]
-      ) or return
-      @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
+    (@filterrific = initialize_filterrific(
+      Member,
+      params[:filterrific]
+    )) || return
+    @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
   end
 
   # GET /members/1
@@ -99,47 +99,45 @@ class MembersController < BaseController
       end
     else
       respond_to do |format|
-        format.js {  render status: 200, js: "toastr.info('Please Contact Support')" }
+        format.js { render status: 200, js: "toastr.info('Please Contact Support')" }
       end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      begin
-        @member = User.where(id: params[:id], tenant_id: current_tenant.id).first
-      rescue Exception
-        puts Exception
-      end
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def member_params
-      params.require(:member).permit(:name, :flat_no, :tower_no, :mob_num, :email, :alt_no, :blood_group, :occupation, :family_memebers, :adult, :kids, :bio, :password, :password_confirmation, roles: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_member
+    @member = User.where(id: params[:id], tenant_id: current_tenant.id).first
+  rescue Exception
+    puts Exception
+  end
 
-    def add_roles(roles)
-      roles.each do |role|
-        @member.add_role(role) if User.profile_roles.keys.include?(role)
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def member_params
+    params.require(:member).permit(:name, :flat_no, :tower_no, :mob_num, :email, :alt_no, :blood_group, :occupation, :family_memebers, :adult, :kids, :bio, :password, :password_confirmation, roles: [])
+  end
 
-    def remove_roles
-      @member.roles.delete_all
+  def add_roles(roles)
+    roles.each do |role|
+      @member.add_role(role) if User.profile_roles.keys.include?(role)
     end
+  end
 
-    def destroy_user
-      @member.destroy
-      remove_roles
-      respond_to do |format|
-        format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+  def remove_roles
+    @member.roles.delete_all
+  end
+
+  def destroy_user
+    @member.destroy
+    remove_roles
+    respond_to do |format|
+      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+      format.json { head :no_content }
     end
+  end
 
-    def check_if_field_empty(params)
-      params[:name] == "" || params[:flat_no] == "" || params[:tower_no] == "" || params[:mob_num] == ""
-    end
-
+  def check_if_field_empty(params)
+    params[:name] == '' || params[:flat_no] == '' || params[:tower_no] == '' || params[:mob_num] == ''
+  end
 end

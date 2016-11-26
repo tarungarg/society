@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinner.gif 
+Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinner.gif
                                                   commontator/upvote_disabled.png
                                                   commontator/upvote_hover.png
                                                   commontator/upvote.png
@@ -16,5 +16,4 @@ Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinne
                                                   commontator/downvote_hover.png
                                                   commontator/downvote.png
                                                   commontator/downvote_disabled.png
-                                                  commontator/downvote_active.png
-                                                )
+                                                  commontator/downvote_active.png)

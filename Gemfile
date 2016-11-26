@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
@@ -33,7 +32,7 @@ gem 'therubyracer'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'tabs_on_rails'
-gem "rolify"
+gem 'rolify'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan', '~> 1.10'
 gem 'acts_as_votable', '~> 0.10.0'
@@ -41,13 +40,13 @@ gem 'client_side_validations'
 
 gem 'commontator', '~> 4.11.1'
 gem 'toastr-rails'
-gem "js-routes"
+gem 'js-routes'
 gem 'unread'
 gem 'announcements'
 gem 'acts-as-taggable-on', '~> 4.0'
-gem "select2-rails"
+gem 'select2-rails'
 
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
@@ -67,7 +66,8 @@ gem 'nprogress-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem "letter_opener"
+  gem 'letter_opener'
+  gem 'rubocop', require: false
 end
 
 group :development do
@@ -77,4 +77,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

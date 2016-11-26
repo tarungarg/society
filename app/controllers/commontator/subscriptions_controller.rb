@@ -13,7 +13,6 @@ module Commontator
         format.html { redirect_to @thread }
         format.js { render :subscribe }
       end
-
     end
 
     # PUT /threads/1/unsubscribe

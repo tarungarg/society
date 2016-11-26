@@ -14,16 +14,16 @@
 
 module Commontator
   class Thread < ActiveRecord::Base
-    belongs_to :closer, :polymorphic => true
-    belongs_to :commontable, :polymorphic => true
+    belongs_to :closer, polymorphic: true
+    belongs_to :commontable, polymorphic: true
 
-    has_many :comments, :dependent => :destroy
-    has_many :subscriptions, :dependent => :destroy
+    has_many :comments, dependent: :destroy
+    has_many :subscriptions, dependent: :destroy
 
-    validates_presence_of :commontable, :unless => :is_closed?
+    validates_presence_of :commontable, unless: :is_closed?
     validates_uniqueness_of :commontable_id,
-                            :scope => :commontable_type,
-                            :allow_nil => true
+                            scope: :commontable_type,
+                            allow_nil: true
 
     def config
       @config ||= commontable.try(:commontable_config) || Commontator
@@ -59,7 +59,7 @@ module Commontator
     def paginated_comments(page = 1, per_page = config.comments_per_page)
       oc = ordered_comments
       return oc unless will_paginate?
-      oc.paginate(:page => page, :per_page => per_page)
+      oc.paginate(page: page, per_page: per_page)
     end
 
     def new_comment_page(per_page = config.comments_per_page)
@@ -71,15 +71,15 @@ module Commontator
         when :ve
           comment_arel = Comment.arel_table
           # Last comment with rating = 0
-          filtered_comments.where((comment_arel[:cached_votes_up] - comment_arel[:cached_votes_down]).gteq 0).count
+          filtered_comments.where((comment_arel[:cached_votes_up] - comment_arel[:cached_votes_down]).gteq(0)).count
         when :vl
           comment_arel = Comment.arel_table
           # First comment with rating = 0
-          filtered_comments.where((comment_arel[:cached_votes_up] - comment_arel[:cached_votes_down]).gt 0).count + 1
+          filtered_comments.where((comment_arel[:cached_votes_up] - comment_arel[:cached_votes_down]).gt(0)).count + 1
         else
           filtered_comments.count # Last comment
         end
-      (comment_index.to_f/per_page.to_i).ceil
+      (comment_index.to_f / per_page.to_i).ceil
     end
 
     def is_closed?
@@ -100,12 +100,12 @@ module Commontator
     end
 
     def subscribers
-      subscriptions.collect{|s| s.subscriber}
+      subscriptions.collect(&:subscriber)
     end
 
     def subscription_for(subscriber)
       return nil if !subscriber || !subscriber.is_commontator
-      subscriber.subscriptions.where(:thread_id => self.id).first
+      subscriber.subscriptions.where(thread_id: id).first
     end
 
     def subscribe(subscriber)
@@ -153,21 +153,21 @@ module Commontator
     # Reader capabilities (user can be nil or false)
     def can_be_read_by?(user)
       return true if can_be_edited_by?(user)
-      !commontable.nil? &&\
-      config.thread_read_proc.call(self, user)
+      !commontable.nil? && \
+        config.thread_read_proc.call(self, user)
     end
 
     # Thread moderator capabilities
     def can_be_edited_by?(user)
-      !commontable.nil? && !user.nil? && user.is_commontator &&\
-      config.thread_moderator_proc.call(self, user)
+      !commontable.nil? && !user.nil? && user.is_commontator && \
+        config.thread_moderator_proc.call(self, user)
     end
 
     def can_subscribe?(user)
       thread_sub = config.thread_subscription.to_sym
-      !is_closed? && !user.nil? && user.is_commontator &&\
-      (thread_sub == :m || thread_sub == :b) &&\
-      can_be_read_by?(user)
+      !is_closed? && !user.nil? && user.is_commontator && \
+        (thread_sub == :m || thread_sub == :b) && \
+        can_be_read_by?(user)
     end
   end
 end

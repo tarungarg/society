@@ -8,7 +8,7 @@ class CreatePolicies < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :policies, :user_id,       using: :btree
-    add_index :policies, :name,       using: :btree
+    add_index :policies, :user_id, using: :btree
+    add_index :policies, :name, using: :btree
   end
 end

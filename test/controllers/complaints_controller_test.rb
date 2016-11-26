@@ -5,18 +5,18 @@ class ComplaintsControllerTest < ActionController::TestCase
     @complaint = complaints(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:complaints)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create complaint" do
+  test 'should create complaint' do
     assert_difference('Complaint.count') do
       post :create, complaint: { desc: @complaint.desc, status: @complaint.status, title: @complaint.title }
     end
@@ -24,22 +24,22 @@ class ComplaintsControllerTest < ActionController::TestCase
     assert_redirected_to complaint_path(assigns(:complaint))
   end
 
-  test "should show complaint" do
+  test 'should show complaint' do
     get :show, id: @complaint
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @complaint
     assert_response :success
   end
 
-  test "should update complaint" do
+  test 'should update complaint' do
     patch :update, id: @complaint, complaint: { desc: @complaint.desc, status: @complaint.status, title: @complaint.title }
     assert_redirected_to complaint_path(assigns(:complaint))
   end
 
-  test "should destroy complaint" do
+  test 'should destroy complaint' do
     assert_difference('Complaint.count', -1) do
       delete :destroy, id: @complaint
     end

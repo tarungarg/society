@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-
   resources :elections
   resources :elections_participated_users
-  devise_for :users, controllers: { registrations: 'registrations',  :invitations => 'users/invitations' }
+  devise_for :users, controllers: { registrations: 'registrations', invitations: 'users/invitations' }
 
   constraints SubDomainConstraint do
     root 'dashboard#index'
@@ -58,11 +57,9 @@ Rails.application.routes.draw do
     resources :clubs
 
     mount Commontator::Engine => '/commontator'
-
   end
 
   constraints PublicDomainConstraint do
     get '/' => 'home#index'
   end
-
 end

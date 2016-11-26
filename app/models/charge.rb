@@ -1,5 +1,4 @@
 class Charge < ActiveRecord::Base
-
   enum period: { Monthly: 0, Quaterly: 1, Yearly: 3 }
 
   has_many :subscriptions
@@ -13,5 +12,4 @@ class Charge < ActiveRecord::Base
       from_date + 12.month
     end
   end
-
 end

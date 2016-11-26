@@ -8,5 +8,4 @@ class Subscription < ActiveRecord::Base
     subscription.charge_id = charge_id
     subscription.save!
   end
-
 end

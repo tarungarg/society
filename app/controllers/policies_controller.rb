@@ -14,7 +14,7 @@ class PoliciesController < BaseController
   # GET /policies/1
   # GET /policies/1.json
   def show
-    @policy.mark_as_read! :for => current_user
+    @policy.mark_as_read! for: current_user
     @unread_policy_ids = Policy.unread_by(current_user).map(&:id)
   end
 
@@ -73,27 +73,25 @@ class PoliciesController < BaseController
     disposition = 'attachment'
     mime = MIME::Types.type_for(file).first.content_type
 
-    if %w{jpg png jpg gif bmp}.include?(extension) or extension == "pdf"
+    if %w(jpg png jpg gif bmp).include?(extension) || (extension == 'pdf')
       disposition = 'inline'
     end
-    send_file file, :type => mime, :disposition => disposition
+    send_file file, type: mime, disposition: disposition
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_policy
-      @policy = Policy.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def policy_params
-      params.require(:policy).permit(:name, :file, :body, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_policy
+    @policy = Policy.find(params[:id])
+  end
 
-    def check_user_is_president
-      unless user_is_president
-        raise "You are not authorized"
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def policy_params
+    params.require(:policy).permit(:name, :file, :body, :user_id)
+  end
+
+  def check_user_is_president
+    raise 'You are not authorized' unless user_is_president
+  end
 end

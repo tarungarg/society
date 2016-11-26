@@ -1,1 +1,1 @@
-json.partial! "elections_participated_users/elections_participated_user", elections_participated_user: @elections_participated_user
+json.partial! 'elections_participated_users/elections_participated_user', elections_participated_user: @elections_participated_user

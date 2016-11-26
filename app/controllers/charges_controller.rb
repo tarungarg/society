@@ -6,18 +6,17 @@ class ChargesController < BaseController
   # GET /charges.json
   def index
     @charges = Charge.all
-    @charge_ids =  current_user.charge_subscriptions.map(&:charge_id)
+    @charge_ids = current_user.charge_subscriptions.map(&:charge_id)
   end
 
   # GET /charges/1
   # GET /charges/1.json
   def show
-    @subscription_ids = Subscription.all.collect{|k| [k.user_id, k.charge_id]}
+    @subscription_ids = Subscription.all.collect { |k| [k.user_id, k.charge_id] }
     respond_to do |format|
       format.html
       format.js { render :index }
     end
-
   end
 
   # GET /charges/new
@@ -81,10 +80,10 @@ class ChargesController < BaseController
         if Subscription.create_subscription(params[:charge_id], params[:user_id])
           format.js
         else
-          format.js {  render status: 200, js: "toastr.info('Please Contact Support')" }
+          format.js { render status: 200, js: "toastr.info('Please Contact Support')" }
         end
       else
-        format.js {  render status: 200, js: "toastr.info('Don't Play)" }
+        format.js { render status: 200, js: "toastr.info('Don't Play)" }
       end
     end
   end
@@ -96,29 +95,30 @@ class ChargesController < BaseController
       end
     end
     respond_to do |format|
-      format.js {  render status: 200, js: "toastr.info('Success')" }
+      format.js { render status: 200, js: "toastr.info('Success')" }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_charge
-      @charge = Charge.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def charge_params
-      params[:charge][:period] = params[:charge][:period].to_i
-      params.require(:charge).permit(:from_date, :to_date, :period, :amount, :title, :desc)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_charge
+    @charge = Charge.find(params[:id])
+  end
 
-    def list_users
-      if user_is_president
-        @filterrific = initialize_filterrific(
-          Member,
-          params[:filterrific]
-        ) or return
-        @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
-      end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def charge_params
+    params[:charge][:period] = params[:charge][:period].to_i
+    params.require(:charge).permit(:from_date, :to_date, :period, :amount, :title, :desc)
+  end
+
+  def list_users
+    if user_is_president
+      (@filterrific = initialize_filterrific(
+        Member,
+        params[:filterrific]
+      )) || return
+      @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
     end
+  end
 end

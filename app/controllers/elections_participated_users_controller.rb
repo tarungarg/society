@@ -62,13 +62,14 @@ class ElectionsParticipatedUsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_elections_participated_user
-      @elections_participated_user = ElectionsParticipatedUser.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def elections_participated_user_params
-      params.require(:elections_participated_user).permit(:user_id, :electon_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_elections_participated_user
+    @elections_participated_user = ElectionsParticipatedUser.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def elections_participated_user_params
+    params.require(:elections_participated_user).permit(:user_id, :electon_id)
+  end
 end
