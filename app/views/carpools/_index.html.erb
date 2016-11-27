@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Carpools</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Ride</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% carpools.each do |carpool| %>
+        <tr>
+          <td><%= carpool.from %> - <%= carpool.to %></td>
+          <td><%= convert_time_to_basic carpool.date %></td>
+          <td><%= carpool.amount %></td>
+          <td><%= link_to 'Show', carpool %></td>
+          <td><%= link_to 'Edit', edit_carpool_path(carpool) if current_user.id == carpool.user_id %></td>
+          <td><%= link_to 'Destroy', carpool, method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == carpool.user_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Carpool', new_carpool_path %>

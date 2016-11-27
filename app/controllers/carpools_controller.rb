@@ -5,7 +5,11 @@ class CarpoolsController < BaseController
   # GET /carpools
   # GET /carpools.json
   def index
-    @carpools = Carpool.all
+    (@filterrific = initialize_filterrific(
+      Carpool,
+      params[:filterrific]
+    )) || return
+    @carpools = @filterrific.find.page(params[:page])
   end
 
   # GET /carpools/1
@@ -72,6 +76,6 @@ class CarpoolsController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def carpool_params
-    params.require(:carpool).permit(:title, :desc, :date, :routes, :tag_list, :from, :to)
+    params.require(:carpool).permit(:amount, :desc, :date, :routes, :tag_list, :from, :to)
   end
 end

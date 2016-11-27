@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20161127031104) do
   end
 
   create_table "carpools", force: :cascade do |t|
-    t.string   "title"
+    t.integer  "amount"
     t.string   "from"
     t.string   "to"
     t.text     "desc"

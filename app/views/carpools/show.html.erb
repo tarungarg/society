@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @carpool.title %>
+  <strong>Ride:</strong>
+  <%= @carpool.from %>
+-
+  <%= @carpool.to %>
+
 </p>
 
 <p>
@@ -25,5 +28,5 @@
   <%= @carpool.tag_list %>
 </p>
 
-<%= link_to 'Edit', edit_carpool_path(@carpool) %> |
+<%= link_to 'Edit', edit_carpool_path(@carpool) if current_user.id == @carpool.user_id  %>
 <%= link_to 'Back', carpools_path %>
