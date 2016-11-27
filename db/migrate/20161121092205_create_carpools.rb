@@ -2,6 +2,8 @@ class CreateCarpools < ActiveRecord::Migration
   def change
     create_table :carpools do |t|
       t.string :title
+      t.string :from
+      t.string :to
       t.text :desc
       t.integer :user_id
       t.datetime :date

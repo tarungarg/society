@@ -2,12 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
+    <%= f.input :from %>
+    <%= f.input :to %>
     <%= f.input :desc %>
-    <%= f.input :user_id %>
     <%= f.input :date %>
     <%= f.association :tag_list do %>
-    <%= f.input :tag_list, {class: 'select2', multiple: true, :style => "width:100%;"} %>
+    <%= f.input :tag_list, { multiple: true, style: "width:100%;", label: 'Pick Up Route'} %>
+    <em>Please enter comma sperated routes if you want pick up eg. Going from Delhi to Patiala</em>
+    <em>Pick Up Routes sonipat, panipat, ambala</em>
     <% end %>
   </div>
 
@@ -16,11 +18,3 @@
   </div>
 <% end %>
 
-
-<script type="text/javascript">
-  // $(document).ready(function(){
-  //   $('#carpool_tag_list').select2({
-  //     theme: "bootstrap"
-  //   });
-  // })
-</script>

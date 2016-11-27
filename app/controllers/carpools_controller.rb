@@ -72,6 +72,6 @@ class CarpoolsController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def carpool_params
-    params.require(:carpool).permit(:title, :desc, :date, :routes, :tag_list)
+    params.require(:carpool).permit(:title, :desc, :date, :routes, :tag_list, :from, :to)
   end
 end
