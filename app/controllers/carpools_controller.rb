@@ -1,4 +1,5 @@
 class CarpoolsController < BaseController
+  load_and_authorize_resource
   before_action :set_carpool, only: [:show, :edit, :update, :destroy]
 
   # GET /carpools
@@ -25,6 +26,7 @@ class CarpoolsController < BaseController
   # POST /carpools.json
   def create
     @carpool = Carpool.new(carpool_params)
+    @carpool.user_id = current_user.id
 
     respond_to do |format|
       if @carpool.save
@@ -70,6 +72,6 @@ class CarpoolsController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def carpool_params
-    params.require(:carpool).permit(:title, :desc, :user_id, :date, :routes, :tag_list)
+    params.require(:carpool).permit(:title, :desc, :date, :routes, :tag_list)
   end
 end

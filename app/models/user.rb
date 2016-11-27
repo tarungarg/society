@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
   has_many :jobs, dependent: :destroy
   has_many :suggestions, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_many :car_pools, dependent: :destroy
 
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank

@@ -7,10 +7,7 @@
     <thead>
       <tr>
         <th>Title</th>
-        <th>Desc</th>
-        <th>User</th>
         <th>Date</th>
-        <th>Routes</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -18,11 +15,8 @@
     <tbody>
       <% @carpools.each do |carpool| %>
         <tr>
-          <td><%= carpool.title %></td>
-          <td><%= carpool.desc %></td>
-          <td><%= carpool.user_id %></td>
-          <td><%= carpool.date %></td>
-          <td><%= carpool.tag_list %></td>
+          <td><%= truncate_text carpool.title %></td>
+          <td><%= convert_time_to_basic carpool.date %></td>
           <td><%= link_to 'Show', carpool %></td>
           <td><%= link_to 'Edit', edit_carpool_path(carpool) %></td>
           <td><%= link_to 'Destroy', carpool, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -13,6 +13,7 @@
 #
 
 class Carpool < ActiveRecord::Base
+  validates :title, :desc, :date, presence: true
   acts_as_taggable
   acts_as_taggable_on :routes
 end

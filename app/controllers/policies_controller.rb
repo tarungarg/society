@@ -88,7 +88,7 @@ class PoliciesController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def policy_params
-    params.require(:policy).permit(:name, :file, :body, :user_id)
+    params.require(:policy).permit(:name, :file, :body)
   end
 
   def check_user_is_president

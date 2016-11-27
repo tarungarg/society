@@ -11,16 +11,16 @@ class Ability
   private
 
   def president_privileges
-    can :manage, [Member, Announcement, Policy, VotesController]
-    can [:update, :destroy], [Job, Suggestion, Product], user_id: @user.id
-    can [:index, :show, :create], [Job, Suggestion, Product]
+    can :manage, [Member, Announcement, Policy, VotesController, Banner]
+    can [:update, :destroy], [Job, Suggestion, Product, Carpool], user_id: @user.id
+    can [:index, :show, :create], [Job, Suggestion, Product, Carpool]
   end
 
   def member_privileges
     can [:show, :index], [Member, Announcement]
     can [:show, :download, :index], Policy
     can [:index, :vote, :detail], VotesController
-    can [:update, :destroy], [Job, Suggestion, Product], user_id: @user.id
-    can [:index, :show, :create], [Job, Suggestion, Product]
+    can [:update, :destroy], [Job, Suggestion, Product, Carpool], user_id: @user.id
+    can [:index, :show, :create], [Job, Suggestion, Product, Carpool]
   end
 end
