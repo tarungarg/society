@@ -20,7 +20,7 @@
     <tbody>
       <% @jobs.each do |job| %>
         <tr>
-          <td><%= job.title %></td>
+          <td><%= truncate_text(job.title) %></td>
           <td><%= link_to 'Show', job %></td>
           <td><%= link_to 'Edit', edit_job_path(job) if job.user_id == current_user.id %></td>
           <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } if job.user_id == current_user.id %></td>

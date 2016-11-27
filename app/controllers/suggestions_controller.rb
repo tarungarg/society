@@ -1,4 +1,5 @@
 class SuggestionsController < BaseController
+  load_and_authorize_resource
   before_action :set_suggestion, only: [:show, :edit, :update, :destroy]
 
   # GET /suggestions
@@ -25,6 +26,7 @@ class SuggestionsController < BaseController
   # POST /suggestions.json
   def create
     @suggestion = Suggestion.new(suggestion_params)
+    @suggestion.user_id = current_user.id
 
     respond_to do |format|
       if @suggestion.save

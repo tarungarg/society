@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 20161127031104) do
     t.string   "desc"
     t.json     "images"
     t.integer  "amount"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -264,6 +265,7 @@ ActiveRecord::Schema.define(version: 20161127031104) do
   create_table "suggestions", force: :cascade do |t|
     t.string   "title"
     t.text     "desc"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

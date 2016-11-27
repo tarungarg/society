@@ -28,7 +28,14 @@
 #  tenant_id              :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  voting_visble          :boolean
+#  invitation_token       :string
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string
+#  invitations_count      :integer          default(0)
 #
 
 class User < ActiveRecord::Base
@@ -47,6 +54,8 @@ class User < ActiveRecord::Base
   has_many :charge_subscriptions, class_name: 'Subscription'
   has_many :elections_participated_users
   has_many :jobs, dependent: :destroy
+  has_many :suggestions, dependent: :destroy
+  has_many :products, dependent: :destroy
 
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank

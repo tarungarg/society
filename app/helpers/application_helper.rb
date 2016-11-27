@@ -17,7 +17,7 @@ module ApplicationHelper
     nil
   end
 
-  def truncate_text(text, length)
+  def truncate_text(text, length=40)
     truncate(text, length: length)
   end
 

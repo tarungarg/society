@@ -10,7 +10,7 @@
   <%= @suggestion.desc %>
 </p>
 
-<%= link_to 'Edit', edit_suggestion_path(@suggestion) %> |
+<%= link_to 'Edit', edit_suggestion_path(@suggestion) if current_user.id ==  @suggestion.user_id %>
 <%= link_to 'Back', suggestions_path %>
 
 <br>
