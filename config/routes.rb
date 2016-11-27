@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     mount Ckeditor::Engine => '/ckeditor'
   end
 
+  get '/' => 'home#index'
+
   constraints PublicDomainConstraint do
     get '/' => 'home#index'
   end
