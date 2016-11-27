@@ -7,10 +7,18 @@
 
 <p>
   <strong>Desc:</strong>
-  <%= @job.desc %>
+  <%= @job.desc.html_safe %>
 </p>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
+<%unless @job.files.blank? %>
+  <p>
+  <% @job.files.each do |file| %>
+    <%= link_to File.basename(file.path), file.url %>
+  <% end %>
+  </p>
+<%end%>
+
+<%= link_to 'Edit', edit_job_path(@job) if @job.user_id == current_user.id %>
 <%= link_to 'Back', jobs_path %>
 
 

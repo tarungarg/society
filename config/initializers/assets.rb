@@ -16,4 +16,5 @@ Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinne
                                                   commontator/downvote_hover.png
                                                   commontator/downvote.png
                                                   commontator/downvote_disabled.png
-                                                  commontator/downvote_active.png)
+                                                  commontator/downvote_active.png
+                                                  ckeditor/*)

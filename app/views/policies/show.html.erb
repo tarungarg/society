@@ -4,10 +4,10 @@
 </p>
 
 <%if @policy.file.url%>
-<p>
-  <strong>File:</strong>
-  <%= link_to File.basename(@policy.file.path), @policy.file.url %>
-</p>
+  <p>
+    <strong>File:</strong>
+    <%= link_to File.basename(@policy.file.path), @policy.file.url %>
+  </p>
 <%end%>
 
 <p>

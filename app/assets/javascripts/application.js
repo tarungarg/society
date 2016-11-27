@@ -25,6 +25,7 @@
 //= require select2-full
 //= require nprogress
 //= require nprogress-turbolinks
+//= require ckeditor/init
 //= require_tree .
 
 

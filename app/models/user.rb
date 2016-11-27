@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :invitations, class_name: to_s, as: :invited_by
   has_many :charge_subscriptions, class_name: 'Subscription'
   has_many :elections_participated_users
+  has_many :jobs, dependent: :destroy
 
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank

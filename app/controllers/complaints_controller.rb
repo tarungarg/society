@@ -1,5 +1,5 @@
 class ComplaintsController < BaseController
-  # load_and_authorize_resource
+  load_and_authorize_resource
 
   before_action :set_complaint, only: [:show, :edit, :update, :destroy,
                                        :upvote, :mark_as_resolve, :mark_as_unresolve,

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :elections
-  resources :elections_participated_users
   devise_for :users, controllers: { registrations: 'registrations', invitations: 'users/invitations' }
 
   constraints SubDomainConstraint do
@@ -55,8 +53,11 @@ Rails.application.routes.draw do
     resources :rents
     resources :carpools
     resources :clubs
+    resources :elections
+    resources :elections_participated_users
 
     mount Commontator::Engine => '/commontator'
+    mount Ckeditor::Engine => '/ckeditor'
   end
 
   constraints PublicDomainConstraint do

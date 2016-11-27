@@ -1,4 +1,5 @@
 class JobsController < BaseController
+  load_and_authorize_resource
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs
@@ -25,6 +26,7 @@ class JobsController < BaseController
   # POST /jobs.json
   def create
     @job = Job.new(job_params)
+    @job.user_id = current_user.id
 
     respond_to do |format|
       if @job.save
@@ -70,6 +72,6 @@ class JobsController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def job_params
-    params.require(:job).permit(:title, :desc)
+    params.require(:job).permit(:title, :desc, files: [])
   end
 end

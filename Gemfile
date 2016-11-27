@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.7.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
@@ -53,6 +53,10 @@ gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'devise_invitable'
 
 gem 'nprogress-rails'
+gem 'ckeditor'
+gem 'mini_magick'
+
+gem 'fast_blank'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -68,6 +72,16 @@ group :development, :test do
   gem 'byebug'
   gem 'letter_opener'
   gem 'rubocop', require: false
+  gem 'bullet'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'brakeman', require: false
+  gem 'rack-mini-profiler', require: false
+  gem 'memory_profiler'
+
+  gem 'flamegraph'
+  gem 'stackprof'
+  gem 'fast_stack'
 end
 
 group :development do

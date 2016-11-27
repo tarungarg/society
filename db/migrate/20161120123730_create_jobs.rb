@@ -3,6 +3,8 @@ class CreateJobs < ActiveRecord::Migration
     create_table :jobs do |t|
       t.string :title
       t.text :desc
+      t.integer :user_id
+      t.json :files
 
       t.timestamps null: false
     end
