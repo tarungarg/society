@@ -13,3 +13,8 @@
 //   viewUploadImage("desktop_image_preview", "banner_desktop_image");
 //   viewUploadImage("mobile_image_preview", "banner_mobile_image");
 // })
+
+
+function forceLower(strInput){
+  strInput.value=strInput.value.toLowerCase();
+}

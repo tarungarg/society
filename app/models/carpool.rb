@@ -31,6 +31,7 @@ class Carpool < ActiveRecord::Base
       :search_query_from,
       :search_query_to,
       :search_query,
+      :via,
       :date_on
     ]
   )
@@ -93,6 +94,10 @@ class Carpool < ActiveRecord::Base
 
   scope :date_on, lambda { |ref_date|
     where('carpools.date >= ?', ref_date)
+  }
+
+  scope :via, lambda { |query|
+    tagged_with(query)
   }
 
 end
