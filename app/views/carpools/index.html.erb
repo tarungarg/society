@@ -7,15 +7,13 @@
       <%= f.text_field(:search_query_to, class: 'filterrific-periodically-observed') %>
       Via: 
       <%= f.text_field(:via, class: 'filterrific-periodically-observed') %>
-    </div>
-    <%= render_filterrific_spinner %>
-    <div>
       Date On:
       <%= f.text_field(:date_on, class: 'js-datepicker') %>
     </div>
+    <%= link_to('Reset filters', reset_filterrific_url) %>
+    <%= render_filterrific_spinner %>
   <% end %>
 
-  <%= link_to('Reset filters', reset_filterrific_url) %>
 </div>
 
 <div id="filterrific_results"><%= render partial: 'carpools/index', locals: { carpools: @carpools } %></div>
