@@ -9,95 +9,65 @@
       <%= link_to 'User', members_path %>
     </li>
 
-    <li class="<%= params[:controller].include? ['complaints', 'feedbacks'] ? 'active' : '' %>">
-      <span><%= link_to 'Complaints & Suggestions', complaints_path %>
-
-      <% if user_is_president %>
-        (<%= Complaint.unread_by(current_user).public_comaplaints.count %>)</span>
-      <% else %>
-        (<%= Complaint.unread_by(current_user).public_comaplaints.count %>)</span>
-      <% end %>
-
+    <li class="<%= params[:controller] == 'complaints' || params[:controller] == 'public_complaints'  ? 'active' : '' %>">
+      <%= link_to 'Complaints & Suggestions', complaints_path %>
+      <%= Complaint.unread_by(current_user).public_comaplaints.count %>
     </li>
 
-    <li class="<%= params[:controller].include? ['complaints', 'feedbacks'] ? 'active' : '' %>">
-      <span>
-        <%= link_to 'Announcements', announcements_path %>
-        (<%= Announcement.unread_by(current_user).count %>)
-      </span>
+    <li class="<%= params[:controller] == 'announcements' ? 'active' : '' %>">
+      <%= link_to 'Announcements', announcements_path %>
+      <%= Announcement.unread_by(current_user).count %>
     </li>
 
-    <li class="<%= params[:controller].include? ['complaints', 'feedbacks'] ? 'active' : '' %>">
-      <span>
+    <li class="<%= params[:controller] == 'policies' ? 'active' : '' %>">
         <%= link_to 'Policies', policies_path %>
-        (<%= Policy.unread_by(current_user).count %>)
-      </span>
+        <%= Policy.unread_by(current_user).count %>
     </li>
 
     <% if user_is_president %>
       <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-        <span>
           <%= link_to 'Advertisements', banners_path %>
-        </span>
       </li>
     <% end %>
 
     <% if current_tenant.user_setting.send(:voting_visible) %>
-      <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-        <span>
+      <li class="<%= params[:controller] == 'votes' ? 'active' : '' %>">
           <%= link_to 'Voting', votes_index_path %>
-        </span>
       </li>
     <% end %>
 
     <% if Election.new_or_recent_election %>
-      <li>
-        <span>
+      <li class="<%= params[:controller] == 'votes' ? 'active' : '' %>">
           <%= link_to 'Voting Details', votes_detail_path %>
-        </span>
       </li>
     <% end %>
 
-    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-      <span>
+    <li class="<%= params[:controller] == 'elections' ? 'active' : '' %>">
         <%= link_to 'Election', elections_path %>
-      </span>
     </li>
 
-    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-      <span>
+    <li class="<%= params[:controller] == 'funds' ? 'active' : '' %>">
         <%= link_to 'Funds', funds_path %>
-      </span>
     </li>
 
-    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-      <span>
+    <li class="<%= params[:controller] == 'jobs' ? 'active' : '' %>">
         <%= link_to 'Jobs/Suggestions', jobs_path %>
-      </span>
     </li>
 
-    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-      <span>
-        <%= link_to 'Buy/Sell', products_path %>
-      </span>
+    <li class="<%= params[:controller] == 'products' ? 'active' : '' %>">
+        <%= link_to 'Buy & Sell Products', products_path %>
     </li>
 
-    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-      <span>
+    <li class="<%= params[:controller] == 'carpools' ? 'active' : '' %>">
         <%= link_to 'Carpool', carpools_path %>
-      </span>
     </li>
 
-    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-      <span>
+    <li class="<%= params[:controller] == 'rents' ? 'active' : '' %>">
         <%= link_to 'Rent & Sale', rents_path %>
-      </span>
     </li>
 
-    <li class="<%= params[:controller] == 'banners' ? 'active' : '' %>">
-      <span>
+    <li class="<%= params[:controller] == 'clubs' ? 'active' : '' %>">
         <%= link_to 'Club Booking', clubs_path %>
-      </span>
     </li>
 
   </ul>

@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+
 <h1>Listing Carpools</h1>
 
+<%= will_paginate carpools, renderer: BootstrapPagination::Rails %>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -27,7 +29,7 @@
     </tbody>
   </table>
 </div>
-
+<%= will_paginate carpools, renderer: BootstrapPagination::Rails %>
 <br>
 
 <%= link_to 'New Carpool', new_carpool_path %>
