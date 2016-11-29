@@ -19,9 +19,9 @@
         <tr>
           <td><%= club.title %></td>
           <td><%= club.desc %></td>
-          <td><%= club.date %></td>
-          <td><%= club.from_time %></td>
-          <td><%= club.to_time %></td>
+          <td><%= basic_date_only club.date %></td>
+          <td><%= basic_time_only club.from_time %></td>
+          <td><%= basic_time_only club.to_time %></td>
           <td><%= link_to 'Show', club %></td>
           <td><%= link_to 'Edit', edit_club_path(club) %></td>
           <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>

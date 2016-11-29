@@ -32,4 +32,8 @@ module ApplicationHelper
   def basic_date_only(time)
     time.strftime('%b %d, %Y')
   end
+
+  def basic_time_only(time)
+    time.strftime('%I:%M %p')
+  end
 end
