@@ -25,6 +25,8 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require ckeditor/init
+//= require moment 
+//= require fullcalendar
 //= require_tree .
 
 

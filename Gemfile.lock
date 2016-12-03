@@ -116,6 +116,10 @@ GEM
     filterrific (2.0.5)
       rails (>= 3.1.0)
     flamegraph (0.9.5)
+    fullcalendar-rails (3.0.0.0)
+      jquery-rails (>= 4.0.5, < 5.0.0)
+      jquery-ui-rails (>= 5.0.2)
+      momentjs-rails (>= 2.9.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -129,6 +133,8 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (6.0.0)
+      railties (>= 3.2.16)
     js-routes (1.3.0)
       railties (>= 3.2)
       sprockets-rails
@@ -151,6 +157,8 @@ GEM
     mini_magick (4.0.4)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    momentjs-rails (2.15.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -296,6 +304,7 @@ DEPENDENCIES
   fast_stack
   filterrific
   flamegraph
+  fullcalendar-rails
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
@@ -303,6 +312,7 @@ DEPENDENCIES
   letter_opener
   memory_profiler
   mini_magick
+  momentjs-rails
   nprogress-rails
   pg (~> 0.15)
   quiet_assets
