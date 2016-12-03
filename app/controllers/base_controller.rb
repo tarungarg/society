@@ -1,5 +1,5 @@
 class BaseController < ApplicationController
-  layout 'dashboard'
+  layout 'dashboard-j'
   before_action :authenticate_user!
   # load_and_authorize_resource
 

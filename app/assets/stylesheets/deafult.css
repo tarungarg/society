@@ -3,13 +3,13 @@
   cursor: default;
 }
 
-.info {
+/*.info {
     background: #D5EDF8;
     color: #205791;
     padding: 0.8em;
     margin-bottom: 1em;
     border: 2px solid #92CAE4;
-}
+}*/
 
 .hide_announcement {
     cursor: pointer;
@@ -22,7 +22,7 @@
 }
 
 
-.nav-sidebar > li > span {
+/*.nav-sidebar > li > span {
     padding-right: 20px;
     padding-left: 20px;
 }
@@ -30,7 +30,7 @@
     position: relative;
     display: block;
     padding: 10px 15px;
-}
+}*/
 .img-thumb{
   height: 150px; 
   width: 150px;

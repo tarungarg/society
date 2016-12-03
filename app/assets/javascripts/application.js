@@ -15,7 +15,6 @@
 //= require announcements
 //= require jquery.turbolinks
 //= require bootstrap
-//= require filterrific/filterrific-jquery
 //= require turbolinks
 //= require bootstrap-datepicker/core
 //= require rails.validations
@@ -27,6 +26,7 @@
 //= require ckeditor/init
 //= require moment 
 //= require fullcalendar
+//= stub vendor
 //= require_tree .
 
 
