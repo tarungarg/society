@@ -36,4 +36,20 @@ module ApplicationHelper
   def basic_time_only(time)
     time.strftime('%I:%M %p')
   end
+
+  def member_occupation
+    ' - ' + current_user.occupation if current_user.occupation.present?
+  end
+
+  def member_name
+   current_user.name
+  end
+
+  def member_name_and_occupation
+    "#{member_name}" "#{member_occupation}"
+  end
+
+  def joining_date
+    current_user.created_at.strftime("%b. %Y")
+  end
 end
