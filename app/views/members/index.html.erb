@@ -1,14 +1,16 @@
-<div class="member-index-data">
-  <% if user_is_president %>
-    <div class="pull-right">
-      <%= link_to 'New Member', new_member_path, class: 'btn btn-primary' %>
-    </div>
-  <% end %>
+<section class="content-header">
+  <h1>
+    Society Members
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Members</li>
+  </ol>
+</section>
 
-  <% if user_is_president %>
-    <%= render partial: 'votes/partials/voting_visble' %>
-  <% end %>
-
-  <%= render "members/index"%>
-
-</div>
+<section class="content">
+  <div class="member-index-data">
+    <%= render "members/index"%>
+  </div>
+</section>

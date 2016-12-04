@@ -16,6 +16,7 @@
 //= require jquery.turbolinks
 //= require bootstrap
 //= require turbolinks
+//= require loader
 //= require bootstrap-datepicker/core
 //= require rails.validations
 //= require commontator/application

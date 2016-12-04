@@ -1,9 +1,9 @@
-<div>
+<span>
   <% if current_tenant.user_setting.voting_visible %>
     <%= link_to 'End Voting', votes_visible_path(visible: false), class: 'btn btn-primary', remote: true, method: :put %>
   <% else %>
-    <div class="btn btn-default disabled-btn">
+    <span class="btn btn-default disabled-btn">
       <%= link_to_if Election.last && Election.last.win_user.nil?, 'Start Voting', votes_visible_path(visible: true), class: '', remote: true, method: :put %>
-    </div>
+    </span>
   <% end %>
-</div>
+</span>

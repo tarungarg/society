@@ -1,68 +1,80 @@
-<%= will_paginate members, renderer: BootstrapPagination::Rails %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          
+        </div>
+        <div class="col-sm-4">
+          <div class="dataTables_filter">
+            <% if user_is_president %>
+              <%= render partial: 'votes/partials/voting_visble' %>
+              <%= link_to 'New Member', new_member_path, class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-bordered">
+          <tr>
+            <th style="width: 10px">#</th>
+            <th><%= filterrific_sorting_link(@filterrific, :name) %></th>
+            <th><%= filterrific_sorting_link(@filterrific, :number) %></th>
+            <th><%= filterrific_sorting_link(@filterrific, :occupation) %></th>
+            <th><%= filterrific_sorting_link(@filterrific, :email) %></th>
+            <th><%= filterrific_sorting_link(@filterrific, :blood_group) %></th>
+            <th>Member Since</th>
+            <th>Role</th>
+            <th colspan="3"></th>
+          </tr>
+          <% members.each_with_index do |member, index| %>
+            <tr>
+              <td><%= index + 1  %></td>
+              <td><%= member.name %></td>
+              <td><%= member.mob_num %></td>
+              <td><%= member.occupation %></td>
+              <td><%= member.email %></td>
+              <td><%= member.blood_group %></td>
+              <td><%= member.created_at.year  %> - Current</td>
+              <td><%= member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
+              <% if params[:controller] == 'charges' %>
+                <% if @subscription_ids.include? [member.id, @charge.id]%>
+                <td>Invited</td>
+                <% else %>
+                  <td><span id="<%= member.id.to_s%>_invite_<%=@charge.id.to_s%>"><%= link_to 'Invite', charges_invite_path(user_id: member.id, charge_id: @charge.id), remote: true %></td>
+                <% end %>
+              <% else %>
+                <td><%= link_to 'Show', member_path(member) %></td>
+                <% if user_is_president && params[:controller] == 'members' %>
+                  <td>
+                      <%= link_to 'Edit', edit_member_path(member) %>
+                  </td>
+                  <td>
+                      <%= link_to 'Destroy', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </td>
+                <% end %>
+              <% end %>
 
-<div class="table-responsive">
+              <!-- For Election -->
+              <% if user_is_president && params[:controller] == 'elections' %>
+                <td>
+                   <div id="mark-as-pres-<%=member.id%>" class="pull-right">
+                      <%=render partial: 'members/partials/select_candidate', locals: { member: member} %>
+                    </div>
+                </td>
 
-  <div>
-    <%= page_entries_info members %>
+              <% end %>
+
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer clearfix">
+        <%= will_paginate members, renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
   </div>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th><%= filterrific_sorting_link(@filterrific, :name) %></th>
-        <th><%= filterrific_sorting_link(@filterrific, :number) %></th>
-        <th><%= filterrific_sorting_link(@filterrific, :occupation) %></th>
-        <th><%= filterrific_sorting_link(@filterrific, :email) %></th>
-        <th><%= filterrific_sorting_link(@filterrific, :blood_group) %></th>
-        <th>Member Since</th>
-        <th>Role</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% members.each_with_index do |member, index| %>
-        <tr>
-          <td><%= index + 1  %></td>
-          <td><%= member.name %></td>
-          <td><%= member.mob_num %></td>
-          <td><%= member.occupation %></td>
-          <td><%= member.email %></td>
-          <td><%= member.blood_group %></td>
-          <td><%= member.created_at.year  %> - Current</td>
-          <td><%= member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
-          <% if params[:controller] == 'charges' %>
-            <% if @subscription_ids.include? [member.id, @charge.id]%>
-            <td>Invited</td>
-            <% else %>
-              <td><span id="<%= member.id.to_s%>_invite_<%=@charge.id.to_s%>"><%= link_to 'Invite', charges_invite_path(user_id: member.id, charge_id: @charge.id), remote: true %></td>
-            <% end %>
-          <% else %>
-            <td><%= link_to 'Show', member_path(member) %></td>
-            <% if user_is_president && params[:controller] == 'members' %>
-              <td>
-                  <%= link_to 'Edit', edit_member_path(member) %>
-              </td>
-              <td>
-                  <%= link_to 'Destroy', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </td>
-            <% end %>
-          <% end %>
-
-          <!-- For Election -->
-          <% if user_is_president && params[:controller] == 'elections' %>
-            <td>
-               <div id="mark-as-pres-<%=member.id%>" class="pull-right">
-                  <%=render partial: 'members/partials/select_candidate', locals: { member: member} %>
-                </div>
-            </td>
-
-          <% end %>
-
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>
-
-<%= will_paginate members, renderer: BootstrapPagination::Rails %>

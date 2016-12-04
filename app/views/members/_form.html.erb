@@ -1,107 +1,79 @@
 <%= form_for @member, as: :member, url: @member.new_record? ? members_path : member_path(@member) do |f| %>
-  <% if @member.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+  <div class="box-body">
+    <% if @member.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
 
-      <ul>
-      <% @member.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+        <% @member.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div class="field">
     <div class="form-group">
       Select Role:
       <%= select_tag 'roles', options_for_select(User.profile_roles.map { |obj| [obj[0].camelize, obj[0]] }, @member.roles.map(&:name)), multiple: true, required: true %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :name %><br>
       <%= f.text_field :name, class: 'form-control', required: true %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :flat_no %><br>
       <%= f.text_field :flat_no, class: 'form-control', required: true %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :tower_no %><br>
       <%= f.text_field :tower_no, class: 'form-control', required: true %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :mob_num %><br>
       <%= f.text_field :mob_num, class: 'form-control', required: true %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :email %><br>
       <%= f.text_field :email, class: 'form-control', required: true  %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :alt_no %><br>
       <%= f.text_field :alt_no, class: 'form-control' %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :blood_group %><br>
       <%= f.text_field :blood_group, class: 'form-control' %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :occupation %><br>
       <%= f.text_field :occupation, class: 'form-control' %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :family_memebers %><br>
       <%= f.number_field :family_memebers, class: 'form-control' %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :adult %><br>
       <%= f.number_field :adult, class: 'form-control' %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :kids %><br>
       <%= f.number_field :kids, class: 'form-control' %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :bio %><br>
       <%= f.text_area :bio, class: 'form-control' %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :password %><br>
       <%= f.password_field :password, class: 'form-control',  required: true  %>
     </div>
-  </div>
-  <div class="field">
     <div class="form-group">
       <%= f.label :password_confirmation %><br>
       <%= f.password_field :password_confirmation, class: 'form-control',  required: true  %>
     </div>
   </div>
-  <div class="actions">
+  <div class="box-footer">
     <%= f.submit %>
   </div>
 <% end %>

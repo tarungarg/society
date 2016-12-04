@@ -1,77 +1,100 @@
-<p>
-  <strong>Name:</strong>
-  <%= @member.name %>
-</p>
+<section class="content-header">
+  <h1>
+    <%= @member.name %>
+    <small><%= @member.occupation %></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Members</li>
+  </ol>
+</section>
 
-<p>
-  <strong>Flat no:</strong>
-  <%= @member.flat_no %>
-</p>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Member Information</h3>
 
-<p>
-  <strong>Tower no:</strong>
-  <%= @member.tower_no %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body no-padding">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Name:</td>
+            <td><%= @member.name %></td>
+          </tr>
+          <tr>
+            <td>Flat no:</td>
+            <td><%= @member.flat_no %></td>
+          </tr>
+          <tr>
+            <td>Tower no:</td>
+            <td><%= @member.tower_no %></td>
+          </tr>
+          <tr>
+            <td>Mob num:</td>
+            <td><%= @member.mob_num %></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><%= @member.email %></td>
+          </tr>
+          <tr>
+            <td>Alt no:</td>
+            <td><%= @member.alt_no %></td>
+          </tr>
+          <tr>
+            <td>Blood group:</td>
+            <td><%= @member.blood_group %></td>
+          </tr>
+          <tr>
+            <td>Occupation:</td>
+            <td><%= @member.occupation %></td>
+          </tr>
+          <tr>
+            <td>Family memebers:</td>
+            <td><%= @member.family_memebers %></td>
+          </tr>
+          <tr>
+            <td>Adult:</td>
+            <td><%= @member.adult %></td>
+          </tr>
+          <tr>
+            <td>Kids:</td>
+            <td><%= @member.kids %></td>
+          </tr>
+          <tr>
+            <td>Bio:</td>
+            <td><%= @member.bio %></td>
+          </tr>
+          <tr>
+            <td>Roles:</td>
+            <td><%= @member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <div class="btn-group">
+        <%= link_to 'Back', members_path, class: 'btn btn-success' %>
 
-<p>
-  <strong>Mob num:</strong>
-  <%= @member.mob_num %>
-</p>
+        <% if user_is_president%>
+          <%= link_to 'Edit', edit_member_path(@member), class: 'btn btn-success' %>
+          <%= link_to 'Destroy', member_path(@member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-success' %>
+        <% end %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @member.email %>
-</p>
-
-<p>
-  <strong>Alt no:</strong>
-  <%= @member.alt_no %>
-</p>
-
-<p>
-  <strong>Blood group:</strong>
-  <%= @member.blood_group %>
-</p>
-
-<p>
-  <strong>Occupation:</strong>
-  <%= @member.occupation %>
-</p>
-
-<p>
-  <strong>Family memebers:</strong>
-  <%= @member.family_memebers %>
-</p>
-
-<p>
-  <strong>Adult:</strong>
-  <%= @member.adult %>
-</p>
-
-<p>
-  <strong>Kids:</strong>
-  <%= @member.kids %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @member.bio %>
-</p>
-
-<p>
-  <strong>Roles:</strong>
-  <%= @member.roles.collect{|m| m.name.camelize}.join(', ') %>
-</p>
-
-<%= link_to 'Back', members_path %>
-
-<% if user_is_president%>
-  <%= link_to 'Edit', edit_member_path(@member) %>
-  <%= link_to 'Destroy', member_path(@member), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
-<% if current_tenant.user_setting.voting_visible %>
-  <div id="mark-as-pres-<%=@member.id%>" class="pull-right">
-    <%=render partial: 'members/partials/select_candidate', locals: { member: @member} %>
+      </div>
+      <div class="pull-right">
+        <% if current_tenant.user_setting.voting_visible %>
+          <div id="mark-as-pres-<%=@member.id%>" class="pull-right">
+            <%=render partial: 'members/partials/select_candidate', locals: { member: @member}, class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+
+</section>

@@ -23,6 +23,7 @@ Filterrific.submitFilterForm = function(){
       url = form.attr("action");
   // turn on spinner
   $('.filterrific_spinner').show();
+  showSpinner();
   // Submit ajax request
   $.ajax({
     url: url,
@@ -31,6 +32,7 @@ Filterrific.submitFilterForm = function(){
     dataType: 'script'
   }).done(function( msg ) {
     $('.filterrific_spinner').hide();
+    hideSpinner();
   });
 };
 
