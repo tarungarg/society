@@ -20,4 +20,5 @@ Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinne
                                                   ckeditor/*
                                                   vendor.css
                                                   vendor.js
+                                                  login.css
                                                   )
