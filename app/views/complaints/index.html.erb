@@ -1,39 +1,16 @@
-<div class="pull-right">
-  <%= link_to('Mark All Read', mark_all_read_complaints_path, class: 'btn btn-primary', data: { remote: true } ) %>
-</div>
-<div class="col">
-  <ul class="nav nav-pills">
-    <li class="active"><%= link_to 'Complaints', complaints_path %></li>
-    <li><%= link_to 'Public Complaints', public_complaints_path %></li>
-  </ul>
-</div>
+<section class="content-header">
+  <h1>
+    Complaints
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Complaints</li>
+  </ol>
+</section>
 
-<br>
-
-<div class="pull-right">
-  <%= link_to 'New Complaint', new_complaint_path, class: 'btn btn-primary' %>
-</div>
-
-<div class="well well-small">
-  <%= form_for_filterrific @filterrific do |f| %>
-    <div>
-      Search:
-      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed') %>
-      Registered after:
-      <%= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
-    </div>
-    <%= link_to('Reset filters', reset_filterrific_url) %>
-
-    <%= render_filterrific_spinner %>
-
-  <% end %>
-</div>
-
-  <h1>Listing Complaints</h1>
-  <div id="filterrific_results">
-    <%= render partial: 'complaints/list', locals: { complaints: @complaints } %>
+<section class="content">
+  <div class="member-index-data">
+    <%= render "complaints/index"%>
   </div>
-
-<br>
-
-<%= link_to 'New Complaint', new_complaint_path %>
+</section>
