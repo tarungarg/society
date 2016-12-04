@@ -1,25 +1,55 @@
-<p>
-  <strong>Name:</strong>
-  <%= @policy.name %>
-</p>
+<section class="content-header">
+  <h1>
+    Policies
+    <small>Rules</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Policies</li>
+  </ol>
+</section>
 
-<%if @policy.file.url%>
-  <p>
-    <strong>File:</strong>
-    <%= link_to File.basename(@policy.file.path), @policy.file.url %>
-  </p>
-<%end%>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Announcement Information</h3>
 
-<p>
-  <strong>Body:</strong>
-  <%= @policy.body %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @policy.user.name %>
-</p>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>Name:</td>
+          <td><%= @policy.name %></td>
+        </tr>
 
-<%= link_to 'Back', policies_path %>
-<%= link_to 'Edit', edit_policy_path(@policy) if user_is_president %>
-<%= link_to 'Destroy', @policy, method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %>
+        <%if @policy.file.url%>
+          <tr>
+            <td>File:</td>
+            <td><%= link_to File.basename(@policy.file.path), @policy.file.url %></td>
+          </tr>
+        <%end%>
+
+        <tr>
+          <td>Body:</td>
+          <td><%= @policy.body %></td>
+        </tr>
+
+        <tr>
+          <td>User:</td>
+          <td><%= @policy.user.name %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box-footer">
+      <%= link_to 'Back', policies_path, class: 'btn btn-success' %>
+      <%= link_to 'Edit', edit_policy_path(@policy), class: 'btn btn-success' if user_is_president %>
+      <%= link_to 'Destroy', @policy, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-success' if user_is_president %>
+    </div>
+
+  </div>
+</section>
+

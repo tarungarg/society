@@ -1,11 +1,10 @@
 <%= simple_form_for(@election) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
+  <div class="box-body">
+    <%= f.error_notification %>
     <%= f.input :years_range %>
   </div>
 
-  <div class="form-actions">
+  <div class="box-footer">
     <%= f.button :submit %>
   </div>
 <% end %>

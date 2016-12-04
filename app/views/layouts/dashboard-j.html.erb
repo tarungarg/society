@@ -358,23 +358,53 @@
           </a>
         </li>
 
-        <li class="treeview">
-          <a href="file:///home/tarungarg/apps/AdminLTE/index2.html#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+        <li>
+          <a href="/policies">
+            <i class="fa fa-newspaper-o"></i>
+            <span>Policies</span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="file:///home/tarungarg/apps/AdminLTE/pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="file:///home/tarungarg/apps/AdminLTE/pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="file:///home/tarungarg/apps/AdminLTE/pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="file:///home/tarungarg/apps/AdminLTE/pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="file:///home/tarungarg/apps/AdminLTE/pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="file:///home/tarungarg/apps/AdminLTE/pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
         </li>
+
+        <% if user_is_president %>
+          <li>
+            <a href="/banners">
+              <i class="fa fa-th"></i>
+              <span>Banners</span>
+            </a>
+          </li>
+        <% end %>
+
+        <% if current_tenant.user_setting.send(:voting_visible) %>
+          <li>
+            <a href="/votes/index">
+              <i class="fa fa-th"></i>
+              <span>Vote Member</span>
+              <span class="pull-right-container">
+                <small class="label pull-right bg-green">new</small>
+              </span>
+            </a>
+          </li>
+        <% end %>
+
+        <% if Election.new_or_recent_election %>
+          <li>
+            <a href="/votes/detail">
+              <i class="fa fa-th"></i>
+              <span>Voting Details</span>
+              <span class="pull-right-container">
+                <small class="label pull-right bg-green">new</small>
+              </span>
+            </a>
+          </li>
+        <% end %>
+
+        <li>
+          <a href="/elections">
+            <i class="fa fa-th"></i>
+            <span>Election</span>
+          </a>
+        </li>
+
         <li class="treeview">
           <a href="file:///home/tarungarg/apps/AdminLTE/index2.html#">
             <i class="fa fa-edit"></i> <span>Forms</span>

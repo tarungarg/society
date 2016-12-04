@@ -1,34 +1,46 @@
-<h1>Listing Policies</h1>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Body</th>
-        <th colspan="4"></th>
-      </tr>
-    </thead>
+<section class="content-header">
+  <h1>
+    Policies
+    <small>Rules</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Policies</li>
+  </ol>
+</section>
 
-    <tbody>
-      <% @policies.each do |policy| %>
+<section class="content">
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 dataTables_filter">
+          <%= link_to 'New Policy', new_policy_path, class: 'btn btn-primary' if user_is_president%>
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+      <table class="table table-bordered">
         <tr>
-          <td><%= truncate_text(policy.name, 30) %><span class="new-tag"><%= "   New" if (@unread_policy_ids).include?(policy.id)%></span></td>
-          <td><%= truncate_text(policy.body, 50) %></td>
-          <td>
-            <% if policy.file.url%>
-          <!-- download_policy_path(policy.id) -->
-              <%= link_to 'Download', policy.file.url %>
-            <% end %>
-          </td>
-          <td><%= link_to 'Show', policy %></td>
-          <td><%= link_to 'Edit', edit_policy_path(policy) if user_is_president %></td>
-          <td><%= link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
+          <th>Name</th>
+          <th colspan="4"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<br>
-
-<%= link_to 'New Policy', new_policy_path if user_is_president%>
+        <% @policies.each do |policy| %>
+          <tr>
+            <td>
+              <%= truncate_text(policy.name, 30) %>
+                <%= '<small class="label bg-green">new</small>'.html_safe  if (@unread_policy_ids).include?(policy.id) %>
+              </td>
+            <td>
+              <%= link_to 'Download', policy.file.url if policy.file.url%>
+            </td>
+            <td><%= link_to 'Show', policy %></td>
+            <td><%= link_to 'Edit', edit_policy_path(policy) if user_is_president %></td>
+            <td><%= link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</section>

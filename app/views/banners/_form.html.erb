@@ -1,7 +1,6 @@
 <%= simple_form_for(@banner) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
+  <div class="box-body">
+    <%= f.error_notification %>
     <div>
       <img class="desktop_image_preview" class="img-responsive"  />
     </div>
@@ -16,7 +15,7 @@
     <%= f.input :mobile_size %>
   </div>
 
-  <div class="form-actions">
+  <div class="box-footer">
     <%= f.button :submit %>
   </div>
 <% end %>

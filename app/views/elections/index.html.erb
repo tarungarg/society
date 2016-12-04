@@ -1,32 +1,46 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
+  <h1>
+    Elections
+    <small>Show Responsiability</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Elections</li>
+  </ol>
+</section>
 
-<h1>Listing Elections</h1>
-
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Years</th>
-        <th>Winner</th>
-        <th>Total Votes</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @elections.each do |election| %>
+<section class="content">
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 dataTables_filter">
+          <%= link_to 'Start Election', new_election_path, class: 'btn btn-primary' if user_is_president %>
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+      <table class="table table-bordered">
         <tr>
-          <td><%= election.years_range %></td>
-          <td><%= link_to User.find(election.win_user).name || User.find(election.win_user).email, member_path(election.win_user) if election.win_user%></td>
-          <td><%= election.win_by %></td>
-          <td><%= link_to 'Show', election_path(election) if user_is_president %></td>
-          <td> <%= link_to 'Destroy', election_path(election), method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
+          <th>Years</th>
+          <th>Winner</th>
+          <th>Total Votes</th>
+          <th></th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+        <% @elections.each do |election| %>
+          <tr>
+            <td><%= election.years_range %></td>
+            <td><%= link_to User.find(election.win_user).name || User.find(election.win_user).email, member_path(election.win_user) if election.win_user%></td>
+            <td><%= election.win_by %></td>
+            <td><%= link_to 'Show', election_path(election) if user_is_president %></td>
+            <td> <%= link_to 'Destroy', election_path(election), method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</section>
 
-<br>
-
-<%= link_to 'New Election', new_election_path %>

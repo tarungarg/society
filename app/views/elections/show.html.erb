@@ -1,24 +1,52 @@
-<p>
-  <strong>Years range:</strong>
-  <%= @election.years_range %>
-</p>
+<section class="content-header">
+  <h1>
+    Elections
+    <small>Show Responsiability</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Elections</li>
+  </ol>
+</section>
 
-<p>
-  <strong>Winner:</strong>
-  <%= @election.win_user %>
-</p>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Announcement Information</h3>
 
-<%= link_to 'Edit', edit_election_path(@election) %> |
-<%= link_to 'Back', elections_path %>
+      <div class="box-tools">
+      </div>
+    </div>
+
+    <div class="box-body">
+      <table class="table">
+        <p>
+          <strong>Years range:</strong>
+          <%= @election.years_range %>
+        </p>
+
+        <p>
+          <strong>Winner:</strong>
+          <%= @election.win_user %>
+        </p>
+      </table>
+    </div>
+
+    <div class="box-footer">
+      <%= link_to 'Back', elections_path, class: 'btn btn-success'  %>
+      <%= link_to 'Edit', edit_election_path(@election), class: 'btn btn-success'  %>
+    </div>
+  </div>
 
 
-<br>
-<%unless @epu.blank?%>
-  <h2>Selected Members</h2>
-  <%= render 'elections/index'%>
-<%end%>
+  <br>
+  <%unless @epu.blank?%>
+    <h2>Selected Members</h2>
+    <%= render 'elections/index'%>
+  <%end%>
 
-<% unless @election.win_user %>
-  <h2>All Users</h2>
-  <%= render 'members/index' %>
-<%end%>
+  <% unless @election.win_user %>
+    <h2>All Users</h2>
+    <%= render 'members/index' %>
+  <%end%>
+</section>

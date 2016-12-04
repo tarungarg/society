@@ -1,12 +1,10 @@
-<section class="content">
-  <%= simple_form_for(@announcement) do |f| %>
-    <div class="box-body">
-      <%= f.error_notification %>
-      <%= f.input :title %>
-      <%= f.input :desc %>
-    </div>
-    <div class="box-footer">
-      <%= f.button :submit %>
-    </div>
-  <% end %>
-</section>
+<%= simple_form_for(@announcement) do |f| %>
+  <div class="box-body">
+    <%= f.error_notification %>
+    <%= f.input :title %>
+    <%= f.input :desc %>
+  </div>
+  <div class="box-footer">
+    <%= f.button :submit %>
+  </div>
+<% end %>
