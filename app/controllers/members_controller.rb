@@ -57,7 +57,8 @@ class MembersController < BaseController
   # PATCH/PUT /members/1.json
   def update
     respond_to do |format|
-      if @member.has_role?(:president) && !Tenant.current.has_presidents
+
+      if !params[:roles].include?('president') && @member.has_role?(:president) && !Tenant.current.has_presidents
         format.html { redirect_to member_path(@member), notice: 'Please select other user as President.' }
       elsif @member.update(member_params)
         remove_roles

@@ -1,16 +1,45 @@
-<p>
-  <strong>Posted On:</strong>
-  <%= convert_time_to_basic(@announcement.created_at) %>
-</p>
+<section class="content-header">
+  <h1>
+    Announcements
+    <small>Get yourself notified</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Announcements</li>
+  </ol>
+</section>
 
-<p>
-  <strong>Title:</strong>
-  <%= @announcement.title %>
-</p>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Announcement Information</h3>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @announcement.desc %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<%= link_to 'Back', announcements_path %>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>Posted On:</td>
+          <td><%= convert_time_to_basic(@announcement.created_at) %></td>
+        </tr>
+
+        <tr>
+          <td>Title:</td>
+          <td><%= @announcement.title %></td>
+        </tr>
+
+        <tr>
+          <td>Desc:</td>
+          <td><%= @announcement.desc %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box-footer">
+      <%= link_to 'Back', announcements_path, class: 'btn btn-success' %>
+    </div>
+
+  </div>
+</section>

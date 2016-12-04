@@ -1,38 +1,63 @@
-<div class="pull-right">
-  <%= link_to('Mark All Read', mark_all_read_complaints_path, class: 'btn btn-primary', data: { remote: true } ) %>
-</div>
+<section class="content-header">
+  <h1>
+    Complaints
+    <small>Raise Your Voice</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Complaints</li>
+  </ol>
+</section>
 
-<div class="col">
-  <ul class="nav nav-pills">
-    <li><%= link_to 'Complaints', complaints_path %></li>
-    <li class="active"><%= link_to 'Public Complaints', public_complaints_path %></li>
-  </ul>
-</div>
+<section class="content">
+  <div class="pull-right padding-top-side">
+    <%= link_to('Mark All Read', mark_all_read_complaints_path, class: 'btn btn-primary btn-sm', data: { remote: true } ) %>
+  </div>
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li><%= link_to 'Complaints', complaints_path %></li>
+      <li class="active"><%= link_to 'Public Complaints', public_complaints_path %></li>
+    </ul>
+  </div>
 
-<br>
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <h3 class="box-title">Search</h3>
 
-<div class="pull-right">
-  <%= link_to 'New Complaint', new_complaint_path, class: 'btn btn-primary' %>
-</div>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
 
-<div class="well well-small">
-  <%= form_for_filterrific @filterrific do |f| %>
-    <div>
-      Search:
-      <%= f.text_field(:search_query, class: 'filterrific-periodically-observed') %>
-      Registered after:
-      <%= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
+      <div class="box-body">
+        <div class="row">
+          <div class="tab-content">
+            <%= form_for_filterrific @filterrific do |f| %>
+              <div class="col-xs-3">
+                <label>All Search:</label>
+                <%= f.text_field(:search_query, class: 'filterrific-periodically-observed form-control') %>
+              </div>
+              <div class="col-xs-3">
+                <label>Date On:</label>
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <%= f.text_field(:with_created_at_gte, class: 'js-datepicker form-control' ) %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <%= link_to('Reset filters', reset_filterrific_url, class: 'btn btn-info') %>
+        <%= render_filterrific_spinner %>
+      </div>
     </div>
-    <%= link_to('Reset filters', reset_filterrific_url) %>
-    <%= render_filterrific_spinner %>
-  <% end %>
-</div>
 
-<h1>Listing Complaints</h1>
-<div id="filterrific_results">
-  <%= render partial: 'public_complaints/list', locals: { complaints: @complaints } %>
-</div>
-
-<br>
-
-<%= link_to 'New Complaint', new_complaint_path %>
+    <div id="filterrific_results">
+      <%= render partial: 'public_complaints/list', locals: { complaints: @complaints } %>
+    </div>
+</section>

@@ -125,7 +125,7 @@ class ComplaintsController < BaseController
   end
 
   def update_complaint_status(status)
-    if user_is_president && Complaint.statuses[@complaint.status] != status
+    if Complaint.statuses[@complaint.status] != status
       if @complaint.update(status: status)
         respond_to do |format|
           format.js {  render status: 200, js: "toastr.success('Success')" }

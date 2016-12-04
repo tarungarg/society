@@ -1,9 +1,16 @@
-<h4>Review on #<%= convert_time_to_basic(review.created_at) %></h4>
-<p>
-  <strong>Reviews:</strong>
-  <%= review.review %>
-</p>
-<p>
-  <strong>Posted By:</strong>
-  <%= current_user.name %> < <%= current_user.email %> >
-</p>
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= current_user.name %>  <small><%= convert_time_to_basic(review.created_at) %> </small></h3>
+
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <%= review.review %>
+  </div>
+  <!-- /.box-body -->
+</div>

@@ -22,7 +22,7 @@
         <% if user_is_president %>
           <% if @complaint.random == 0%>
             <tr>
-              <td>Submitted By::</td>
+              <td>Submitted By:</td>
               <td><%= @complaint.user.name %></td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
             </tr>
           <% else %>
             <tr>
-              <td>Submitted By::</td>
+              <td>Submitted By:</td>
               <td>Anonymous</td>
             </tr>
           <% end %>
@@ -58,44 +58,70 @@
         </tr>
       </table>
     </div>
-  </div>
-  <div class="box">
-    <div class="box-body">
-      <div class="complaint-reviews">
-        <% @complaint.reviews.each_with_index do |review, index| %>
-          <%= render partial: 'complaints/partials/list_review', locals: {review: review} %>
-        <% end %>
-      </div>
-
-      <p>
-        <% if user_is_president %>
-          <%= form_tag create_review_complaint_path(@complaint), :id=>"president-review-form", :remote=>true do %>
-            <%= text_area_tag :review, '', cols: 50, rows: 5, required: true %><br>
-            <%= submit_tag 'Submit Your Review', class: 'btn btn-default' %>
-          <% end %>
-        <% end %>
-      </p>
-
-      <%= link_to 'Edit', edit_complaint_path(@complaint) if @complaint.user_id == current_user.id%> |
-      <%= link_to 'Back', complaints_path %> |
-
-      <span class='upvote-comment-section'>
-        <%= link_to_unless current_user.voted_for?(@complaint),'Upvote', upvote_complaint_path(@complaint), method: 'PUT', remote: true %>
-      </span>
-      (<span id="complaint_vote_<%=@complaint.id%>"><%= @complaint.get_upvotes.size %></span>)
-
-      <!-- User can mark as resolve -->
+    <div class="box-footer">
+      <%= link_to 'Edit', edit_complaint_path(@complaint), class: 'btn btn-success' if @complaint.user_id == current_user.id%>
+      <%= link_to 'Back', complaints_path, class: 'btn btn-success' %>
       <% if current_user.id == @complaint.user_id %>
         <div class="pull-right">
           <% if @complaint.status == 'Resolved' %>
-           <%= link_to 'Open', mark_as_unresolve_complaint_path(@complaint.id), class: 'btn btn-success resolve-complaint-btn', method: 'PUT', remote: true %>
+           <%= link_to 'Open', mark_as_unresolve_complaint_path(@complaint.id), class: 'btn btn-info resolve-complaint-btn', method: 'PUT', remote: true %>
           <% else %>
            <%= link_to 'Mark As Resolve', mark_as_resolve_complaint_path(@complaint.id), class: 'btn btn-success resolve-complaint-btn', method: 'PUT', remote: true %>
           <% end %>
         </div>
       <% end %>
-        <!-- User can mark as resolve -->
     </div>
   </div>
+
+  <% if @complaint.view_publically %>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-green">
+          <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text" >Likes</span>
+            <span class="info-box-number" id="complaint_vote_<%=@complaint.id%>"><%= @complaint.get_upvotes.size %></span>
+
+            <div class="progress">
+              <div class="progress-bar" style="width: 70%"></div>
+            </div>
+                <span class="progress-description">
+                  <%= current_user.voted_for?(@complaint) ? 'You are agree on complaint' : 'Please vote if you agree' %>
+                </span>
+          </div>
+        </div>
+      </div>
+      <% unless current_user.voted_for?(@complaint) %>
+        <span class='upvote-comment-section'>
+          <%= link_to 'Upvote', upvote_complaint_path(@complaint), method: 'PUT', remote: true, class: 'btn btn-success' %>
+        </span>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="complaint-reviews">
+    <% unless @complaint.reviews.blank? %>
+      <h3>Admin Feedback</h3>
+      <% @complaint.reviews.each_with_index do |review, index| %>
+        <%= render partial: 'complaints/partials/list_review', locals: {review: review} %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if user_is_president %>
+    <div class="box">
+      <div class="box-body">
+        <%= form_tag create_review_complaint_path(@complaint), id: "president-review-form", remote: true do %>
+        <div class="form-group">
+          <%= text_area_tag :review, '', cols: 50, rows: 5, required: true, class: 'form-control' %>
+        </div>
+          <%= submit_tag 'Submit Your Review', class: 'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
   <%= commontator_thread(@complaint) if @complaint.view_publically %>
+
 </section>
