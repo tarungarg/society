@@ -27,6 +27,7 @@
 //= require ckeditor/init
 //= require moment 
 //= require fullcalendar
+//= require loader
 //= stub vendor
 //= require_tree .
 

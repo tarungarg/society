@@ -1,6 +1,25 @@
-<h1>Editing Complaint</h1>
+<section class="content-header">
+  <h1>
+    Complaint
+    <small>Raise Your Voice</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Complaints</li>
+  </ol>
+</section>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @complaint %> |
-<%= link_to 'Back', complaints_path %>
+<section class="content">
+  <div class="box box-primary">
+  <div class="box-header with-border">
+    <h2 class="box-title">Edit Complaint</h2>
+  </div>
+    <%= render 'form' %>
+    <div class="box-footer">
+      <div class="btn-group dataTables_filter">
+        <%= link_to 'Show', @complaint, class: 'btn btn-success' %>
+        <%= link_to 'Back', complaints_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</section>

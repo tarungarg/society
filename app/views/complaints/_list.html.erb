@@ -1,29 +1,40 @@
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Desc</th>
-        <th>Posted On</th>
-        <th>Status</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% complaints.each do |complaint| %>
-          <tr>
-            <td><%= truncate_text(complaint.title, 30) %><span class="new-tag"><%= "   New" if (@unread_complain_ids).include?(complaint.id)%></span></td>
-            <td><%= truncate_text(complaint.desc, 50) %></td>
-            <td><%= basic_date_only(complaint.updated_at) %></td>
-            <td><%= complaint.status %></td>
-            <td><%= link_to 'Show', complaint %></td>
-            <% if current_user.id == complaint.user_id %>
-              <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
-              <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <div class="col-sm-4">
+           <%= page_entries_info complaints %>
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+          <div class="dataTables_filter">
+            <%= link_to 'New Complaint', new_complaint_path, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+      <div class="box-body">
+        <table class="table table-bordered">
+            <tr>
+              <th>Title</th>
+              <th>Posted On</th>
+              <th>Status</th>
+              <th colspan="3"></th>
+            </tr>
+            <% complaints.each do |complaint| %>
+                <tr>
+                  <td><%= truncate_text(complaint.title, 30) %><span class="new-tag"><%= "   New" if (@unread_complain_ids).include?(complaint.id)%></span></td>
+                  <td><%= basic_date_only(complaint.updated_at) %></td>
+                  <td><%= complaint.status %></td>
+                  <td><%= link_to 'Show', complaint %></td>
+                  <% if current_user.id == complaint.user_id %>
+                    <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
+                    <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% end %>
+                </tr>
             <% end %>
-          </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

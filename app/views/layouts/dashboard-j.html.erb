@@ -3,7 +3,7 @@
 <html style="height: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -19,6 +19,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="skin-blue sidebar-mini" style="height: auto;">
+  <div id="spinner-cont" class="loading not-display"></div>
+
 <div class="wrapper" style="height: auto;">
 
   <header class="main-header">
@@ -326,7 +328,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="/members/<%=current_user.id%>"><i class="fa fa-circle-o"></i> You</a></li>
-            <li><a href="/members/new"><i class="fa fa-circle-o"></i> Create New Member</a></li>
+            <!-- <li><a href="/members/new"><i class="fa fa-circle-o"></i> Create New Member</a></li> -->
             <li><a href="/members"><i class="fa fa-circle-o"></i> All Members</a></li>
           </ul>
         </li>
