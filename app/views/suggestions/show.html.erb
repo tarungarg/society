@@ -1,18 +1,43 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
+  <h1>
+    Suggestions
+    <small>Get Help</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Suggestion</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Jobs Information</h3>
 
-<p>
-  <strong>Title:</strong>
-  <%= @suggestion.title %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @suggestion.desc %>
-</p>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>Title:</td>
+          <td><%= @suggestion.title %></td>
+        </tr>
 
-<%= link_to 'Edit', edit_suggestion_path(@suggestion) if current_user.id ==  @suggestion.user_id %>
-<%= link_to 'Back', suggestions_path %>
+        <tr>
+          <td>Desc:</td>
+          <td><%= @suggestion.desc.html_safe %></td>
+        </tr>
 
-<br>
+      </table>
+    </div>
 
-<%= commontator_thread(@suggestion) %>
+    <div class="box-footer">
+      <%= link_to 'Edit', edit_suggestion_path(@suggestion), class: 'btn btn-success' if current_user.id ==  @suggestion.user_id %>
+      <%= link_to 'Back', suggestions_path, class: 'btn btn-success' %>
+    </div>
+
+  </div>
+  <%= commontator_thread(@suggestion) %>
+</section>
+

@@ -1,35 +1,44 @@
-<div class="col">
-  <ul class="nav nav-pills">
-    <li class="active"><a href="javascript:void(0);">Jobs</a></li>
-    <li><%= link_to 'Suggestions', suggestions_path %></li>
-  </ul>
-</div>
+<section class="content-header">
+  <h1>
+    Jobs
+    <small>Refer or Get hired</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Job</li>
+  </ol>
+</section>
 
-<br>
-
-<h1>Listing Jobs</h1>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @jobs.each do |job| %>
+<section class="content">
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 dataTables_filter">
+          <% if user_is_president %>
+            <%= link_to 'New Job', new_job_path, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+      <table class="table table-bordered">
         <tr>
-          <td><%= truncate_text(job.title) %></td>
-          <td><%= link_to 'Show', job %></td>
-          <td><%= link_to 'Edit', edit_job_path(job) if job.user_id == current_user.id %></td>
-          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } if job.user_id == current_user.id %></td>
+          <th>Title</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
 
-<br>
-
-<%= link_to 'New Job', new_job_path %>
+        <% @jobs.each do |job| %>
+          <tr>
+            <td><%= truncate_text(job.title) %></td>
+            <td><%= link_to 'Show', job %></td>
+            <td><%= link_to 'Edit', edit_job_path(job) if job.user_id == current_user.id %></td>
+            <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } if job.user_id == current_user.id %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</section>

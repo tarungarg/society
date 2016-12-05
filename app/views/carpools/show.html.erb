@@ -1,32 +1,59 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
+  <h1>
+    Carpool
+    <small>Share a ride</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Carpools</li>
+  </ol>
+</section>
 
-<p>
-  <strong>Ride:</strong>
-  <%= @carpool.from %>
--
-  <%= @carpool.to %>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Announcement Information</h3>
 
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @carpool.desc %>
-</p>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>Ride:</td>
+          <td><%= @carpool.from %>
+        -
+          <%= @carpool.to %></td>
 
-<p>
-  <strong>User:</strong>
-  <%= @carpool.user_id %>
-</p>
+        </tr>
 
-<p>
-  <strong>Date:</strong>
-  <%= @carpool.date %>
-</p>
+        <tr>
+          <td>Desc:</td>
+          <td><%= @carpool.desc %></td>
+        </tr>
 
-<p>
-  <strong>Routes:</strong>
-  <%= @carpool.tag_list %>
-</p>
+        <tr>
+          <td>User:</td>
+          <td><%= @carpool.user_id %></td>
+        </tr>
 
-<%= link_to 'Edit', edit_carpool_path(@carpool) if current_user.id == @carpool.user_id  %>
-<%= link_to 'Back', carpools_path %>
+        <tr>
+          <td>Date:</td>
+          <td><%= @carpool.date %></td>
+        </tr>
+
+        <tr>
+          <td>Routes:</td>
+          <td><%= @carpool.tag_list %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="box-footer">
+      <%= link_to 'Edit', edit_carpool_path(@carpool), class: 'btn btn-success' if current_user.id == @carpool.user_id  %>
+      <%= link_to 'Back', carpools_path, class: 'btn btn-success' %>
+    </div>
+
+  </div>
+</section>
+

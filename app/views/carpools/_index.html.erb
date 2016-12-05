@@ -1,35 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <div class="col-sm-4">
+           <%= page_entries_info carpools %>
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+          <div class="dataTables_filter">
+            <%= link_to 'New Carpool', new_carpool_path, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+      <div class="box-body">
+        <table class="table table-bordered">
+          <tr>
+            <th>Ride</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th colspan="3"></th>
+          </tr>
 
-
-<h1>Listing Carpools</h1>
-
-<%= will_paginate carpools, renderer: BootstrapPagination::Rails %>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Ride</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% carpools.each do |carpool| %>
-        <tr>
-          <td><%= carpool.from %> - <%= carpool.to %></td>
-          <td><%= convert_time_to_basic carpool.date %></td>
-          <td><%= carpool.amount %></td>
-          <td><%= link_to 'Show', carpool %></td>
-          <td><%= link_to 'Edit', edit_carpool_path(carpool) if current_user.id == carpool.user_id %></td>
-          <td><%= link_to 'Destroy', carpool, method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == carpool.user_id %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          <% carpools.each do |carpool| %>
+            <tr>
+              <td><%= carpool.from %> - <%= carpool.to %></td>
+              <td><%= convert_time_to_basic carpool.date %></td>
+              <td><%= carpool.amount %></td>
+              <td><%= link_to 'Show', carpool %></td>
+              <td><%= link_to 'Edit', edit_carpool_path(carpool) if current_user.id == carpool.user_id %></td>
+              <td><%= link_to 'Destroy', carpool, method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == carpool.user_id %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="box-footer">
+        <%= will_paginate carpools, renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
+  </div>
 </div>
-<%= will_paginate carpools, renderer: BootstrapPagination::Rails %>
-<br>
-
-<%= link_to 'New Carpool', new_carpool_path %>

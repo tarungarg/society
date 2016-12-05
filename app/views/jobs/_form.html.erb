@@ -1,15 +1,12 @@
 <%= simple_form_for @job, validate: true do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
+  <div class="box-body">
+    <%= f.error_notification %>
     <%= f.input :title %>
     <%= f.input :desc, as: :ckeditor %>
     <%= f.file_field :files, multiple: true %>
   </div>
 
-  <div class="form-actions">
+  <div class="box-footer">
     <%= f.button :submit %>
   </div>
-
-
 <% end %>

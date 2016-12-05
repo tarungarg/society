@@ -78,14 +78,16 @@ div.field_with_errors div.ui-effects-wrapper {
   display: inline-block !important;
 }
 
-
 .nav-sidebar > .active > span > a, .nav-sidebar > .active > span > a:hover, .nav-sidebar > .active > span > a:focus {
   color: #fff;
   background-color: #428bca;
 }
 
-
 .padding-top-side{
   margin-top: 6px;
   margin-right: 25px;
+}
+
+.ft-16{
+  font-size: 16px;
 }

@@ -1,24 +1,52 @@
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<section class="content-header">
+  <h1>
+    Products
+    <small>Give yourself a way</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Products</li>
+  </ol>
+</section>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @product.desc %>
-</p>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Jobs Information</h3>
 
-<p>
-  <strong>Images:</strong>
- <% @product.images.each do |p| %>
-  <%= image_tag p.url, class: 'img-thumb' %>
-<% end %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @product.amount %>
-</p>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>Name:</td>
+          <td><%= @product.name %></td>
+        </tr>
 
-<%= link_to 'Back', products_path %>
+        <tr>
+          <td>Desc:</td>
+          <td><%= @product.desc %></td>
+        </tr>
 
+        <tr>
+          <td>Images:</td>
+         <% @product.images.each do |p| %>
+          <td><%= image_tag p.url, class: 'img-thumb' %></td>
+        <% end %>
+        </tr>
+
+        <tr>
+          <td>Amount:</td>
+          <td><%= @product.amount %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box-footer">
+      <%= link_to 'Back', products_path, class: 'btn btn-success' %>
+    </div>
+
+  </div>
+</section>

@@ -1,6 +1,25 @@
-<h1>Editing Job</h1>
+<section class="content-header">
+  <h1>
+    Jobs
+    <small>Refer or Get hired</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Job</li>
+  </ol>
+</section>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @job %> |
-<%= link_to 'Back', jobs_path %>
+<section class="content">
+  <div class="box box-primary">
+  <div class="box-header with-border">
+    <h2 class="box-title">Editing Job</h2>
+  </div>
+    <%= render 'form' %>
+    <div class="box-footer">
+      <div class="btn-group">
+        <%= link_to 'Show', @job, class: 'btn btn-success'  %>
+        <%= link_to 'Back', jobs_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</section>

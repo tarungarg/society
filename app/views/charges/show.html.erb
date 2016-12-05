@@ -1,44 +1,68 @@
-<p>
-  <strong>From date (yyyy-mm-dd):</strong>
-  <%= @charge.from_date %>
-</p>
+<section class="content-header">
+  <h1>
+    Funds
+    <small>Aware of your money</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Funds</li>
+  </ol>
+</section>
 
-<p>
-  <strong>To date (yyyy-mm-dd):</strong>
-  <%= @charge.to_date %>
-</p>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Charges Information</h3>
 
-<p>
-  <strong>Title:</strong>
-  <%= @charge.title %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @charge.desc %>
-</p>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>From date (yyyy-mm-dd):</td>
+          <td><%= @charge.from_date %></td>
+        </tr>
 
-<p>
-  <strong>Period:</strong>
-  <%= @charge.period %>
-</p>
+        <tr>
+          <td>To date (yyyy-mm-dd):</td>
+          <td><%= @charge.to_date %></td>
+        </tr>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @charge.amount %>
-</p>
+        <tr>
+          <td>Title:</td>
+          <td><%= @charge.title %></td>
+        </tr>
 
-<p>
-  <%= link_to 'Pay', edit_charge_path(@charge) %> |
-</p>
+        <tr>
+          <td>Description:</td>
+          <td><%= @charge.desc %></td>
+        </tr>
 
-<%= link_to 'Edit', edit_charge_path(@charge) %> |
-<%= link_to 'Back', charges_path %>
+        <tr>
+          <td>Period:</td>
+          <td><%= @charge.period %></td>
+        </tr>
 
+        <tr>
+          <td>Amount:</td>
+          <td><%= @charge.amount %></td>
+        </tr>
+      </table>
+    </div>
 
-<br>
-<% if user_is_president %>
-  <%= link_to 'Invite All', charges_invite_all_path(charge_id: @charge.id), remote: :true %>
-  <br>
-  <%= render "members/index"%>
-<% end %>
+    <div class="box-footer">
+      <%= link_to 'Edit', edit_charge_path(@charge), class: 'btn btn-success' %>
+      <%= link_to 'Back', charges_path, class: 'btn btn-success' %>
+    </div>
+
+  </div>
+
+  <% if user_is_president %>
+    <%= link_to 'Invite All', charges_invite_all_path(charge_id: @charge.id), remote: :true %>
+    <br>
+    <%= render "members/index"%>
+  <% end %>
+
+</section>

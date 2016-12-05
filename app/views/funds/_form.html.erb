@@ -1,14 +1,13 @@
 <%= simple_form_for(@fund) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
+  <div class="box-body">
+    <%= f.error_notification %>
     <%= f.input :amount %>
     <%= f.input :title %>
     <%= f.input :desc %>
     <%= f.input :date %>
   </div>
 
-  <div class="form-actions">
+  <div class="box-footer">
     <%= f.button :submit %>
   </div>
 <% end %>

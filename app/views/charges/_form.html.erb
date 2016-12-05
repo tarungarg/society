@@ -1,7 +1,6 @@
 <%= simple_form_for(@charge) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
+  <div class="box-body">
+    <%= f.error_notification %>
     <%= f.input :from_date, start_year: Date.today.year %>
     <%#= f.input :to_date %>
     <%= f.input :title %>
@@ -11,8 +10,7 @@
   </div>
 
 
-  <div class="form-actions">
+  <div class="box-footer">
     <%= f.button :submit %>
   </div>
 <% end %>
-

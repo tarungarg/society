@@ -1,46 +1,62 @@
-<div class="">
-Election: <%= Time.now.year%>
-</div>
+<section class="content-header">
+  <h1>
+    Voting Details
+    <small>Vote Counting</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Voting Details</li>
+  </ol>
+</section>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Number</th>
-        <th>Occupation</th>
-        <th>Email</th>
-        <th>Votes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each_with_index do |member, index| %>
-        <tr>
-          <td><%= index + 1  %></td>
-          <td><%= member.name %></td>
-          <td><%= member.mob_num %></td>
-          <td><%= member.occupation %></td>
-          <td><%= member.email %></td>
-          <td><%= member.calculate_votes_size %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+      <div class="box-header">
+        <h2>Election: <%= Election.last.years_range %></h2>
+      </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Number</th>
+              <th>Votes</th>
+            </tr>
+            <% @users.each_with_index do |member, index| %>
+              <tr>
+                <td><%= index + 1  %></td>
+                <td><%= member.name %></td>
+                <td><%= member.mob_num %></td>
+                <td><%= member.calculate_votes_size %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
 
-<% if @max_hash && @max_hash.length == 1 %>
-  <div>
-    <% @user.name %> < <%= @user.email%>> Winning!
+        <div class="box-footer">
+          <% if @max_hash && @max_hash.length == 1 %>
+            <span class="ft-16">
+              <b><%= @user.name %></b> winning with maximum votes !
+            </span>
+          <% end %>
+
+          <% if @max_hash && @max_hash.length > 1 %>
+            <span class="ft-16">
+              There is Tie between <%= @max_hash.length%> members. Result will be on lottary based system if tie continues.
+            </span>
+          <% end %>
+
+          <% if user_is_president && current_tenant.user_setting.voting_visible %>
+            <span class="pull-right">
+              <%= link_to 'Declare Result', votes_declare_path, remote: true, onclick: "$(this).text('Declared')", class: 'btn btn-success' %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</section>
 
-<% if @max_hash && @max_hash.length > 1 %>
-  There is Tie between <%= @max_hash.length%> members. Result will be on lottary based system if tie continues.
-<% end %>
-
-<% if user_is_president && current_tenant.user_setting.voting_visible %>
-  <div class="pull-right">
-    <%= link_to 'Declare Result', votes_declare_path, remote: true, onclick: "$(this).text('Declared')" %>
-  </div>
-<% end %>
