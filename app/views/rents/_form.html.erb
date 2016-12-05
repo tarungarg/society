@@ -1,7 +1,6 @@
 <%= simple_form_for(@rent) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
+  <div class="box-body">
+    <%= f.error_notification %>
     <%= f.input :flat_type, collection: Rent.flat_types,  include_blank: false, label: 'Want To?' %>
     <%= f.input :sale_by, collection: Rent.sale_bys,  include_blank: false, label: 'Sale By' %>
     <%= f.input :name, label: 'Name' %>
@@ -17,7 +16,7 @@
     <%= f.input :amount, label: 'Price' %>
   </div>
 
-  <div class="form-actions">
+  <div class="box-footer">
     <%= f.button :submit %>
   </div>
 <% end %>

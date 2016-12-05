@@ -1,24 +1,43 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'rents/header/header'%>
 
-<p>
-  <strong>Name:</strong>
-  <%= @rent.name %>
-</p>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Jobs Information</h3>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @rent.desc %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<p>
-  <strong>Images:</strong>
-  <%= @rent.images %>
-</p>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>Name:</td>
+          <td><%= @rent.name %></td>
+        </tr>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @rent.amount %>
-</p>
+        <tr>
+          <td>Desc:</td>
+          <td><%= @rent.desc %></td>
+        </tr>
 
-<%= link_to 'Edit', edit_rent_path(@rent) %> |
-<%= link_to 'Back', rents_path %>
+        <tr>
+          <td>Images:</td>
+          <td><%= @rent.images %></td>
+        </tr>
+
+        <tr>
+          <td>Amount:</td>
+          <td><%= @rent.amount %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box-footer">
+      <%= link_to 'Edit', edit_rent_path(@rent), class: 'btn btn-success' %>
+      <%= link_to 'Back', rents_path, class: 'btn btn-success' %>
+    </div>
+
+  </div>
+</section>
+
