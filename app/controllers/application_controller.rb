@@ -6,10 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone
 
   helper_method :user_is_president
-
   helper_method :current_tenant
+  helper_method :mailbox, :conversation
 
   layout :layout_by_resource
+
 
   def after_sign_in_path_for(resource)
     domain = resource.tenant_domain
@@ -43,6 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
   def layout_by_resource
     if devise_controller? and !user_signed_in?
       'login'
@@ -56,4 +58,13 @@ class ApplicationController < ActionController::Base
   def set_timezone
     Time.zone = cookies['time_zone']
   end
+
+  def mailbox
+    @mailbox ||= current_user.mailbox
+  end
+
+  def conversation
+    @conversation ||= mailbox.conversations.find(params[:id])
+  end
+
 end

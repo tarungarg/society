@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_reader
   acts_as_votable
+  acts_as_messageable
 
   ####
   # filterrific gem for search sort and pagination
@@ -171,6 +172,14 @@ class User < ActiveRecord::Base
 
   def calculate_votes_size
     find_votes_for(vote_scope: 'elect').size
+  end
+
+  def mailboxer_name
+    self.name
+  end
+
+  def mailboxer_email(object)
+    self.email
   end
 
   private

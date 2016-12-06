@@ -150,6 +150,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mailboxer (0.14.0)
+      carrierwave (>= 0.5.8)
+      rails (>= 4.2.0)
     memory_profiler (0.9.7)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -310,6 +313,7 @@ DEPENDENCIES
   jquery-turbolinks
   js-routes
   letter_opener
+  mailboxer
   memory_profiler
   mini_magick
   momentjs-rails

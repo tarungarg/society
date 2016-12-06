@@ -62,6 +62,7 @@ gem 'rails_12factor', group: :production
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'mailboxer'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

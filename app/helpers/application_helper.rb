@@ -52,4 +52,9 @@ module ApplicationHelper
   def joining_date
     current_user.created_at.strftime("%b. %Y")
   end
+
+  def active_page(active_page)
+    @active == active_page ? "active" : ""
+  end
+
 end

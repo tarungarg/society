@@ -1,0 +1,56 @@
+<div class="col-md-3">
+  <%= link_to "Compose", new_conversation_path, class: "btn btn-primary btn-block margin-bottom" %>
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Folders</h3>
+
+      <div class="box-tools">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="<%= active_page(:inbox) %>">
+          <%= link_to mailbox_inbox_path do %>
+            <i class="fa fa-inbox"></i> Inbox
+            <span class="label label-primary pull-right"><%=unread_messages_count%></span>
+          <% end %>
+        </li>
+
+        <li class="<%= active_page(:sent) %>">
+          <%= link_to mailbox_sent_path do %>
+            <i class="fa fa-envelope-o"></i> Sent
+          <% end %>
+        </li>
+
+        <li class="<%= active_page(:trash) %>">
+          <%= link_to mailbox_trash_path do %>
+              <i class="fa fa-file-text-o"></i> Trash
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /. box -->
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Labels</h3>
+
+      <div class="box-tools">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+      </ul>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
