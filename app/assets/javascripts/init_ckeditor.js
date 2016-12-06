@@ -1,10 +1,18 @@
-var ready;
-
-ready = function() {
+function intiCkeditor() {
   $('.ckeditor').each(function() {;
-    return CKEDITOR.replace($(this).attr('id'));
+    CKEDITOR.replace($(this).attr('id'));
   })
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).ready(function(){
+  intiCkeditor();
+});
+
+$(document).on('ready page:load', function() {
+  intiCkeditor();
+});
+
+
+document.addEventListener("turbolinks:load", function() {
+  intiCkeditor();
+})

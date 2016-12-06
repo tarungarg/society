@@ -2,7 +2,7 @@
   <tr>
     <td><input type="checkbox"></td>
     <td class="mailbox-star"><i class="fa fa-star text-yellow"></i></td>
-    <td class="mailbox-name"><a href="/conversations/<%= conversation.id %>"><%= conversation.originator.name %></a></td>
+    <td class="mailbox-name"><%= link_to conversation.originator.name, conversation_path(conversation.id, active_page: @active)%></td>
     <td class="mailbox-subject"> <%= conversation.subject %>
     </td>
     <td class="mailbox-attachment"></td>

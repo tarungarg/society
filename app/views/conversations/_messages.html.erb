@@ -4,13 +4,24 @@
     <div class="box-header with-border">
       <h3 class="box-title"><%= message.sender.name %></h3>
       <span class="mailbox-read-time"><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></span>
+      <div class="pull-right">
+        <% if @active == 'inbox'%>
+          <%= link_to  trash_conversation_path(message.id), method: 'POST', class: "btn btn-default btn-sm", data: {toggle: "tooltip", container: "body", original: {title: "Delete"}} do %>
+            <i class="fa fa-trash-o"></i>
+          <% end %>
+        <% elsif @active == 'trash' %>
+          <%= link_to  untrash_conversation_path(message.id), method: 'POST', class: "btn btn-default btn-sm", data: {toggle: "tooltip", container: "body", original: {title: "Delete"}} do %>
+            Move To Inbox<!-- <i class="fa fa-trash-o"></i> -->
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="box-body">
       <div class="mailbox-read-info">
         <h3><%= message.subject %></h3>
       </div>
       <div class="mailbox-read-message">
-        <%= message.body %>
+        <%= message.body.html_safe %>
       </div>
     </div>
   </div>
