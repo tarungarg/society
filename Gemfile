@@ -63,6 +63,8 @@ gem 'rails_12factor', group: :production
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'mailboxer'
+gem 'chosen-rails'
+gem 'gravatar_image_tag'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

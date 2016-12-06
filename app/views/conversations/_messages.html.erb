@@ -1,11 +1,17 @@
 <% @receipts.each do |receipt| %>
-    <% message = receipt.message %>
-    <div class="mailbox-read-info">
-      <h3><%= message.subject %></h3>
-      <h5><%= message.sender.name %>
-        <span class="mailbox-read-time pull-right"><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></span></h5>
+  <% message = receipt.message %> 
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <h3 class="box-title"><%= message.sender.name %></h3>
+      <span class="mailbox-read-time"><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></span>
     </div>
-    <div class="mailbox-read-message">
-      <%= message.body %>
+    <div class="box-body">
+      <div class="mailbox-read-info">
+        <h3><%= message.subject %></h3>
+      </div>
+      <div class="mailbox-read-message">
+        <%= message.body %>
+      </div>
     </div>
+  </div>
 <% end %>

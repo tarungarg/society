@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require announcements
 //= require jquery.turbolinks
+//= require chosen-jquery
 //= require bootstrap
 //= require turbolinks
 //= require loader

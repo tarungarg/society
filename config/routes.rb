@@ -63,6 +63,7 @@ Rails.application.routes.draw do
         post :reply
         post :trash
         post :untrash
+        post :restore
       end
     end
 
