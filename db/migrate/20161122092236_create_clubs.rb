@@ -3,9 +3,8 @@ class CreateClubs < ActiveRecord::Migration
     create_table :clubs do |t|
       t.string :title
       t.text :desc
-      t.date :date
-      t.time :from_time
-      t.time :to_time
+      t.datetime :from_time
+      t.datetime :to_time
 
       t.timestamps null: false
     end

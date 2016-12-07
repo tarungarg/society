@@ -1,48 +1,70 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'clubs/header/header'%>
 
-<h1>Listing Clubs</h1>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Desc</th>
-        <th>Date</th>
-        <th>From time</th>
-        <th>To time</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+<section class="content">
 
-    <tbody>
-      <% @clubs.each do |club| %>
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <div class="pull-right">
+        <%= link_to 'Create Event', new_club_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <div class="box-body">
+      <table class="table table-striped">
         <tr>
-          <td><%= club.title %></td>
-          <td><%= club.desc %></td>
-          <td><%= basic_date_only club.date %></td>
-          <td><%= basic_time_only club.from_time %></td>
-          <td><%= basic_time_only club.to_time %></td>
-          <td><%= link_to 'Show', club %></td>
-          <td><%= link_to 'Edit', edit_club_path(club) %></td>
-          <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th>Title</th>
+          <th>From time</th>
+          <th>To time</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<br>
-
-<%= link_to 'New Club', new_club_path %>
-
-<br><br>
-<div>
-    <div class="calendar"></div>
-</div>
+        <% @clubs.each do |club| %>
+          <tr>
+            <td><%= club.title %></td>
+            <td><%= basic_date_only club.from_time %></td>
+            <td><%= basic_date_only club.to_time %></td>
+            <td><%= link_to 'Show', club %></td>
+            <td><%= link_to 'Edit', edit_club_path(club) %></td>
+            <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div>
+      <div class="calendar"></div>
+  </div>
+</section>
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.calendar').fullCalendar({
+      $('.calendar').fullCalendar({
+        theme: true,
+        eventOverlap: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        events: "/clubs",
+        displayEventEnd: true,
+        buttonText: {
+          today: 'today',
+          month: 'month',
+          week: 'week',
+          day: 'day'
+        },
+        eventAfterRender: function (event, element, view) {
+        var dataHoje = new Date();
+        if (event.start < dataHoje && event.end > dataHoje) {
+            //event.color = "#FFB347"; //Em andamento
+            element.css('background-color', '#f39c12');
+        } else if (event.start < dataHoje && event.end < dataHoje) {
+            //event.color = "#77DD77"; //Concluído OK
+            element.css('background-color', '#3c8dbc');
+        } else if (event.start > dataHoje && event.end > dataHoje) {
+            //event.color = "#AEC6CF"; //Não iniciado
+            element.css('background-color', '#00a65a');
+        }
+      },
     });
   })
 </script>

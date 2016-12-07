@@ -1,29 +1,49 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'charges/header/header'%>
 
-<p>
-  <strong>Title:</strong>
-  <%= @club.title %>
-</p>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"> Event Information</h3>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @club.desc %>
-</p>
+      <div class="box-tools">
+      </div>
+    </div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @club.date %>
-</p>
+    <div class="box-body">
+      <table class="table">
+        <tr>
+          <td>Title:</td>
+          <td><%= @club.title %></td>
+        </tr>
 
-<p>
-  <strong>From time:</strong>
-  <%= @club.from_time %>
-</p>
+        <tr>
+          <td>Desc:</td>
+          <td><%= @club.desc %></td>
+        </tr>
 
-<p>
-  <strong>To time:</strong>
-  <%= @club.to_time %>
-</p>
+        <tr>
+          <td>Date:</td>
+          <td><%= @club.date %></td>
+        </tr>
 
-<%= link_to 'Edit', edit_club_path(@club) %> |
-<%= link_to 'Back', clubs_path %>
+        <tr>
+          <td>From time:</td>
+          <td><%= @club.from_time %></td>
+        </tr>
+
+        <tr>
+          <td>To time:</td>
+          <td><%= @club.to_time %></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div class="box-footer">
+      <%= link_to 'Edit', edit_club_path(@club), class: 'btn btn-success' %>
+      <%= link_to 'Back', clubs_path, class: 'btn btn-success' %>
+    </div>
+
+  </div>
+
+</section>

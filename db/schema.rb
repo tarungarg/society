@@ -78,9 +78,8 @@ ActiveRecord::Schema.define(version: 20161205124427) do
   create_table "clubs", force: :cascade do |t|
     t.string   "title"
     t.text     "desc"
-    t.date     "date"
-    t.time     "from_time"
-    t.time     "to_time"
+    t.datetime "from_time"
+    t.datetime "to_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

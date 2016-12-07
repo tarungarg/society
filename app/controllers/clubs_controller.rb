@@ -5,6 +5,15 @@ class ClubsController < BaseController
   # GET /clubs.json
   def index
     @clubs = Club.all
+    events = []
+    @clubs.each do |club|
+      events << {id: club.id, title: "#{club.title}", start: "#{club.from_time.strftime('%Y-%m-%dT%H:%M:%S')}",end: "#{club.to_time.strftime('%Y-%m-%dT%H:%M:%S')}" }
+    end
+    
+    respond_to do |format|
+        format.html { render :index }
+        format.json { render json: events }
+    end
   end
 
   # GET /clubs/1
