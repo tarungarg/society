@@ -65,6 +65,9 @@ gem 'momentjs-rails'
 gem 'mailboxer'
 gem 'chosen-rails'
 gem 'gravatar_image_tag'
+gem 'actioncable', github: 'rails/actioncable', branch: 'archive'
+gem 'redis-rails'
+gem 'puma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

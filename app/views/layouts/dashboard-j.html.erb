@@ -16,11 +16,9 @@
   <%= javascript_include_tag 'vendor' %>
 
   <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
 </head>
 <body class="skin-blue sidebar-mini" style="height: auto;">
-  <div id="spinner-cont" class="loading not-display"></div>
-  <%= announce Announcement.newest  %>
-  <%= flash_messages %>
 
 <div class="wrapper" style="height: auto;">
 
@@ -291,6 +289,9 @@
   <%= render  partial: 'shared/sidebar' %>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="min-height: 946px;">
+    <div id="spinner-cont" class="loading not-display"></div>
+    <%= announce Announcement.newest  %>
+    <%= flash_messages %>
     <%= yield %>
   </div>
   <!-- /.content-wrapper -->

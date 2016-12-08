@@ -66,7 +66,9 @@ Rails.application.routes.draw do
         post :restore
       end
     end
-
+  
+    mount ActionCable.server => '/cable'
+    match '/websocket', to: ActionCable.server, via: %i(get post)
     mount Commontator::Engine => '/commontator'
     mount Ckeditor::Engine => '/ckeditor'
   end

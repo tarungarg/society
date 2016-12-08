@@ -30,6 +30,7 @@
 //= require fullcalendar
 //= require loader
 //= stub vendor
+//= require cable
 //= require_tree .
 
 
@@ -40,6 +41,7 @@ NProgress.configure({
 });
 
 $(document).ready(function(){
+  initChatObj();
   document.cookie = 'time_zone='+jstz.determine().name()+';';
 });
 

@@ -31,5 +31,10 @@ module Society
     config.active_record.default_timezone = :local
 
     config.quiet_assets = true
+
+    # actioncable settings
+    config.cache_store = :redis_store, "redis://localhost:6379/0/cache", {expires_in: 90.minutes}
+    config.action_cable.url = '/cable'
+    config.action_cable.allowed_request_origins = [/https:\/\/*.*/, /http:\/\/*.*/]
   end
 end
