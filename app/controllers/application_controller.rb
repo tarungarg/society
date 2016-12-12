@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :set_timezone
+  before_filter :set_timezone, :set_cookie
 
   helper_method :user_is_president
   helper_method :current_tenant
@@ -67,4 +67,7 @@ class ApplicationController < ActionController::Base
     @conversation ||= mailbox.conversations.find(params[:id])
   end
 
+  def set_cookie
+    cookies.permanent.signed[:user_id] = current_user.id if current_user
+  end
 end

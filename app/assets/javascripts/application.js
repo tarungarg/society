@@ -26,12 +26,20 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require ckeditor/init
+//= require chat_initialize
 //= require moment 
 //= require fullcalendar
 //= require loader
-//= stub vendor
 //= require cable
-//= require_tree .
+//= require appearance
+//= require banners
+//= require complaints
+//= require init_ckeditor
+//= require jstz
+//= require loader
+//= require messages
+//= require products
+//= require rails.validations
 
 
 NProgress.configure({
@@ -42,6 +50,7 @@ NProgress.configure({
 
 $(document).ready(function(){
   initChatObj();
+  // checkAvailable();
   document.cookie = 'time_zone='+jstz.determine().name()+';';
 });
 
