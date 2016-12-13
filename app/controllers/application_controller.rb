@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
-
   def after_sign_in_path_for(resource)
     domain = resource.tenant_domain
     if domain == 'me'
@@ -46,7 +45,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if devise_controller? and !user_signed_in?
+    if devise_controller? #and !user_signed_in?
       'login'
     else
       'application'

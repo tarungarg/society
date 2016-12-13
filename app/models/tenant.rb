@@ -11,8 +11,23 @@
 #
 
 class Tenant < ActiveRecord::Base
+  include BannedWords
   has_many :users
   has_one :user_setting
+  before_save :valid_domain
+
+  validates :domain,
+    presence: true,
+    uniqueness: { case_sensitive: false },
+    length: {
+      in: 2..20,
+      message: 'The web address must be minimum 4 and maximum 20 characters.'
+    },
+    format: {
+      with: /^[a-zA-Z0-9\-'\_]+$/,
+      message: 'The url contains an invalid character or a space.',
+      multiline: true
+    }
 
   # after_create :add_tenant_to_apartment
 
@@ -28,9 +43,21 @@ class Tenant < ActiveRecord::Base
     count > 1
   end
 
+  def valid_domain
+    domain.downcase!
+    if banned_urls(domain)
+      errors.add(:domain, 'This subdomain url is not allowed.')
+      false
+    else
+      true
+    end
+  end
+
   private
 
   def drop_tenant_from_apartment
     Apartment::Tenant.drop(domain)
   end
+
+
 end

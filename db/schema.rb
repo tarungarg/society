@@ -157,14 +157,6 @@ ActiveRecord::Schema.define(version: 20161205124427) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "fullcalendar_engine_event_series", force: :cascade do |t|
     t.integer  "frequency",  default: 1
     t.string   "period",     default: "monthly"
@@ -276,7 +268,7 @@ ActiveRecord::Schema.define(version: 20161205124427) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.string   "desc"
+    t.text     "desc"
     t.json     "images"
     t.integer  "amount"
     t.integer  "user_id"
@@ -434,6 +426,7 @@ ActiveRecord::Schema.define(version: 20161205124427) do
     t.boolean  "candidate",              default: false
     t.string   "mob_num",                default: ""
     t.string   "email",                  default: ""
+    t.string   "avatar"
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

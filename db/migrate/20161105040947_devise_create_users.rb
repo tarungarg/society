@@ -16,6 +16,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :mob_num,            default: ''
       t.string :email,              default: ''
+      t.string :avatar
       t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
@@ -33,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.inet     :last_sign_in_ip
 
       t.integer :tenant_id
+
 
       ## Confirmable
       # t.string   :confirmation_token

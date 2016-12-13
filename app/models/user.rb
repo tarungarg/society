@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  mount_uploader :avatar, UserImageUploader
+
   belongs_to :tenant
   has_one :society_profile, dependent: :destroy
   has_one :user_setting
@@ -61,7 +63,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :society_profile, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tenant, allow_destroy: true, reject_if: :all_blank
 
-  after_create :add_tenant_to_apartment
+  before_create :add_tenant_to_apartment
+  after_create :upload_default_image
 
   enum profile_roles: [:president, :member, :labour, :POE]
 
@@ -191,6 +194,9 @@ class User < ActiveRecord::Base
       set_default_role
       set_default_setting
     end
+  rescue Apartment::TenantExists
+    errors.add(:domain, 'Tenant already exists or not found.')
+    false
   end
 
   def set_default_role
@@ -200,4 +206,19 @@ class User < ActiveRecord::Base
   def set_default_setting
     UserSetting.create(tenant_id: Tenant.current.id)
   end
+
+  def upload_default_image
+    if self.avatar.blank?
+      img_name =  name ? name[0] : 'A'
+      unless File.exist?('public/images/'+img_name+'.png')
+        img = Avatarly.generate_avatar(img_name, opts={size: 128})
+        File.open('public/images/'+img_name+'.png', 'wb') do |f|
+          f.write(img)
+        end
+      end
+      self.avatar = Rails.root.join('public/images/'+img_name+'.png').open
+      self.save!
+    end
+  end
+
 end
