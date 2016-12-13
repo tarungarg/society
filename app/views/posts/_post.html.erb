@@ -22,7 +22,9 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <img class="img-responsive pad" src="<%= post.attachment.url %>" alt="Photo">
+          <%if post.attachment.url%>
+            <img class="img-responsive pad" src="<%= post.attachment.url %>" alt="Photo">
+          <% end %>
 
           <p><%= post.content %></p>
           <!-- <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->
