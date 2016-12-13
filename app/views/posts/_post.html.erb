@@ -1,0 +1,41 @@
+<div class="post clearfix">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Box Comment -->
+      <div class="box box-widget">
+        <div class="box-header with-border">
+          <div class="user-block">
+            <%# byebug %>
+            <img class="img-circle" src="<%= post.user.avatar.url %>" alt="User Image">
+            <span class="username"><a href="#"><%= post.user.name %></a></span>
+            <span class="description">Shared publicly - <%= relative_time(post.created_at) %> ago</span> <span class="description"><%= formatted_time(post.created_at) %></span>
+          </div>
+          <!-- /.user-block -->
+          <div class="box-tools">
+            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+              <i class="fa fa-circle-o"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+          <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <img class="img-responsive pad" src="<%= post.attachment.url %>" alt="Photo">
+
+          <p><%= post.content %></p>
+          <!-- <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->
+          <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+          <span class="pull-right text-muted">127 likes</span>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer box-comments">
+        <%= commontator_thread(post) %>
+        </div>
+
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</div>

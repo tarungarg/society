@@ -12,6 +12,9 @@
 #
 
 class Policy < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
+  
   mount_uploader :file, AvatarUploader
   acts_as_readable on: :updated_at
   belongs_to :user

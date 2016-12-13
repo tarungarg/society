@@ -16,7 +16,8 @@ class Carpool < ActiveRecord::Base
   validates :from, :to, :desc, :date, :amount, presence: true
   acts_as_taggable
   acts_as_taggable_on :routes
-
+  include PublicActivity::Model
+  tracked
 
   ####
   # filterrific gem for search sort and pagination

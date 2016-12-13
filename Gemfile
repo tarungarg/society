@@ -69,6 +69,8 @@ gem 'actioncable', github: 'rails/actioncable', branch: 'archive'
 gem 'redis-rails'
 gem 'puma'
 gem 'avatarly'
+gem 'public_activity'
+gem 'remotipart'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -85,7 +87,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'rubocop', require: false
   gem 'bullet'
-  gem 'quiet_assets'
+  # gem 'quiet_assets'
   gem 'better_errors'
   gem 'brakeman', require: false
   gem 'rack-mini-profiler', require: false

@@ -105,6 +105,12 @@ class MembersController < BaseController
     end
   end
 
+  def user_profile
+    @activities = PublicActivity::Activity.all
+    @post = Post.new
+    @posts = Post.all
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

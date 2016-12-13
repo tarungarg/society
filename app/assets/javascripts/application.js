@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require announcements
 //= require jquery.turbolinks
 //= require chosen-jquery
@@ -40,6 +41,7 @@
 //= require messages
 //= require products
 //= require rails.validations
+//= require posts
 
 
 NProgress.configure({
@@ -49,9 +51,13 @@ NProgress.configure({
 });
 
 $(document).ready(function(){
-  initChatObj();
+  // initChatObj();
   // checkAvailable();
   document.cookie = 'time_zone='+jstz.determine().name()+';';
+  // $("#event_when").datetimepicker({
+  //   maxDate:'0',
+  //   format:'Y/m/d H:i'
+  // });
 });
 
 $('button').click(function(){

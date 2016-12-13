@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   devise_for :users, controllers: { registrations: 'registrations', invitations: 'users/invitations' }
 
   constraints SubDomainConstraint do
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
       end
       member do
         put 'update_candidate'
+        get 'user_profile'
       end
     end
 
