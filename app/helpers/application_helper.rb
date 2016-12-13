@@ -46,7 +46,7 @@ module ApplicationHelper
   end
 
   def member_name_and_occupation
-    "#{member_name}" "#{member_occupation}"
+    "#{member_name}"
   end
 
   def joining_date

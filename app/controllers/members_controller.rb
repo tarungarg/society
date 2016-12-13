@@ -108,7 +108,7 @@ class MembersController < BaseController
   def user_profile
     @activities = PublicActivity::Activity.all
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.order(created_at: 'desc')
   end
 
   private
