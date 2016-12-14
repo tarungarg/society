@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts
   devise_for :users, controllers: { registrations: 'registrations', invitations: 'users/invitations' }
 
   constraints SubDomainConstraint do
@@ -57,9 +56,15 @@ Rails.application.routes.draw do
     resources :clubs
     resources :elections
     resources :elections_participated_users
-    get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
-    get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
-    get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
+    get 'mailbox/inbox' => "mailbox#inbox", as: :mailbox_inbox
+    get 'mailbox/sent' => "mailbox#sent", as: :mailbox_sent
+    get 'mailbox/trash' => "mailbox#trash", as: :mailbox_trash
+    resources :posts do
+      member do
+        get 'like'
+        get 'unlike'
+      end
+    end
     resources :conversations do
       member do
         post :reply

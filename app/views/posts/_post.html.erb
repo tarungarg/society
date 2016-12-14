@@ -28,8 +28,27 @@
 
           <p><%= post.content %></p>
           <!-- <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->
-          <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-          <span class="pull-right text-muted">127 likes</span>
+          <!-- <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button> -->
+          <span class="pull-right text-muted">
+            <span class="vote_count">
+              <%= pluralize(post.get_likes.size,'like') %>
+            </span>
+          </span>
+
+          <div>
+            <div class="votes">
+              <% if current_user.liked? post %>
+                <%= link_to unlike_post_path(post), method: :get, remote: true, class: 'unlike_post' do %>
+                  <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Unlike</button>
+                <% end %>
+              <% else %>
+                <%= link_to like_post_path(post), method: :get, remote: true, class: 'like_post' do %>
+                  <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
         </div>
         <!-- /.box-body -->
         <div class="box-footer box-comments">
