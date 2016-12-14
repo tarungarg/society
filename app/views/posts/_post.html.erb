@@ -1,8 +1,8 @@
-<div class="post clearfix">
+<div class="post-feed clearfix box-widget">
   <div class="row">
     <div class="col-md-12">
       <!-- Box Comment -->
-      <div class="box box-widget">
+      <div class="box">
         <div class="box-header with-border">
           <div class="user-block">
             <%# byebug %>
@@ -12,11 +12,14 @@
           </div>
           <!-- /.user-block -->
           <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
-              <i class="fa fa-circle-o"></i></button>
+            <% if post.user_id == current_user.id || user_is_president %>
+              <a class="btn btn-box-tool" data-toggle="remove" data-remote="true" title="Delete Post" href="/posts/<%= post.id%>" data-method="delete" data-widget="remove">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </button>
           </div>
           <!-- /.box-tools -->
         </div>
@@ -29,13 +32,13 @@
           <p><%= post.content %></p>
           <!-- <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button> -->
           <!-- <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button> -->
-          <span class="pull-right text-muted">
-            <span class="vote_count">
-              <%= pluralize(post.get_likes.size,'like') %>
-            </span>
-          </span>
-
           <div>
+            <span class="pull-right text-muted">
+              <span class="vote_count">
+                <%= pluralize(post.get_likes.size,'like') %>
+              </span>
+            </span>
+
             <div class="votes">
               <% if current_user.liked? post %>
                 <%= link_to unlike_post_path(post), method: :get, remote: true, class: 'unlike_post' do %>

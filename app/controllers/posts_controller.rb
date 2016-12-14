@@ -61,6 +61,7 @@ class PostsController < BaseController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
+      format.js { render status: 200, js: "toastr.info('Deleted')" }
     end
   end
 

@@ -1,5 +1,5 @@
 $('.like_post').bind('ajax:success', function(){
-   $(this).parent().parent().find('.vote_count').html('<%= escape_javascript @post.votes_for.size.to_s %>');
+   $(this).parent().parent().find('.vote_count').html('<%= escape_javascript pluralize(@post.votes_for.size, "like") %>');
    $(this).closest('.like_post').hide();
    $(this).closest('.votes').html(' <%= link_to unlike_post_path(@post), remote: true, method: :get, class: 'unlike_post' do %> <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Unlike</button> <% end %>'
 
