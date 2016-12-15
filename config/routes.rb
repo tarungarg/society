@@ -73,6 +73,11 @@ Rails.application.routes.draw do
         post :restore
       end
     end
+    resources :tasks do
+      member do
+        put 'change_status'
+      end
+    end
   
     mount ActionCable.server => '/cable'
     match '/websocket', to: ActionCable.server, via: %i(get post)

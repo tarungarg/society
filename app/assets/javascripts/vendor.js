@@ -1,5 +1,3 @@
-//= require bo
-//= require j2
 //= require e
 //= require f
 //= require j
@@ -7,6 +5,5 @@
 //= require l
 //= require m
 //= require a
-//= require b
 //= require c
 //= require d

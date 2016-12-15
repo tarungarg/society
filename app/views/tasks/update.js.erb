@@ -1,0 +1,6 @@
+<% js = escape_javascript(
+  render(partial: 'tasks/task', locals: { task: @task })
+) %>
+$('#task-<%= @task.id %>').replaceWith("<%= js %>");
+
+$('#task_modal').modal('toggle');

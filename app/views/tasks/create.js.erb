@@ -1,0 +1,6 @@
+<% js = escape_javascript(
+  render(partial: 'tasks/task', locals: { task: @task })
+) %>
+$('.todo-list').prepend("<%= js %>");
+
+$('#task_modal').modal('toggle');

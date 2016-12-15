@@ -42,6 +42,7 @@
 //= require products
 //= require rails.validations
 //= require posts
+//= require tasks
 
 
 NProgress.configure({

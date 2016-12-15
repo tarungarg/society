@@ -65,4 +65,9 @@ module ApplicationHelper
     time.to_formatted_s(:short)
   end
 
+  def randomized_bg_class
+    classes = ["label-danger", "label-info", "label-success"]
+    classes[rand(classes.size)]
+  end
+
 end

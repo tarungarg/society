@@ -1,0 +1,17 @@
+<li id='task-<%= task.id %>'>
+  <span class="handle">
+    <i class="fa fa-ellipsis-v"></i>
+    <i class="fa fa-ellipsis-v"></i>
+  </span>
+  <input type="checkbox" data-id="<%= task.id %>" class='checkbox-task' <%= task.completed ? 'checked' : '' %>>
+  <span class="task-li text <%= task.completed ? 'completed' : '' %>"><%= task.title %></span>
+  <small class="label <%= randomized_bg_class %>"><i class="fa fa-clock-o"></i> <%= relative_time(task.created_at) %> ago</small>
+  <div class="tools">
+    <%= link_to edit_task_path(task), data: {  :no_turbolink => true, toggle: "modal", target: "#task_modal", remote: true } do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    <%= link_to task_path(task), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do %>
+      <i class="fa fa-trash-o"></i>
+    <% end %>
+  </div>
+</li>
