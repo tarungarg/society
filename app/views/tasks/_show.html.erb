@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @task.title %>
@@ -12,13 +10,10 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @task.date %>
+  <%= formatted_time @task.date %>
 </p>
 
 <p>
   <strong>Completed:</strong>
   <%= @task.completed %>
 </p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>

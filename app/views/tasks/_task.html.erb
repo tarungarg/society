@@ -4,7 +4,7 @@
     <i class="fa fa-ellipsis-v"></i>
   </span>
   <input type="checkbox" data-id="<%= task.id %>" class='checkbox-task' <%= task.completed ? 'checked' : '' %>>
-  <span class="task-li text <%= task.completed ? 'completed' : '' %>"><%= task.title %></span>
+  <span class="task-li text <%= task.completed ? 'completed' : '' %>" onclick='showTask("<%= task.id %>");'><%= task.title %></span>
   <small class="label <%= randomized_bg_class %>"><i class="fa fa-clock-o"></i> <%= relative_time(task.created_at) %> ago</small>
   <div class="tools">
     <%= link_to edit_task_path(task), data: {  :no_turbolink => true, toggle: "modal", target: "#task_modal", remote: true } do %>

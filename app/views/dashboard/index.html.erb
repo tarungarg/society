@@ -83,7 +83,11 @@
         <!-- /.box-header -->
         <div class="box-body">
           <ul class="todo-list">
+          <% if @tasks.length > 0 %>
             <%= render partial: 'tasks/task', collection: @tasks %>
+          <% else %>
+            Create your own TODO list
+          <% end %>
           </ul>
         </div>
         <!-- /.box-body -->
@@ -329,7 +333,7 @@
               <h3 class="box-title">Latest Members</h3>
 
               <div class="box-tools pull-right">
-                <span class="label label-danger">8 New Members</span>
+                <span class="label label-danger">New Members</span>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -339,46 +343,15 @@
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <ul class="users-list clearfix">
-                <li>
-                  <img src="/assets/user1-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">Alexander Pierce</a>
-                  <span class="users-list-date">Today</span>
-                </li>
-                <li>
-                  <img src="/assets/user8-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">Norman</a>
-                  <span class="users-list-date">Yesterday</span>
-                </li>
-                <li>
-                  <img src="/assets/user7-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">Jane</a>
-                  <span class="users-list-date">12 Jan</span>
-                </li>
-                <li>
-                  <img src="/assets/user6-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">John</a>
-                  <span class="users-list-date">12 Jan</span>
-                </li>
-                <li>
-                  <img src="/assets/user2-160x160.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">Alexander</a>
-                  <span class="users-list-date">13 Jan</span>
-                </li>
-                <li>
-                  <img src="/assets/user5-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">Sarah</a>
-                  <span class="users-list-date">14 Jan</span>
-                </li>
-                <li>
-                  <img src="/assets/user4-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">Nora</a>
-                  <span class="users-list-date">15 Jan</span>
-                </li>
-                <li>
-                  <img src="/assets/user3-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="file:///home/tarungarg/apps/AdminLTE/index2.html#">Nadia</a>
-                  <span class="users-list-date">15 Jan</span>
-                </li>
+                <% @members.each do |member| %>
+                  <li>
+                    <img src="<%= member.avatar.url %>" alt="User Image">
+                    <%= link_to member_path(member.id), class: "users-list-name" do %>
+                      <%= member.name %>
+                    <%end%>
+                    <span class="users-list-date"><%= formatted_time(member.created_at) %></span>
+                  </li>
+                <% end %>
               </ul>
               <!-- /.users-list -->
             </div>
@@ -687,5 +660,83 @@
     </div>
     <!-- /.col -->
   </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="box box-solid bg-green-gradient">
+            <div class="box-header">
+              <i class="fa fa-calendar"></i>
+
+              <h3 class="box-title">Calendar</h3>
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <!-- button with a dropdown -->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i></button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#">Add new event</a></li>
+                    <li><a href="#">Clear events</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">View calendar</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <!--The calendar -->
+              <div id="calendar" style="width: 100%"></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-black">
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- Progress bars -->
+                  <div class="clearfix">
+                    <span class="pull-left">Task #1</span>
+                    <small class="pull-right">90%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                  </div>
+
+                  <div class="clearfix">
+                    <span class="pull-left">Task #2</span>
+                    <small class="pull-right">70%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                  </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                  <div class="clearfix">
+                    <span class="pull-left">Task #3</span>
+                    <small class="pull-right">60%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                  </div>
+
+                  <div class="clearfix">
+                    <span class="pull-left">Task #4</span>
+                    <small class="pull-right">40%</small>
+                  </div>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+        </div>
+      </div>
   <!-- /.row -->
 </section>

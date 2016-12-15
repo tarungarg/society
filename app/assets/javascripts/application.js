@@ -16,10 +16,8 @@
 //= require announcements
 //= require jquery.turbolinks
 //= require chosen-jquery
-//= require bootstrap
 //= require turbolinks
 //= require loader
-//= require bootstrap-datepicker/core
 //= require rails.validations
 //= require commontator/application
 //= require toastr
@@ -54,6 +52,7 @@ NProgress.configure({
 $(document).ready(function(){
   // initChatObj();
   // checkAvailable();
+  $("#calendar").datepicker();
   document.cookie = 'time_zone='+jstz.determine().name()+';';
   // $("#event_when").datetimepicker({
   //   maxDate:'0',

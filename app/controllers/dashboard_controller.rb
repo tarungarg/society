@@ -6,6 +6,7 @@ class DashboardController < BaseController
     @mails_count = mailbox.inbox.count
     @complaints_count = current_user.complaints.where(status: 1).count
     @policies_count = Policy.count
-    @tasks = Task.order('created_at desc')
+    @tasks = current_user.tasks.order('created_at desc')
+    @members = current_tenant.users.order('created_at desc').limit(6)
   end
 end
