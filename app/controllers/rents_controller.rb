@@ -1,4 +1,5 @@
 class RentsController < BaseController
+  load_and_authorize_resource
   before_action :set_rent, only: [:show, :edit, :update, :destroy]
 
   # GET /rents
@@ -25,6 +26,7 @@ class RentsController < BaseController
   # POST /rents.json
   def create
     @rent = Rent.new(rent_params)
+    @rent.user_id = current_user.id
 
     respond_to do |format|
       if @rent.save

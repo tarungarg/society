@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213092526) do
+ActiveRecord::Schema.define(version: 20161214035951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -287,9 +287,16 @@ ActiveRecord::Schema.define(version: 20161213092526) do
     t.string   "attachment"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
+    t.integer  "cached_votes_score", default: 0
   end
+
+  add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
+  add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score", using: :btree
+  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -323,6 +330,7 @@ ActiveRecord::Schema.define(version: 20161213092526) do
     t.integer  "bhk"
     t.integer  "sale_by"
     t.integer  "amount"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

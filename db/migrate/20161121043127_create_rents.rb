@@ -12,6 +12,7 @@ class CreateRents < ActiveRecord::Migration
       t.integer :bhk
       t.integer :sale_by
       t.integer :amount
+      t.integer :user_id
 
       t.timestamps null: false
     end

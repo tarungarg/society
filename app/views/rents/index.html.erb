@@ -26,8 +26,10 @@
             <td><%= rent.desc %></td>
             <td><%= rent.amount %></td>
             <td><%= link_to 'Show', rent %></td>
-            <td><%= link_to 'Edit', edit_rent_path(rent) %></td>
-            <td><%= link_to 'Destroy', rent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if current_user.id == rent.user_id %>
+              <td><%= link_to 'Edit', edit_rent_path(rent) %></td>
+              <td><%= link_to 'Destroy', rent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </table>

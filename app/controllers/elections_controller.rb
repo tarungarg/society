@@ -1,4 +1,5 @@
 class ElectionsController < BaseController
+  load_and_authorize_resource
   before_action :set_election, only: [:show, :edit, :update, :destroy]
 
   # GET /elections

@@ -4,7 +4,11 @@
     <span class="time"><i class="fa fa-clock-o"></i> <%= relative_time(a.created_at) %> ago</span>
     <h3 class="timeline-header"><strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
       <% if a.trackable %>
-        commented on <%= a.parameters[:commontable_type] %> <%= truncate_text(a.trackable.thread.commontable.content) %>
+        <% if a.parameters[:commontable_type] == 'post' %>
+          commented on <%= a.parameters[:commontable_type] %> <%= truncate_text(a.trackable.thread.commontable.content) %>
+        <% elsif a.parameters[:commontable_type] == 'suggestion' %>
+          commented on <%= a.parameters[:commontable_type] %> <%= truncate_text(a.trackable.thread.commontable.title) %>
+        <% end %>
       <% else %>
         added the policy that is currently deleted.
       <% end %>
