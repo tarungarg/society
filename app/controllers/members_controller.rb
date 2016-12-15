@@ -106,7 +106,7 @@ class MembersController < BaseController
   end
 
   def user_profile
-    @activities = PublicActivity::Activity.all
+    @activities = PublicActivity::Activity.order("created_at desc").where(recipient_id: current_user.id, recipient_type: "User")
     @post = Post.new
     @posts = Post.order(created_at: 'desc')
   end

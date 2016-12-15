@@ -32,11 +32,14 @@ module Commontator
           format.html { redirect_to @thread }
           format.js { render :cancel }
         elsif @comment.save
+
           sub = @thread.config.thread_subscription.to_sym
           @thread.subscribe(@user) if sub == :a || sub == :b
           Subscription.comment_created(@comment)
 
           @per_page = params[:per_page] || @thread.config.comments_per_page
+
+          @comment.create_activity :comment, owner: @user, recipient: @thread.commontable.user, parameters: {commontable_id: @thread.commontable_id, commontable_type: @thread.commontable_type.downcase }
 
           format.html { redirect_to @thread }
           format.js

@@ -67,12 +67,12 @@ class PostsController < BaseController
 
   def like
     @post.liked_by current_user
+    @post.create_activity :like, owner: current_user, recipient: @post.user
     respond_to do |format|
       format.html { redirect_to :back }
       format.js { render layout: false }
     end
   end
-
 
   def unlike
     @post.unliked_by current_user

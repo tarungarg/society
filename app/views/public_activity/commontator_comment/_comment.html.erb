@@ -1,0 +1,21 @@
+<li class="">
+  <i class="fa fa-comments-o bg-yellow"></i>
+  <div class="timeline-item">
+    <span class="time"><i class="fa fa-clock-o"></i> <%= relative_time(a.created_at) %> ago</span>
+    <h3 class="timeline-header"><strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
+      <% if a.trackable %>
+        commented on <%= a.parameters[:commontable_type] %> <%= truncate_text(a.trackable.thread.commontable.content) %>
+      <% else %>
+        added the policy that is currently deleted.
+      <% end %>
+    </h3>
+    <% if a.trackable %>
+      <div class="timeline-body">
+          <%= truncate_text(a.trackable.body, 600) %>
+      </div>
+      <div class="timeline-footer">
+        <%#= link_to "Read more", policy_path(a.trackable.id), class: "btn btn-primary btn-xs" %>
+      </div>
+    <% end %>
+  </div>
+</li>

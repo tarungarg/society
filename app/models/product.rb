@@ -13,9 +13,6 @@
 #
 
 class Product < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked
-  
   mount_uploaders :images, ImageUploader
   validates :name, :desc, :amount, presence: true
   validates :amount, numericality: { only_integer: true, greater_than_or_equal_to: 0 }

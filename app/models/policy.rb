@@ -12,10 +12,10 @@
 #
 
 class Policy < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked
-  
   mount_uploader :file, AvatarUploader
   acts_as_readable on: :updated_at
   belongs_to :user
+
+  include PublicActivity::Model
+  tracked except: :destroy, owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }, recipient: Proc.new { |controller, model|  model && model.user }
 end

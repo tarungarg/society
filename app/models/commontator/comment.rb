@@ -27,6 +27,9 @@ module Commontator
     validates_presence_of :thread
     validates_presence_of :body
 
+    include PublicActivity::Model
+    tracked
+
     # validates_uniqueness_of :body,
     # #   :scope => [:creator_type, :creator_id, :thread_id, :deleted_at],
     #   :message => I18n.t('commontator.comment.errors.double_posted')

@@ -19,7 +19,7 @@ class Ability
   end
 
   def member_privileges
-    can [:show, :index], [Member, Announcement]
+    can [:show, :index, :user_profile], [Member, Announcement]
     can [:show, :download, :index], Policy
     can [:index, :vote, :detail], VotesController
     can [:update, :destroy], [Job, Suggestion, Product, Carpool, Complaint], user_id: @user.id

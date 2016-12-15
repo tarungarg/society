@@ -1,0 +1,13 @@
+<li class="">
+  <i class="fa  fa-send-o bg-aqua"></i>
+  <div class="timeline-item">
+    <span class="time"><i class="fa fa-clock-o"></i> <%= relative_time(a.created_at) %> ago</span>
+    <h3 class="timeline-header"><strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
+      <% if a.trackable %>
+        added the post <%= link_to truncate_text(a.trackable.content) %>
+      <% else %>
+        added the post that is currently deleted.
+      <% end %>
+    </h3>
+  </div>
+</li>

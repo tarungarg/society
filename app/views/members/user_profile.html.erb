@@ -106,63 +106,92 @@
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="timeline">
-            <!-- The timeline -->
-            <%#= render_activities(@activities) %>
+            <ul class="timeline timeline-inverse">
+              <li class="time-label">
+                    <!-- <span class="bg-red"> -->
+                      <!-- 10 Feb. 2014 -->
+                    <!-- </span> -->
+              </li>
+              <%= render_activities(@activities) %>
+              <li>
+                <i class="fa fa-clock-o bg-gray"></i>
+              </li>
+            </ul>
           </div>
           <!-- /.tab-pane -->
 
           <div class="tab-pane" id="settings">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
+            <%= form_for @member, as: :member, class: 'form-horizontal', url: member_path(@member) do |f| %>
+              <div class="box-body">
+                <% if @member.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
 
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputName" placeholder="Name">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                <div class="col-sm-10">
-                  <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                    </label>
+                    <ul>
+                    <% @member.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
                   </div>
+                <% end %>
+                <div class="form-group">
+                  Select Role:
+                  <%= select_tag 'roles', options_for_select(User.profile_roles.map { |obj| [obj[0].camelize, obj[0]] }, @member.roles.map(&:name)), multiple: true, required: true %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :name %><br>
+                  <%= f.text_field :name, class: 'form-control', required: true %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :flat_no %><br>
+                  <%= f.text_field :flat_no, class: 'form-control', required: true %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :tower_no %><br>
+                  <%= f.text_field :tower_no, class: 'form-control', required: true %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :mob_num %><br>
+                  <%= f.text_field :mob_num, class: 'form-control', required: true %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :email %><br>
+                  <%= f.text_field :email, class: 'form-control', required: true  %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :alt_no %><br>
+                  <%= f.text_field :alt_no, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :blood_group %><br>
+                  <%= f.text_field :blood_group, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :occupation %><br>
+                  <%= f.text_field :occupation, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :family_memebers %><br>
+                  <%= f.number_field :family_memebers, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :adult %><br>
+                  <%= f.number_field :adult, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :kids %><br>
+                  <%= f.number_field :kids, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :bio %><br>
+                  <%= f.text_area :bio, class: 'form-control' %>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Submit</button>
-                </div>
+              <div class="box-footer">
+                <%= f.submit %>
               </div>
-            </form>
+            <% end %>
+
           </div>
           <!-- /.tab-pane -->
         </div>

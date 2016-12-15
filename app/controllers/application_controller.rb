@@ -54,19 +54,20 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_timezone
-    Time.zone = cookies['time_zone']
-  end
+    def set_timezone
+      Time.zone = cookies['time_zone']
+    end
 
-  def mailbox
-    @mailbox ||= current_user.mailbox
-  end
+    def mailbox
+      @mailbox ||= current_user.mailbox
+    end
 
-  def conversation
-    @conversation ||= mailbox.conversations.find(params[:id])
-  end
+    def conversation
+      @conversation ||= mailbox.conversations.find(params[:id])
+    end
 
-  def set_cookie
-    cookies.permanent.signed[:user_id] = current_user.id if current_user
-  end
+    def set_cookie
+      cookies.permanent.signed[:user_id] = current_user.id if current_user
+    end
+
 end

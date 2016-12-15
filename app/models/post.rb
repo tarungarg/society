@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   acts_as_commontable
   acts_as_votable
-  
+
   include PublicActivity::Model
-  tracked
+  tracked except: [:update, :destroy], owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }, recipient: Proc.new { |controller, model|  model && model.user }
 end

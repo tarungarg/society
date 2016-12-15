@@ -12,9 +12,6 @@
 #
 
 class Job < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked
-
   acts_as_commontable
   validates :title, :desc, presence: true
   mount_uploaders :files, AvatarUploader

@@ -24,6 +24,7 @@ module Commontator
     validates_uniqueness_of :commontable_id,
                             scope: :commontable_type,
                             allow_nil: true
+    
 
     def config
       @config ||= commontable.try(:commontable_config) || Commontator

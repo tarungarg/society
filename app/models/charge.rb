@@ -15,8 +15,6 @@
 #
 
 class Charge < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked
   enum period: { Monthly: 0, Quaterly: 1, Yearly: 3 }
 
   has_many :subscriptions
