@@ -56,7 +56,7 @@ document.addEventListener("turbolinks:load", function() {
 })
 
 document.addEventListener("turbolinks:before-cache", function() {
-  $("#calendar").datepicker('disable');
+  $("#calendar").datepicker('remove');
 });
 
 function loadtimeEvents(){
@@ -72,4 +72,3 @@ function loadtimeEvents(){
     $(this).addClass('active-now');
   });
 }
-
