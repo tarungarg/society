@@ -18,15 +18,6 @@ function updateComplaintStatus(){
   });
 }
 
-$(document).on('ready page:load', function() {
-  updateComplaintStatus();
-});
-
-
 document.addEventListener("turbolinks:load", function() {
-  updateComplaintStatus();
-})
-
-$(document).ready(function() {
   updateComplaintStatus();
 })

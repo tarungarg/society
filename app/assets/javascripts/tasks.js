@@ -1,12 +1,3 @@
-$(document).ready(function(){
-  changeState();
-});
-
-$(document).on('ready page:load', function() {
-  changeState();
-});
-
-
 document.addEventListener("turbolinks:load", function() {
   changeState();
 })

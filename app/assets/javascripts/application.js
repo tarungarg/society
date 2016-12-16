@@ -51,32 +51,25 @@ NProgress.configure({
   speed: 200
 });
 
-$(document).ready(function(){
-  loadtimeEvents();
-});
-
-$(document).on('ready page:load', function() {
-  loadtimeEvents();
-});
-
-
 document.addEventListener("turbolinks:load", function() {
   loadtimeEvents();
 })
 
+document.addEventListener("turbolinks:before-cache", function() {
+  $("#calendar").datepicker('disable');
+});
+
 function loadtimeEvents(){
   // initChatObj();
   // checkAvailable();
-  $("#calendar").datepicker();
+  $("#calendar").datepicker('enable');
   document.cookie = 'time_zone='+jstz.determine().name()+';';
-  // $('.slimScrollBar').slimScroll();
-  // $('.slimScrollDiv').slimScroll();
+  $('button').click(function(){
+    $(this).addClass('active-now');
+  });
+
+  $('a').click(function(){
+    $(this).addClass('active-now');
+  });
 }
 
-$('button').click(function(){
-  this.addClass('active-now');
-});
-
-$('a').click(function(){
-  this.addClass('active-now');
-});
