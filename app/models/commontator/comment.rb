@@ -21,6 +21,7 @@ module Commontator
     belongs_to :creator, polymorphic: true
     belongs_to :editor, polymorphic: true
     belongs_to :thread
+    after_save :update_parent_timestamp
 
     validates_presence_of :creator, on: :create
     validates_presence_of :editor, on: :update
@@ -37,6 +38,10 @@ module Commontator
     protected
 
     cattr_accessor :acts_as_votable_initialized
+
+      def update_parent_timestamp
+        self.thread.commontable.update(updated_at: Time.now) rescue ''
+      end
 
     public
 
@@ -134,4 +139,5 @@ module Commontator
         thread.can_be_read_by?(user) && can_be_voted_on?
     end
   end
+
 end

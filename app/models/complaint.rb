@@ -19,17 +19,14 @@ class Complaint < ActiveRecord::Base
 
   acts_as_votable
   acts_as_commontable
-
   acts_as_readable on: :updated_at
 
   enum status: ['Not Resolved', 'Resolved']
 
   belongs_to :user
-
   has_many :reviews
 
   scope :public_comaplaints, -> { where('view_publically >= ?', true) }
-
   default_scope { order('complaints.status asc') }
 
   ####

@@ -37,6 +37,7 @@
 //= require init_ckeditor
 //= require jstz
 //= require loader
+//= require filterrific/filterrific-jquery
 //= require messages
 //= require products
 //= require rails.validations
@@ -51,20 +52,30 @@ NProgress.configure({
 });
 
 $(document).ready(function(){
+  loadtimeEvents();
+});
+
+$(document).on('ready page:load', function() {
+  loadtimeEvents();
+});
+
+
+document.addEventListener("turbolinks:load", function() {
+  loadtimeEvents();
+})
+
+function loadtimeEvents(){
   // initChatObj();
   // checkAvailable();
   $("#calendar").datepicker();
   document.cookie = 'time_zone='+jstz.determine().name()+';';
-  // $("#event_when").datetimepicker({
-  //   maxDate:'0',
-  //   format:'Y/m/d H:i'
-  // });
-});
+  // $('.slimScrollBar').slimScroll();
+  // $('.slimScrollDiv').slimScroll();
+}
 
 $('button').click(function(){
   this.addClass('active-now');
 });
-
 
 $('a').click(function(){
   this.addClass('active-now');

@@ -1,13 +1,26 @@
-<li class="">
-  <i class="fa  fa-send-o bg-aqua"></i>
-  <div class="timeline-item">
-    <span class="time"><i class="fa fa-clock-o"></i> <%= relative_time(a.created_at) %> ago</span>
-    <h3 class="timeline-header"><strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
+<% if params['navbar'] %>
+  <li class="list-group-item">
+    <span class="fa fa-comments-o"></span>
+    <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
+    <strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
       <% if a.trackable %>
         added the post <%= link_to truncate_text(a.trackable.content) %>
       <% else %>
         added the post that is currently deleted.
       <% end %>
-    </h3>
-  </div>
-</li>
+  </li>
+<% else %>
+  <li class="">
+    <i class="fa  fa-send-o bg-aqua"></i>
+    <div class="timeline-item">
+      <span class="time"><i class="fa fa-clock-o"></i> <%= relative_time(a.created_at) %> ago</span>
+      <h3 class="timeline-header"><strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
+        <% if a.trackable %>
+          added the post <%= link_to truncate_text(a.trackable.content) %>
+        <% else %>
+          added the post that is currently deleted.
+        <% end %>
+      </h3>
+    </div>
+  </li>
+<% end %>

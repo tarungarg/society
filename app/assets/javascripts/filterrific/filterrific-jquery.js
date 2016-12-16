@@ -94,7 +94,6 @@ document.addEventListener("turbolinks:load", function() {
 function enableFilterrific(){
   $('.js-datepicker').datepicker({
       format: 'mm/dd/yyyy',
-      startDate: '1d'
     });
 
   $('#filterrific_filter').on(

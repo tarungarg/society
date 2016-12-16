@@ -1,13 +1,26 @@
-<li class="">
-  <i class="fa fa-thumbs-up bg-aqua"></i>
-  <div class="timeline-item">
-    <span class="time"><i class="fa fa-clock-o"></i> <%= relative_time(a.created_at) %> ago</span>
-    <h3 class="timeline-header"><strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
-      <% if a.trackable %>
-        liked the post <%= link_to truncate_text(a.trackable.content) %>
-      <% else %>
-        liked the post that is currently deleted.
-      <% end %>
-    </h3>
-  </div>
-</li>
+<% if params['navbar'] %>
+  <li class="list-group-item">
+    <span class="fa fa-thumbs-up"></span>
+    <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
+    <strong><%= a.owner ? a.owner.name : 'Guest' %></strong>
+    <% if a.trackable %>
+      liked the post <%= link_to truncate_text(a.trackable.content) %>
+    <% else %>
+      liked the post that is currently deleted.
+    <% end %>
+  </li>
+<% else %>
+  <li class="">
+    <i class="fa fa-thumbs-up bg-aqua"></i>
+    <div class="timeline-item">
+      <span class="time"><i class="fa fa-clock-o"></i> <%= relative_time(a.created_at) %> ago</span>
+      <h3 class="timeline-header"><strong><%= a.owner ? a.owner.name : 'Guest' %></strong>
+        <% if a.trackable %>
+          liked the post <%= link_to truncate_text(a.trackable.content) %>
+        <% else %>
+          liked the post that is currently deleted.
+        <% end %>
+      </h3>
+    </div>
+  </li>
+<% end %>

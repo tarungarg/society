@@ -40,7 +40,9 @@ module Commontator
           @per_page = params[:per_page] || @thread.config.comments_per_page
 
           user = User.find(@thread.commontable.user_id)
-          @comment.create_activity :comment, owner: @user, recipient: user, parameters: {commontable_id: @thread.commontable_id, commontable_type: @thread.commontable_type.downcase }
+          unless @user.id == user.id
+            @comment.create_activity :comment, owner: @user, recipient: user, parameters: {commontable_id: @thread.commontable_id, commontable_type: @thread.commontable_type.downcase }
+          end
 
           format.html { redirect_to @thread }
           format.js
