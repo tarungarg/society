@@ -11,13 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui/widget
 //= require jquery.remotipart
 //= require bootstrap
 //= require announcements
-//= require jquery.turbolinks
 //= require chosen-jquery
-//= require turbolinks
 //= require loader
 //= require rails.validations
 //= require commontator/application
@@ -43,6 +43,7 @@
 //= require rails.validations
 //= require posts
 //= require tasks
+//= require turbolinks
 
 
 NProgress.configure({

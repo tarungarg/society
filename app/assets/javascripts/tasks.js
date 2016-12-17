@@ -20,6 +20,7 @@ function changeState(){
 }
 
 function showTask(task_id) {
+  debugger
   $('#task_modal').modal();
   $.ajax({
     type : 'GET',

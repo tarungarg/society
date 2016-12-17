@@ -1,0 +1,17 @@
+
+  <% message = @receipts[0].message %> 
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <h3 class="box-title"><%= message.sender.name %></h3>
+      <span class="mailbox-read-time"><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></span><br/>
+      Send To: <span class="mailbox-read-time"><%= @receipts[0].conversation.recipients.collect{|c| "#{c.name}<#{c.email}>"}.join(', ')%></span>
+    </div>
+    <div class="box-body">
+      <div class="mailbox-read-message with-border">
+        <%= message.subject %>
+      </div>
+      <div class="mailbox-read-info">
+        <h3><%= message.body.html_safe %></h3>
+      </div>
+    </div>
+  </div>

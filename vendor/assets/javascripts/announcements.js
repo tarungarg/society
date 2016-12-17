@@ -1,4 +1,4 @@
-$(function() {
+document.addEventListener("turbolinks:load", function() {
 
     $('.hide_announcement, .close').click(function() {
         var a_id = $(this).data("announcementid");

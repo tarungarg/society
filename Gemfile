@@ -51,6 +51,7 @@ gem 'avatarly'
 gem 'public_activity'
 gem 'remotipart'
 gem 'gravatar_image_tag'
+gem 'jquery-ui-rails', tag: 'v6.0.0'
 
 group :development, :test do
   gem 'capistrano-rails'

@@ -21,7 +21,7 @@
       <h3 class="timeline-header"><strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
         <% if a.trackable %>
           <% if ['post'].include?(a.parameters[:commontable_type]) %>
-            commented on <%= a.parameters[:commontable_type] %> <strong><%= truncate_text(a.trackable.thread.commontable.content) %></strong>
+            commented on <%= a.parameters[:commontable_type] %> <strong><%= truncate_text(a.trackable.thread.commontable.content) if a.trackable.thread.commontable%></strong>
           <% elsif ['suggestion', 'complaint'].include?(a.parameters[:commontable_type]) %>
             commented on <%= a.parameters[:commontable_type] %> <strong><%= truncate_text(a.trackable.thread.commontable.title) %></strong>
           <% end %>

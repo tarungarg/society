@@ -1,9 +1,5 @@
 //= require e
 //= require f
-//= require j
-//= require k
-//= require l
-//= require m
 //= require jquery.slimscroll
 //= require a
 //= require c

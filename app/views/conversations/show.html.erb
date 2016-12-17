@@ -15,17 +15,23 @@
     <%= render 'mailbox/folders' %>
 
     <div class="col-md-9">
-      <%= render partial: 'messages' %>
-      <div class="box-footer">
-        <!-- Reply Form -->
-        <%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
-            <div class="form-group">
-              <%= f.text_area :body, placeholder: "Reply Message", rows: 4, class: "form-control" %>
-            </div>
-            <%= f.submit "Reply", class: 'btn btn-danger pull-right' %>
-        <% end %>
-        <div class="clearfix"></div>
-      </div>
+      <% if @active == 'sent' %>
+        <%= render partial: 'sent_messages' %>
+      <% else %>
+        <%= render partial: 'messages' %>
+      <% end %>
+      <% if @active == 'inbox' %>
+        <div class="box-footer">
+          <!-- Reply Form -->
+          <%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
+              <div class="form-group">
+                <%= f.text_area :body, placeholder: "Reply Message", rows: 4, class: "form-control" %>
+              </div>
+              <%= f.submit "Reply", class: 'btn btn-danger pull-right' %>
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
