@@ -4,7 +4,7 @@ class PostsController < BaseController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page], per_page: 10).order(created_at: 'desc')
   end
 
   # GET /posts/1
@@ -90,6 +90,6 @@ class PostsController < BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:attachment, :content, :user_id)
+      params.require(:post).permit( :content, :user_id, {attachments: []})
     end
 end

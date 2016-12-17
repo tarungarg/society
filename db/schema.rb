@@ -284,19 +284,12 @@ ActiveRecord::Schema.define(version: 20161215082600) do
   add_index "policies", ["user_id"], name: "index_policies_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "attachment"
+    t.json     "attachments"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "cached_votes_up",    default: 0
-    t.integer  "cached_votes_down",  default: 0
-    t.integer  "cached_votes_score", default: 0
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down", using: :btree
-  add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score", using: :btree
-  add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"

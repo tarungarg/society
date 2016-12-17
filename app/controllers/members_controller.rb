@@ -108,7 +108,7 @@ class MembersController < BaseController
   def user_profile
     @activities = PublicActivity::Activity.order("created_at desc").where(recipient_id: current_user.id, recipient_type: "User")
     @post = Post.new
-    @posts = Post.order(created_at: 'desc')
+    @posts = Post.paginate(page: params[:page], per_page: 10).order(created_at: 'desc')
   end
 
   private

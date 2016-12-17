@@ -11,6 +11,7 @@
 #
 
 class Suggestion < ActiveRecord::Base
+  include DestoryComments
   acts_as_commontable
   validates :title, :desc, presence: true
 end

@@ -1,0 +1,7 @@
+$('.posts-index').append("<%= j render partial:'posts/post', collection: @posts, as: :post %>");
+<% if @posts.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @posts %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

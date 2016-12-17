@@ -102,6 +102,9 @@
             <div class="posts-index">
               <%= render partial:'posts/post', collection: @posts, as: :post  %>
             </div>
+            <div id="infinite-scrolling">
+              <%= will_paginate @posts %>
+            </div>
             <!-- /.post -->
           </div>
           <!-- /.tab-pane -->
@@ -114,7 +117,7 @@
                           <!-- 10 Feb. 2014 -->
                         <!-- </span> -->
                   </li>
-                      <%= render_activities(@activities) %>
+                    <%= render_activities(@activities) %>
                   <li>
                     <i class="fa fa-clock-o bg-gray"></i>
                   </li>

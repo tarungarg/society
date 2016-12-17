@@ -3,7 +3,8 @@
     <%= f.error_notification %>
     <%= f.input :name %>
     <%= f.input :desc %>
-    <%= f.input :images, as: :file, input_html: { multiple: true } %>
+    <%= f.input :images, as: :file, input_html: { multiple: true, id: 'files' } %>
+    <output id="result" />
     <%= f.input :amount %>
   </div>
 

@@ -14,6 +14,7 @@
 #
 
 class Complaint < ActiveRecord::Base
+  include DestoryComments
   validates :title, :desc, presence: true
   validates :desc, length: { minimum: 10 }
 

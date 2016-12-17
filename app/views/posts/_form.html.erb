@@ -1,15 +1,14 @@
-<%= simple_form_for @post, remote: true, authenticity_token: true do |f| %>
+<%= simple_form_for @post, remote: true, authenticity_token: true, html: { multipart: true } do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :content, label: false, placeholder: "What's in your mind?" %>
-    <%= f.input :attachment, label: false %>
+    <%= f.input :attachments, as: :file, input_html: { multiple: true, id: 'files' }, label: false %>
+    <output id="result" />
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
-  <div class=" box-body col-sm-3 preview-image hide">
-    <img src="" class="desktop_image_preview size50x50">
-  </div>
+
 <% end %>

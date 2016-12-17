@@ -5,7 +5,6 @@
       <div class="box">
         <div class="box-header with-border">
           <div class="user-block">
-            <%# byebug %>
             <img class="img-circle" src="<%= post.user.avatar.url %>" alt="User Image">
             <span class="username"><a href="#"><%= post.user.name %></a></span>
             <span class="description">Shared publicly - <%= relative_time(post.created_at) %> ago</span> <span class="description"><%= formatted_time(post.created_at) %></span>
@@ -25,8 +24,27 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <% if post.attachment.url %>
-            <img class="img-responsive pad" src="<%= post.attachment.url %>" alt="Photo">
+          <% if post.attachments.count == 1 %>
+            <img class="img-responsive pad img-post" src="<%= post.attachments[0].url %>" alt="Photo">
+          <% elsif post.attachments.count > 1 %>
+          <span>Post having multiple images.</span>
+            <div id="post-carousel-<%=post.id%>" class="carousel slide" data-ride="carousel" data-interval="false">
+              <div class="carousel-inner" role="listbox">
+                <% post.attachments.each_with_index do |attachment, index| %>
+                  <div class="item <%= index == 0 ? 'active' : ''%>">
+                    <img class="img-post img-responsive pad" src="<%= attachment.url %>" >
+                  </div>
+                <% end %>
+              </div>
+                <a class="left carousel-control" href="#post-carousel-<%=post.id%>" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#post-carousel-<%=post.id%>" role="button" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+            </div>
           <% end %>
 
           <p><%= post.content %></p>
@@ -55,7 +73,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer box-comments">
-        <%= commontator_thread(post) %>
+          <%= commontator_thread(post) %>
         </div>
 
       </div>

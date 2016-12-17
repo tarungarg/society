@@ -6,7 +6,7 @@
 document.addEventListener("turbolinks:load", function() {
         
     //Check File API support
-    if(window.File && window.FileList && window.FileReader)
+    if(window.File && window.FileList && window.FileReader && document.getElementById("files"))
     {
         var filesInput = document.getElementById("files");
         
@@ -31,7 +31,7 @@ document.addEventListener("turbolinks:load", function() {
                     
                     var div = document.createElement("span");
                     
-                    div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                    div.innerHTML = "<img class='thumbnail-custom' src='" + picFile.result + "'" +
                             "title='" + picFile.name + "'/>";
                     
                     output.insertBefore(div,null);            
@@ -49,4 +49,4 @@ document.addEventListener("turbolinks:load", function() {
         console.log("Your browser does not support File API");
     }
 }
-
+)

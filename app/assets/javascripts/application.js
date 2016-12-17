@@ -16,34 +16,36 @@
 //= require jquery-ui/widget
 //= require jquery.remotipart
 //= require bootstrap
-//= require announcements
 //= require chosen-jquery
-//= require loader
 //= require rails.validations
 //= require commontator/application
+//= require moment
+//= require jstz
 //= require toastr
 //= require js-routes
 //= require nprogress
 //= require nprogress-turbolinks
+//= require cable
+//= require fullcalendar
+
+//= require turbolinks
+
+//= require announcements
 //= require ckeditor/init
 //= require chat_initialize
-//= require moment 
-//= require fullcalendar
-//= require loader
-//= require cable
 //= require appearance
 //= require banners
 //= require complaints
 //= require init_ckeditor
-//= require jstz
 //= require loader
 //= require filterrific/filterrific-jquery
 //= require messages
 //= require products
-//= require rails.validations
 //= require posts
 //= require tasks
-//= require turbolinks
+//= require mutiple_image_previewer
+
+//= require pagination
 
 
 NProgress.configure({

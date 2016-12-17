@@ -15,7 +15,7 @@ module AnnouncementsHelper
     if !announcement.nil? && cookies['announcement_' + announcement.id.to_s] != 'hidden'
       data_attribute = { announcementid: announcement.id }
       text = options[:hide_message] || 'Hide'
-      div_class = options[:div_class] || 'info'
+      div_class = options[:div_class] || 'alert alert-info'
 
       close_content_tag = content_tag(:span, text, class: 'hide_announcement', data: data_attribute)
 
