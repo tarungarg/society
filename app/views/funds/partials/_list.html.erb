@@ -19,7 +19,7 @@
         <th>Desc</th>
         <th>Amount</th>
         <th>Date</th>
-        <th colspan="3"></th>
+        <th></th>
       </tr>
 
       <% funds.each do |fund| %>
@@ -28,9 +28,20 @@
           <td><%= truncate_text(fund.desc, 50) %></td>
           <td><%= number_with_delimiter(fund.amount, delimiter: ',') %></td>
           <td><%= basic_date_only fund.date %></td>
-          <td><%= link_to 'Show', fund %></td>
-          <td><%= link_to 'Edit', edit_fund_path(fund) if user_is_president %></td>
-          <td><%= link_to 'Destroy', fund, method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
+          <td>
+            <%= link_to fund, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+              <i class="fa fa-eye"></i>
+            <% end %>
+            <% if user_is_president %>
+              <%= link_to edit_fund_path(fund), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+              <%= link_to fund, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                <i class="fa fa-trash"></i>
+
+              <% end %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>

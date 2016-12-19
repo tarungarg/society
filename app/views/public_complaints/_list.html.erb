@@ -25,11 +25,19 @@
                   <td><%= truncate_text(complaint.title, 30) %><span class="new-tag"><%= "   New" if (@unread_complain_ids).include?(complaint.id)%></span></td>
                   <td><%= basic_date_only(complaint.updated_at) %></td>
                   <td><%= complaint.status %></td>
-                  <td><%= link_to 'Show', complaint %></td>
-                  <% if current_user.id == complaint.user_id %>
-                    <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
-                    <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
+                  <td>
+                    <%= link_to complaint, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                      <i class="fa fa-eye"></i>
+                    <% end %>
+                    <% if current_user.id == complaint.user_id %>
+                      <%= link_to edit_complaint_path(complaint), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                        <i class="fa fa-pencil"></i>
+                      <% end %>
+                      <%= link_to complaint, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                        <i class="fa fa-trash"></i>
+                      <% end %>
+                    <% end %>
+                  </td>
                 </tr>
             <% end %>
           </tbody>

@@ -8,7 +8,10 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4 dataTables_filter">
           <% if user_is_president %>
-            <%= link_to 'New Announcement', new_announcement_path, class: 'btn btn-primary' %>
+            <%= link_to new_announcement_path, class: 'btn btn-primary' do %>
+              <i class="fa fa-plus"></i>
+              <span>New Announcement</span>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -23,11 +26,20 @@
         <% @announcements.each do |announcement| %>
           <tr>
             <td><%= announcement.title %> <%= '<small class="label bg-green">new</small>'.html_safe if (@unread_announcement_ids).include?(announcement.id)%></td>
-            <td><%= link_to 'Show', announcement %></td>
-            <% if user_is_president %>
-              <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
-              <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
+
+            <td>
+              <%= link_to announcement, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <% if user_is_president %>
+                <%= link_to edit_announcement_path(announcement), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+                <%= link_to announcement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>

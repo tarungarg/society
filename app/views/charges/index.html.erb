@@ -23,7 +23,7 @@
             <!-- <th>To date</th> -->
             <th>Period</th>
             <th>Amount</th>
-            <th colspan="3"></th>
+            <th></th>
           </tr>
         </thead>
 
@@ -35,12 +35,20 @@
                 <!-- <td><%#= charge.to_date %></td> -->
                 <td><%= charge.period %></td>
                 <td><%= charge.amount %></td>
-                <td><%= link_to 'Show', charge %></td>
-                <td><%= link_to 'Pay', charge %></td>
-                <% if user_is_president %>
-                  <td><%= link_to 'Edit', edit_charge_path(charge) %></td>
-                  <td><%= link_to 'Destroy', charge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>
+                <td>
+                  <%= link_to 'Pay', charge, class: 'btn btn-xs btn-info' %>
+                  <%= link_to charge, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                    <i class="fa fa-eye"></i>
+                  <% end %>
+                  <% if user_is_president %>
+                    <%= link_to edit_charge_path(charge), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to charge, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           <% end %>

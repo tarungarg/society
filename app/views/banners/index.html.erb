@@ -8,7 +8,10 @@
         </div>
         <div class="col-sm-4"></div>
         <div class="col-sm-4 dataTables_filter">
-          <%= link_to 'New Banner', new_banner_path, class: 'btn btn-primary' %>
+          <%= link_to new_banner_path, class: 'btn btn-primary' do %>
+            <i class="fa fa-plus"></i>
+            <span>New Banner</span>
+          <% end %>
         </div>
       </div>
     </div>
@@ -19,7 +22,7 @@
           <th>Desktop key</th>
           <th>Desktop size</th>
           <th>Mobile size</th>
-          <th colspan="3"></th>
+          <th style="width: 100px;"></th>
         </tr>
 
         <% @banners.each do |banner| %>
@@ -28,9 +31,17 @@
             <td><%= banner.desktop_key %></td>
             <td><%= banner.desktop_size %></td>
             <td><%= banner.mobile_size %></td>
-            <td><%= link_to 'Show', banner %></td>
-            <td><%= link_to 'Edit', edit_banner_path(banner) %></td>
-            <td><%= link_to 'Destroy', banner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td style="width: 100px;">
+              <%= link_to banner, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <%= link_to edit_banner_path(banner), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+              <%= link_to banner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>

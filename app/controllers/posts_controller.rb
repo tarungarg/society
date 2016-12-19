@@ -66,7 +66,7 @@ class PostsController < BaseController
   end
 
   def like
-    @post.liked_by current_user
+    @post.liked_by current_user, vote_scope: 'post_like'
     @post.create_activity :like, owner: current_user, recipient: @post.user
     respond_to do |format|
       format.html { redirect_to :back }
@@ -75,7 +75,7 @@ class PostsController < BaseController
   end
 
   def unlike
-    @post.unliked_by current_user
+    @post.unliked_by current_user, vote_scope: 'post_like'
     respond_to do |format|
       format.html { redirect_to :back }
       format.js { render layout: false }

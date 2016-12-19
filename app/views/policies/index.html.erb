@@ -1,6 +1,5 @@
 <%= render partial: 'policies/header/header'%>
 
-
 <section class="content">
   <div class="box box-success">
     <div class="box-header with-border">
@@ -16,7 +15,7 @@
       <table class="table table-bordered">
         <tr>
           <th>Name</th>
-          <th colspan="4"></th>
+          <th></th>
         </tr>
         <% @policies.each do |policy| %>
           <tr>
@@ -25,11 +24,23 @@
                 <%= '<small class="label bg-green">new</small>'.html_safe  if (@unread_policy_ids).include?(policy.id) %>
               </td>
             <td>
-              <%= link_to 'Download', policy.file.url if policy.file.url%>
+              <% if policy.file.url %>
+                <%= link_to policy.file.url, class: 'btn bg-yellow btn-xs' do %>
+                  <i class="fa-cloud-download"></i>
+                <% end %>
+              <% end %>
+              <%= link_to policy, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <%if user_is_president %>
+                <%= link_to edit_policy_path(policy), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+                <%= link_to policy, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+              <% end %>
             </td>
-            <td><%= link_to 'Show', policy %></td>
-            <td><%= link_to 'Edit', edit_policy_path(policy) if user_is_president %></td>
-            <td><%= link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
           </tr>
         <% end %>
       </table>

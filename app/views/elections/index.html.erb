@@ -19,15 +19,22 @@
           <th>Winner</th>
           <th>Total Votes</th>
           <th></th>
-          <th></th>
         </tr>
         <% @elections.each do |election| %>
           <tr>
             <td><%= election.years_range %></td>
             <td><%= link_to User.find(election.win_user).name || User.find(election.win_user).email, member_path(election.win_user) if election.win_user%></td>
             <td><%= election.win_by %></td>
-            <td><%= link_to 'Show', election_path(election) if user_is_president %></td>
-            <td> <%= link_to 'Destroy', election_path(election), method: :delete, data: { confirm: 'Are you sure?' } if user_is_president %></td>
+            <td>
+              <% if user_is_president %>
+                <%= link_to election_path(election), class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+                <%= link_to election_path(election), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>
