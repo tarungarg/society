@@ -1,5 +1,5 @@
 document.addEventListener("turbolinks:load", function() {
-  if ($('#infinite-scrolling').size() > 0) {
+  if ((location.pathname.indexOf('user_profile') > 0) && $('#infinite-scrolling') && $('#infinite-scrolling').size() > 0) {
     $(window).on('scroll', function() {
       var more_posts_url;
       more_posts_url = $('.pagination a[rel=next]').attr('href');
