@@ -1,5 +1,6 @@
 class PostsController < BaseController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  include ApplicationHelper
 
   # GET /posts
   # GET /posts.json
@@ -68,6 +69,9 @@ class PostsController < BaseController
   def like
     @post.liked_by current_user, vote_scope: 'post_like'
     @post.create_activity :like, owner: current_user, recipient: @post.user
+
+    broadcast_to_recipient(@post, @post.user)
+
     respond_to do |format|
       format.html { redirect_to :back }
       format.js { render layout: false }
@@ -92,4 +96,14 @@ class PostsController < BaseController
     def post_params
       params.require(:post).permit( :content, :user_id, {attachments: []})
     end
+
+    def broadcast_to_recipient(post, recipient)
+      ActionCable.server.broadcast("notification_for_user_#{ recipient.id }",
+        sender_name: recipient.name,
+        time_sent_at: formatted_time(Time.now),
+        id: post.id,
+        type: 'Like'
+      )
+    end
+
 end

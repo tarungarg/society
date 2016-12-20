@@ -39,7 +39,6 @@ gem 'nprogress-rails'
 gem 'ckeditor'
 gem 'mini_magick'
 gem 'fast_blank'
-gem 'rails_12factor', group: :production
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'mailboxer'
@@ -52,6 +51,10 @@ gem 'public_activity'
 gem 'remotipart'
 gem 'gravatar_image_tag'
 gem 'jquery-ui-rails', tag: 'v6.0.0'
+
+gem 'haml_coffee_assets'
+gem 'execjs'
+# gem 'sprockets-rails', '2.3.3'
 
 group :development, :test do
   gem 'capistrano-rails'

@@ -20,4 +20,11 @@ function updateComplaintStatus(){
 
 document.addEventListener("turbolinks:load", function() {
   updateComplaintStatus();
+    $('.check:button').toggle(function(){
+      $('input:checkbox').attr('checked','checked');
+      $(this).val('uncheck all')
+  },function(){
+      $('input:checkbox').removeAttr('checked');
+      $(this).val('check all');        
+  })
 })

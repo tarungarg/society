@@ -41,7 +41,11 @@ module Commontator
 
           user = User.find(@thread.commontable.user_id)
           unless @user.id == user.id
+
             @comment.create_activity :comment, owner: @user, recipient: user, parameters: {commontable_id: @thread.commontable_id, commontable_type: @thread.commontable_type.downcase }
+
+            broadcast_to_recipient(@comment, user, @thread.commontable_type.downcase, @user)
+
           end
 
           format.html { redirect_to @thread }
@@ -160,5 +164,16 @@ module Commontator
         @thread.subscribe(user)
       end
     end
+
+    def broadcast_to_recipient(comment, recipient, commontable_type, owner)
+      ActionCable.server.broadcast("notification_for_user_#{ recipient.id }",
+        sender_name: owner.name,
+        time_sent_at: Time.now.to_formatted_s(:short),
+        id: comment.id,
+        commontable_type: commontable_type,
+        type: 'Comment'
+      )
+    end
+
   end
 end

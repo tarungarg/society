@@ -44,9 +44,4 @@ document.addEventListener("turbolinks:load", function() {
            
         });
     }
-    else
-    {
-        console.log("Your browser does not support File API");
-    }
-}
-)
+})

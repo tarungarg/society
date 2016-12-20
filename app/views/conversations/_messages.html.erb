@@ -20,9 +20,6 @@
   <div class="box box-warning">
     <div class="box-header with-border">
       <h3 class="box-title"><%= message.sender.name %></h3>
-      <% if params[:active_page] == 'sent' %>
-        
-      <% end %>
       <span class="mailbox-read-time"><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></span>
     </div>
     <div class="box-body">

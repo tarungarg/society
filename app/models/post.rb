@@ -8,4 +8,5 @@ class Post < ActiveRecord::Base
 
   include PublicActivity::Model
   tracked except: [:update, :destroy], owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }, recipient: Proc.new { |controller, model|  model && model.user }
+
 end

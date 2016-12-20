@@ -1,0 +1,10 @@
+%li
+  %a{:href => "#{@conversation_show_path}"}
+    .pull-left
+      %img.img-circle{:alt => "User Image", :src => @sender_image_url}
+    %h4
+      = @sender_name
+      %small
+        %i.fa.fa-clock-o
+        = @time_sent_at
+    %p= @mail_subject

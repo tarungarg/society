@@ -46,6 +46,10 @@
 //= require mutiple_image_previewer
 
 //= require pagination
+//= require hamlcoffee
+//= require channels/open_socket
+//= require_tree ./channels
+//= require_tree ./templates
 
 
 NProgress.configure({
@@ -63,8 +67,6 @@ document.addEventListener("turbolinks:before-cache", function() {
 });
 
 function loadtimeEvents(){
-  // initChatObj();
-  // checkAvailable();
   $("#calendar").datepicker('enable');
   document.cookie = 'time_zone='+jstz.determine().name()+';';
   $('button').click(function(){
