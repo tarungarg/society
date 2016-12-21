@@ -13,8 +13,8 @@ class BaseController < ApplicationController
 
   def get_navbar_data
     if current_user
-      @mails = []#mailbox.inbox({unread: true}).order('created_at desc')
-      @activities = PublicActivity::Activity.order("created_at desc").where(recipient_id: current_user.id, recipient_type: "User")
+      @mails = mailbox.inbox({unread: true}).order('created_at desc').limit(5)
+      @activities = PublicActivity::Activity.order("created_at desc").where(recipient_id: current_user.id, recipient_type: "User").limit(10)
     end
   end
 
