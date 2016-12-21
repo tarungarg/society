@@ -7,10 +7,12 @@ Rails.application.routes.draw do
     resources :members do
       collection do
         get 'emergency_contacts'
+        get 'timeline'
       end
       member do
         put 'update_candidate'
         get 'user_profile'
+        get 'profile_update'
       end
     end
 

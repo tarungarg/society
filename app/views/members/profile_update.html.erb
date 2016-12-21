@@ -1,0 +1,110 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    User Profile
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">User profile</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="row">
+    <%= render 'members/partials/user_details' %>
+
+    <div class="col-md-9">
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li><a href="#activity">Activity</a></li>
+          <li><a href="/members/timeline">Timeline</a></li>
+          <li class="active"><a href="/members/<%= current_user.id %>/profile_update">Settings</a></li>
+        </ul>
+        <div class="tab-content-bg">
+          <div class="tab-pane" id="settings">
+            <div class="box box-primary">
+              <%= form_for @member, as: :member, class: 'form-horizontal', url: member_path(@member) do |f| %>
+                <div class="box-body">
+                  <% if @member.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+                      <ul>
+                      <% @member.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="form-group">
+                    Select Role:
+                    <%= select_tag 'roles', options_for_select(User.profile_roles.map { |obj| [obj[0].camelize, obj[0]] }, @member.roles.map(&:name)), multiple: true, required: true %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :name %><br>
+                    <%= f.text_field :name, class: 'form-control', required: true %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :flat_no %><br>
+                    <%= f.text_field :flat_no, class: 'form-control', required: true %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :tower_no %><br>
+                    <%= f.text_field :tower_no, class: 'form-control', required: true %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :mob_num %><br>
+                    <%= f.text_field :mob_num, class: 'form-control', required: true %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :email %><br>
+                    <%= f.text_field :email, class: 'form-control', required: true  %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :alt_no %><br>
+                    <%= f.text_field :alt_no, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :blood_group %><br>
+                    <%= f.text_field :blood_group, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :occupation %><br>
+                    <%= f.text_field :occupation, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :family_memebers %><br>
+                    <%= f.number_field :family_memebers, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :adult %><br>
+                    <%= f.number_field :adult, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :kids %><br>
+                    <%= f.number_field :kids, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :bio %><br>
+                    <%= f.text_area :bio, class: 'form-control' %>
+                  </div>
+                </div>
+                <div class="box-footer">
+                  <%= f.submit %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+</section>

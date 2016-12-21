@@ -13,32 +13,36 @@
 <section class="content">
 
   <div class="row">
+
     <%= render 'members/partials/user_details' %>
 
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#activity">Activity</a></li>
-          <li><a href="/members/timeline">Timeline</a></li>
+          <li><a href="/members/<%= current_user.id%>/user_profile">Activity</a></li>
+          <li class="active"><a href="/members/timeline">Timeline</a></li>
           <li><a href="/members/<%= current_user.id %>/profile_update">Settings</a></li>
         </ul>
         <div class="tab-content-bg">
-          <div class="active tab-pane" id="activity">
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="timeline">
             <div class="box box-primary">
               <div class="box-body">
-                <%= render 'posts/form' %>
+                <ul class="timeline timeline-inverse list-timline">
+                  <li class="time-label">
+                        <!-- <span class="bg-red"> -->
+                          <!-- 10 Feb. 2014 -->
+                        <!-- </span> -->
+                  </li>
+                    <%= render_activities(@activities) %>
+                </ul>
+                <div id="timelines-paginate">
+                  <%= will_paginate @activities %>
+                </div>
               </div>
             </div>
-            <!-- Post -->
-            <div class="posts-index">
-              <%= render partial:'posts/post', collection: @posts, as: :post  %>
-            </div>
-            <div id="infinite-scrolling">
-              <%= will_paginate @posts %>
-            </div>
-            <!-- /.post -->
           </div>
-          <!-- /.tab-pane -->
+
         </div>
         <!-- /.tab-content -->
       </div>

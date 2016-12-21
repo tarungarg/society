@@ -1,0 +1,8 @@
+$('.list-timline').append("<%= j render_activities @activities %>");
+<% if @activities.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @activities %>');
+<% else %>
+  $(window).off('scroll');
+  $('.list-timline').append('<li><i class="fa fa-clock-o bg-gray"></i></li>')
+  $('.pagination').remove();
+<% end %>

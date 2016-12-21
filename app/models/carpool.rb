@@ -78,14 +78,6 @@ class Carpool < ActiveRecord::Base
       order("carpools.created_at #{direction}")
     when /^name_/
       order("LOWER(carpools.name) #{direction}")
-    when /^number_/
-      order("LOWER(carpools.mob_num) #{direction}")
-    when /^flat_no_/
-      order("LOWER(carpools.flat_no) #{direction}")
-    when /^email_/
-      order("LOWER(carpools.email) #{direction}")
-    when /^blood_/
-      order("LOWER(carpools.blood_group) #{direction}")
     else
       raise(ArgumentError, "Invalid sort option: #{sort_key.inspect}")
     end

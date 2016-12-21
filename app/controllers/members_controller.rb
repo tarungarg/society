@@ -106,9 +106,15 @@ class MembersController < BaseController
   end
 
   def user_profile
-    @activities = PublicActivity::Activity.order("created_at desc").where(recipient_id: current_user.id, recipient_type: "User")
     @post = Post.new
     @posts = Post.paginate(page: params[:page], per_page: 10).order(created_at: 'desc')
+  end
+
+  def timeline
+    @activities = PublicActivity::Activity.paginate(page: params[:page], per_page: 10).order("created_at desc").where(recipient_id: current_user.id, recipient_type: "User")
+  end
+
+  def profile_update
   end
 
   private

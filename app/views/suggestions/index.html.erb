@@ -15,14 +15,23 @@
       <table class="table table-bordered">
         <tr>
           <th>Title</th>
-          <th colspan="3"></th>
+          <th></th>
         </tr>
         <% @suggestions.each do |suggestion| %>
           <tr>
             <td><%= truncate_text(suggestion.title) %></td>
-            <td><%= link_to 'Show', suggestion %></td>
-            <td><%= link_to 'Edit', edit_suggestion_path(suggestion)  if current_user.id ==  suggestion.user_id %></td>
-            <td><%= link_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } if current_user.id ==  suggestion.user_id %></td>
+            <td><%= link_to suggestion, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <% if current_user.id ==  suggestion.user_id %>
+                <%= link_to edit_suggestion_path(suggestion), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+                <%= link_to suggestion, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+              <% end %>
+              </td>
           </tr>
         <% end %>
       </table>

@@ -76,6 +76,8 @@ class User < ActiveRecord::Base
   acts_as_votable
   acts_as_messageable
 
+  serialize :car_nums, Array
+
   ####
   # filterrific gem for search sort and pagination
   ####

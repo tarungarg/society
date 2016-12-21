@@ -41,7 +41,6 @@
 //= require filterrific/filterrific-jquery
 //= require messages
 //= require products
-//= require posts
 //= require tasks
 //= require mutiple_image_previewer
 
