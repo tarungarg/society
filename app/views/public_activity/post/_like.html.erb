@@ -1,14 +1,14 @@
 <% if params['navbar'] %>
-  <li class="list-group-item">
-    <span class="fa fa-thumbs-up"></span>
-    <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
-    <strong><%= a.owner ? a.owner.name : 'Guest' %></strong>
-    <% if a.trackable %>
-      liked the post <%= link_to truncate_text(a.trackable.content) %>
-    <% else %>
-      liked the post that is currently deleted.
+  <% if a.trackable %>
+    <%= link_to post_path(a.trackable.id), class: 'no-a-css' do %>
+      <li class="list-group-item">
+        <span class="fa fa-thumbs-up"></span>
+        <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
+        <strong><%= a.owner ? a.owner.name : 'Guest' %></strong>
+          liked the post <%= truncate_text(a.trackable.content) %>
+      </li>
     <% end %>
-  </li>
+  <% end %>
 <% else %>
   <li class="">
     <i class="fa fa-thumbs-up bg-aqua"></i>

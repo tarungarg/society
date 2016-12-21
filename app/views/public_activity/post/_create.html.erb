@@ -1,14 +1,14 @@
 <% if params['navbar'] %>
-  <li class="list-group-item">
-    <span class="fa fa-comments-o"></span>
-    <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
-    <strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
-      <% if a.trackable %>
-        added the post <%= link_to truncate_text(a.trackable.content) %>
-      <% else %>
-        added the post that is currently deleted.
-      <% end %>
-  </li>
+  <% if a.trackable %>
+    <%= link_to post_path(a.trackable.id), class: 'no-a-css' do %>
+    <li class="list-group-item">
+        <span class="fa fa-comments-o"></span>
+        <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
+        <strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
+          added the post <%= truncate_text(a.trackable.content) %>
+      </li>
+    <% end %>
+  <% end %>
 <% else %>
   <li class="">
     <i class="fa  fa-send-o bg-aqua"></i>

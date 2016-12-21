@@ -38,14 +38,11 @@ module Commontator
           Subscription.comment_created(@comment)
 
           @per_page = params[:per_page] || @thread.config.comments_per_page
-
           user = User.find(@thread.commontable.user_id)
+
           unless @user.id == user.id
-
             @comment.create_activity :comment, owner: @user, recipient: user, parameters: {commontable_id: @thread.commontable_id, commontable_type: @thread.commontable_type.downcase }
-
             broadcast_to_recipient(@comment, user, @thread.commontable_type.downcase, @user)
-
           end
 
           format.html { redirect_to @thread }
@@ -166,12 +163,24 @@ module Commontator
     end
 
     def broadcast_to_recipient(comment, recipient, commontable_type, owner)
+      a = @comment.activities.last
+      if  a.parameters[:commontable_type] == 'post'
+        url = '/posts/'+a.parameters[:commontable_id].to_s
+      elsif a.parameters[:commontable_type] == 'suggestion'
+        url = '/suggestions/'+a.parameters[:commontable_id].to_s
+        #suggestion_path(a.parameters[:commontable_id])
+      elsif a.parameters[:commontable_type] == 'complaint'
+        url = '/complaints/'+a.parameters[:commontable_id].to_s
+        # url = complaint_path(a.parameters[:commontable_id])
+      end
+
       ActionCable.server.broadcast("notification_for_user_#{ recipient.id }",
         sender_name: owner.name,
         time_sent_at: Time.now.to_formatted_s(:short),
         id: comment.id,
         commontable_type: commontable_type,
-        type: 'Comment'
+        type: 'Comment',
+        url_path: url
       )
     end
 

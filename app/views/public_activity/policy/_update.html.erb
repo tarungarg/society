@@ -1,14 +1,14 @@
 <% if params['navbar'] %>
-  <li class="list-group-item">
-    <span class="glyphicon glyphicon-edit"></span>
-    <small class="text-muted"><%= relative_time(a.created_at) %></small><br/>
-    <strong> <%= activity.owner ? activity.owner.name : 'Guest' %></strong>
-      <% if a.trackable %>
-        update a policy <%= link_to truncate_text(a.trackable.name), policy_path(a.trackable.id) %>
-      <% else %>
-        update a policy that is currently deleted.
-      <% end %>
-  </li>
+  <% if a.trackable %>
+    <%= link_to policy_path(a.trackable.id), class: 'no-a-css' do %>
+      <li class="list-group-item">
+        <span class="glyphicon glyphicon-edit"></span>
+        <small class="text-muted"><%= relative_time(a.created_at) %></small><br/>
+        <strong> <%= activity.owner ? activity.owner.name : 'Guest' %></strong>
+            update a policy <%= truncate_text(a.trackable.name) %>
+      </li>
+    <% end %>
+  <% end %>
 <% else %>
   <li class="">
     <i class="fa fa-pencil bg-purple"></i>

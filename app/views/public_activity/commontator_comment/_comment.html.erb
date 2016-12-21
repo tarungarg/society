@@ -1,18 +1,26 @@
 <% if params['navbar'] %>
-  <li class="list-group-item">
-    <span class="fa fa-comments-o"></span>
-    <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
-    <strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
-    <% if a.trackable %>
-      <% if ['post'].include?(a.parameters[:commontable_type]) %>
-        commented on <%= a.parameters[:commontable_type] %> <strong><%= truncate_text(a.trackable.thread.commontable.content) if a.trackable.thread.commontable%></strong>
-      <% elsif ['suggestion', 'complaint'].include?(a.parameters[:commontable_type]) %>
-        commented on <%= a.parameters[:commontable_type] %> <strong><%= truncate_text(a.trackable.thread.commontable.title) %></strong>
-      <% end %>
-    <% else %>
-      added the comment that is currently deleted.
+  <% if  a.parameters[:commontable_type] == 'post'%>
+    <% url = post_path(a.parameters[:commontable_id]) %>
+  <% elsif a.parameters[:commontable_type] == 'suggestion' %>
+    <% url = suggestion_path(a.parameters[:commontable_id]) %>
+  <% elsif a.parameters[:commontable_type] == 'complaint' %>
+    <% url = complaint_path(a.parameters[:commontable_id]) %>
+  <% end %>
+
+  <% if a.trackable %>
+    <%= link_to url, class: 'no-a-css' do %>
+      <li class="list-group-item">
+        <span class="fa fa-comments-o"></span>
+        <small class="text-muted"><%= formatted_time(a.created_at) %></small><br/>
+        <strong><%= activity.owner ? activity.owner.name : 'Guest' %></strong>
+          <% if ['post'].include?(a.parameters[:commontable_type]) %>
+            commented on <%= a.parameters[:commontable_type] %> <strong><%= truncate_text(a.trackable.thread.commontable.content) if a.trackable.thread.commontable%></strong>
+          <% elsif ['suggestion', 'complaint'].include?(a.parameters[:commontable_type]) %>
+            commented on <%= a.parameters[:commontable_type] %> <strong><%= truncate_text(a.trackable.thread.commontable.title) %></strong>
+          <% end %>
+      </li>
     <% end %>
-  </li>
+  <% end %>
 <% else %>
   <li class="">
     <i class="fa fa-comments-o bg-yellow"></i>

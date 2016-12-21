@@ -1,6 +1,7 @@
-%li.list-group-item
-  %span.fa.fa-thumbs-up
-  %small.text-muted= @time_sent_at
-  %br/
-  %strong= @sender_name
-  liked your post
+%a.no-a-css{href: "#{@url_path}"}
+  %li.list-group-item
+    %span.fa.fa-thumbs-up
+    %small.text-muted= @time_sent_at
+    %br/
+    %strong= @sender_name
+    liked your post

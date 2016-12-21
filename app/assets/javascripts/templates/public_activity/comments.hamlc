@@ -1,6 +1,7 @@
-%li.list-group-item
-  %span.fa.fa-comments-o
-  %small.text-muted= @time_sent_at
-  %br/
-  %strong= @sender_name
-  commented on your #{ @commontable_type }
+%a.no-a-css{href: "#{@url_path}"}
+  %li.list-group-item
+    %span.fa.fa-comments-o
+    %small.text-muted= @time_sent_at
+    %br/
+    %strong= @sender_name
+    commented on your #{ @commontable_type }

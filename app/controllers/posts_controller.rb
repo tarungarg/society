@@ -102,7 +102,8 @@ class PostsController < BaseController
         sender_name: recipient.name,
         time_sent_at: formatted_time(Time.now),
         id: post.id,
-        type: 'Like'
+        type: 'Like',
+        url_path: '/posts/'+(post.id).to_s
       )
     end
 

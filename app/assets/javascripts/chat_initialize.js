@@ -11,12 +11,12 @@
 function initChatObj(){
   try{
     this.App || (this.App = {});
-    // if (App.cable == undefined) {
+    if (App.cable == undefined) {
       App.cable = Cable.createConsumer();       // Creates actiocable object
       console.log('*********** ActionCable Start ***************')
       console.log(App.cable);
       console.log('*********** ActionCable End ***************')
-    // }
+    }
     return this.App
   }
   catch (e) {
