@@ -2,7 +2,7 @@ require 'will_paginate/array'
 class MembersController < BaseController
   load_and_authorize_resource
 
-  before_action :set_member, only: [:edit, :show, :update, :destroy, :update_candidate]
+  before_action :set_member, only: [:edit, :show, :update, :destroy, :update_candidate, :upload_photo]
 
   # GET /members
   # GET /members.json
@@ -115,6 +115,14 @@ class MembersController < BaseController
   end
 
   def profile_update
+  end
+
+  def upload_photo
+    if @member.update(avatar: params[:avatar])
+      respond_to do |format|
+        format.js { render status: 200, js: "toastr.info('Upload'); location.reload();" }
+      end
+    end
   end
 
   private

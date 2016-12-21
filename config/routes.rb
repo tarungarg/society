@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         put 'update_candidate'
         get 'user_profile'
         get 'profile_update'
+        put 'upload_photo'
       end
     end
 

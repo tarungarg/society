@@ -4,6 +4,17 @@
   <div class="box box-primary">
     <div class="box-body box-profile">
       <img class="profile-user-img img-responsive img-circle" src="<%= current_user.avatar.url %>" alt="User profile picture">
+       <%= form_tag upload_photo_member_path(current_user.id), authenticity_token: true, method: :put, id: 'photoinfo', remote: true, html: { multipart: true } do %>
+          <div id="profile-file-upload">
+            <div class="wrapper">
+              <%= file_field_tag :avatar, class: 'file', accept: 'image/png,image/gif,image/jpeg, image/jpg', id: 'uploadAvatar',  onchange: "clickSubmitButton();"%>
+            </div>
+            <div class="row" style="text-align: center;">
+              <button class="btn-primary">Upload Photo</button>
+            </div>
+            <%= submit_tag 'Upload Photo', id: 'submitPhoto', class: 'btn btn-block btn-info btn-xs', style: 'visibility: hidden;' %>
+          </div>
+        <% end %>
 
       <h3 class="profile-username text-center"><%= current_user.name %></h3>
 
@@ -36,3 +47,8 @@
   </div>
   <!-- /.box -->
 </div>
+<script type="text/javascript">
+  function clickSubmitButton() {
+    $('#submitPhoto').click();
+  }
+</script>
