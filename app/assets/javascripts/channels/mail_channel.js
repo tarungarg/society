@@ -1,5 +1,5 @@
 document.addEventListener("turbolinks:load", function() {
-  if (App.mails == undefined){
+  if (App != undefined && App.mails == undefined){
     App.mails = App.cable.subscriptions.create({channel: 'MailChannel'}, {
 
     // Actioncable predefined method to receive data

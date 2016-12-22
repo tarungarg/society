@@ -12,11 +12,20 @@ class MembersController < BaseController
       params[:filterrific]
     )) || return
     @members = @filterrific.find.where(tenant_id: current_tenant.id).includes(:roles).page(params[:page])
+
+    banner = Banner.where(area: Banner.areas[:Member]).first
+    if banner
+      @banner_image, @banner_url = banner.desktop_image.url, banner.desktop_url
+    end
   end
 
   # GET /members/1
   # GET /members/1.json
   def show
+    banner = Banner.where(area: Banner.areas[:MemberShow]).first
+    if banner
+      @banner_image, @banner_url = banner.desktop_image.url, banner.desktop_url
+    end
   end
 
   # GET /members/new
@@ -39,6 +48,7 @@ class MembersController < BaseController
     else
       @member = User.new(member_params)
       @member.tenant_id = current_tenant.id
+      byebug
 
       respond_to do |format|
         if @member.save
@@ -136,7 +146,8 @@ class MembersController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def member_params
-    params.require(:member).permit(:name, :flat_no, :tower_no, :mob_num, :email, :alt_no, :blood_group, :occupation, :family_memebers, :adult, :kids, :bio, :password, :password_confirmation, roles: [])
+    # params[:member][:car_nums] = unless params[:member][:car_nums].blank?
+    params.require(:member).permit(:name, :flat_no, :tower_no, :mob_num, :email, :alt_no, :blood_group, :occupation, :family_memebers, :adult, :kids, :bio, :password, :password_confirmation, :car_nums, roles: [])
   end
 
   def add_roles(roles)

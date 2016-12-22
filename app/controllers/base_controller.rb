@@ -18,6 +18,13 @@ class BaseController < ApplicationController
     end
   end
 
+  def set_advertisement(area)
+    banner = Banner.where(area: Banner.areas[area]).first
+    if banner
+      @banner_image, @banner_url = banner.desktop_image.url, banner.desktop_url
+    end
+  end
+
   private
 
     def mailbox

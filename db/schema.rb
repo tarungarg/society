@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221104640) do
+ActiveRecord::Schema.define(version: 20161222123205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,12 +44,13 @@ ActiveRecord::Schema.define(version: 20161221104640) do
   create_table "banners", force: :cascade do |t|
     t.string   "desktop_image"
     t.string   "mobile_image"
-    t.string   "mobile_key"
-    t.string   "desktop_key"
+    t.string   "mobile_url"
+    t.string   "desktop_url"
     t.string   "desktop_size"
     t.string   "mobile_size"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "area",          default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "carpools", force: :cascade do |t|

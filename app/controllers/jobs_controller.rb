@@ -5,6 +5,7 @@ class JobsController < BaseController
   # GET /jobs
   # GET /jobs.json
   def index
+    set_advertisement(:Job)
     @jobs = Job.all
   end
 

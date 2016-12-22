@@ -14,8 +14,10 @@
 #
 
 class Banner < ActiveRecord::Base
-  mount_uploader :desktop_image, AvatarUploader
+  mount_uploader :desktop_image, ImageUploader
   mount_uploader :mobile_image, AvatarUploader
-  validates :desktop_key, :mobile_key, uniqueness: true
-  validates :mobile_key, :desktop_key, presence: true
+  validates :area, presence: true, uniqueness: true
+  validates :desktop_image, presence: true
+
+  enum area: [:Dashboard, :Member, :Election, :Job, :Carpool, :Suggestions, :MemberShow]
 end

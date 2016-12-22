@@ -1,5 +1,5 @@
 document.addEventListener("turbolinks:load", function() {
-  if (App.notifications == undefined){
+  if (App != undefined && App.notifications == undefined){
     App.notifications = App.cable.subscriptions.create({channel: 'NotificationChannel'}, {
 
     // Actioncable predefined method to receive data

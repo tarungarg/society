@@ -6,6 +6,7 @@ class SuggestionsController < BaseController
   # GET /suggestions.json
   def index
     @suggestions = Suggestion.all
+    set_advertisement(:Suggestions)
   end
 
   # GET /suggestions/1

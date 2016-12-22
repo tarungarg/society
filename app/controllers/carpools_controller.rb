@@ -10,6 +10,7 @@ class CarpoolsController < BaseController
       params[:filterrific]
     )) || return
     @carpools = @filterrific.find.page(params[:page])
+    set_advertisement(:Carpool)
   end
 
   # GET /carpools/1

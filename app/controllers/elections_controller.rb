@@ -5,6 +5,7 @@ class ElectionsController < BaseController
   # GET /elections
   # GET /elections.json
   def index
+    set_advertisement(:Election)
     @elections = Election.all
   end
 

@@ -71,6 +71,7 @@ class BannersController < BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def banner_params
-    params.require(:banner).permit(:images, :mobile_key, :desktop_key, :desktop_size, :mobile_size)
+    params[:banner][:area] = params[:banner][:area].to_i
+    params.require(:banner).permit(:desktop_image, :mobile_url, :desktop_url, :desktop_size, :mobile_size, :area)
   end
 end

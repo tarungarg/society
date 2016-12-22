@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
       :sorted_by,
       :search_query,
       :flat_no_search,
+      :car_no_search,
       :with_created_at_gte
     ]
   )
@@ -149,6 +150,10 @@ class User < ActiveRecord::Base
 
   scope :with_created_at_gte, lambda { |ref_date|
     where('users.created_at >= ?', ref_date)
+  }
+
+  scope :car_no_search, lambda { |query|
+    tagged_with(query, wild: true)
   }
 
   # to show society profile attributes with user

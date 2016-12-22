@@ -71,6 +71,10 @@
             <td><%= @member.bio %></td>
           </tr>
           <tr>
+            <td>Car Numbers:</td>
+            <td><%= @member.car_nums.join(', ') %></td>
+          </tr>
+          <tr>
             <td>Roles:</td>
             <td><%= @member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
           </tr>
@@ -98,4 +102,5 @@
     </div>
   </div>
 
+  <%= render partial: 'shared/advertisement'%>
 </section>

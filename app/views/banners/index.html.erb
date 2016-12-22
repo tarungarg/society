@@ -18,28 +18,24 @@
     <div class="box-body">
       <table class="table table-bordered">
         <tr>
-          <th>Mobile key</th>
-          <th>Desktop key</th>
-          <th>Desktop size</th>
-          <th>Mobile size</th>
+          <th>Area</th>
           <th style="width: 100px;"></th>
         </tr>
 
         <% @banners.each do |banner| %>
           <tr>
-            <td><%= banner.mobile_key %></td>
-            <td><%= banner.desktop_key %></td>
-            <td><%= banner.desktop_size %></td>
-            <td><%= banner.mobile_size %></td>
+            <td><%= banner.area %></td>
             <td style="width: 100px;">
-              <%= link_to banner, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                <i class="fa fa-eye"></i>
-              <% end %>
-              <%= link_to edit_banner_path(banner), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                <i class="fa fa-pencil"></i>
-              <% end %>
-              <%= link_to banner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                <i class="fa fa-trash"></i>
+              <% if user_is_president %>
+                <%= link_to banner, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+                <%= link_to edit_banner_path(banner), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+                <%= link_to banner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
               <% end %>
             </td>
           </tr>

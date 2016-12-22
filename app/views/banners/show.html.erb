@@ -12,29 +12,15 @@
     <div class="box-body">
       <table class="table">
         <tr>
-          <td>Images:</td>
-          <td><%#= @banner.images unless @banner.images.blank? %></td>
+          <td>Image:</td>
+          <td><%=image_tag @banner.desktop_image.url %></td>
         </tr>
 
         <tr>
-          <td>Mobile key:</td>
-          <td><%= @banner.mobile_key %></td>
+          <td>Image Url:</td>
+          <td><%= @banner.desktop_url %></td>
         </tr>
 
-        <tr>
-          <td>Desktop key:</td>
-          <td><%= @banner.desktop_key %></td>
-        </tr>
-
-        <tr>
-          <td>Desktop size:</td>
-          <td><%= @banner.desktop_size %></td>
-        </tr>
-
-        <tr>
-          <td>Mobile size:</td>
-          <td><%= @banner.mobile_size %></td>
-        </tr>
       </table>
     </div>
 

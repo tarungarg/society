@@ -1,0 +1,8 @@
+<% if @banner_image %>
+  <div style="padding: 10px 0px; text-align: center;">
+    <div class="text-muted">Advertisement</div>
+      <%= link_to @banner_url, target: '_blank' do%>
+        <%= image_tag @banner_image, class: 'banner-image-d'%>
+      <% end %>
+    </div>
+<% end %>
