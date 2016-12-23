@@ -39,6 +39,9 @@
             </div>
           <% end %>
         </div>
+        <div class="box-footer">
+          <%= will_paginate messages, renderer: BootstrapPagination::Rails %>
+        </div>
       </div>
     </div>
   </div>
