@@ -189,11 +189,11 @@ class User < ActiveRecord::Base
   end
 
   def mailboxer_name
-    self.name
+    name
   end
 
-  def mailboxer_email(object)
-    self.email
+  def mailboxer_email(_object)
+    email
   end
 
   private
@@ -219,17 +219,16 @@ class User < ActiveRecord::Base
   end
 
   def upload_default_image
-    if self.avatar.blank?
-      img_name =  name ? name[0] : 'A'
-      unless File.exist?('public/images/'+img_name+'.png')
-        img = Avatarly.generate_avatar(img_name, opts={size: 128})
-        File.open('public/images/'+img_name+'.png', 'wb') do |f|
+    if avatar.blank?
+      img_name = name ? name[0] : 'A'
+      unless File.exist?('public/images/' + img_name + '.png')
+        img = Avatarly.generate_avatar(img_name, opts = { size: 128 })
+        File.open('public/images/' + img_name + '.png', 'wb') do |f|
           f.write(img)
         end
       end
-      self.avatar = Rails.root.join('public/images/'+img_name+'.png').open
-      self.save!
+      self.avatar = Rails.root.join('public/images/' + img_name + '.png').open
+      save!
     end
   end
-
 end

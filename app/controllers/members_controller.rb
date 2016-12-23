@@ -15,7 +15,8 @@ class MembersController < BaseController
 
     banner = Banner.where(area: Banner.areas[:Member]).first
     if banner
-      @banner_image, @banner_url = banner.desktop_image.url, banner.desktop_url
+      @banner_image = banner.desktop_image.url
+      @banner_url = banner.desktop_url
     end
   end
 
@@ -24,7 +25,8 @@ class MembersController < BaseController
   def show
     banner = Banner.where(area: Banner.areas[:MemberShow]).first
     if banner
-      @banner_image, @banner_url = banner.desktop_image.url, banner.desktop_url
+      @banner_image = banner.desktop_image.url
+      @banner_url = banner.desktop_url
     end
   end
 
@@ -48,8 +50,6 @@ class MembersController < BaseController
     else
       @member = User.new(member_params)
       @member.tenant_id = current_tenant.id
-      byebug
-
       respond_to do |format|
         if @member.save
           add_roles(params[:roles])
@@ -67,7 +67,6 @@ class MembersController < BaseController
   # PATCH/PUT /members/1.json
   def update
     respond_to do |format|
-
       if !params[:roles].include?('president') && @member.has_role?(:president) && !Tenant.current.has_presidents
         format.html { redirect_to member_path(@member), notice: 'Please select other user as President.' }
       elsif @member.update(member_params)
@@ -121,7 +120,7 @@ class MembersController < BaseController
   end
 
   def timeline
-    @activities = PublicActivity::Activity.paginate(page: params[:page], per_page: 10).order("created_at desc").where(recipient_id: current_user.id, recipient_type: "User")
+    @activities = PublicActivity::Activity.paginate(page: params[:page], per_page: 10).order('created_at desc').where(recipient_id: current_user.id, recipient_type: 'User')
   end
 
   def profile_update

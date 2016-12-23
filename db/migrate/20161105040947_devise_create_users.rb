@@ -35,7 +35,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.integer :tenant_id
 
-
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at

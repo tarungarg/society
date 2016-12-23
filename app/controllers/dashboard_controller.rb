@@ -11,8 +11,8 @@ class DashboardController < BaseController
 
     banner = Banner.where(area: 0).first
     if banner
-      @banner_image, @banner_url = banner.desktop_image.url, banner.desktop_url
+      @banner_image = banner.desktop_image.url
+      @banner_url = banner.desktop_url
     end
   end
-
 end

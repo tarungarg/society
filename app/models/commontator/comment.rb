@@ -39,9 +39,11 @@ module Commontator
 
     cattr_accessor :acts_as_votable_initialized
 
-      def update_parent_timestamp
-        self.thread.commontable.update(updated_at: Time.now) rescue ''
-      end
+    def update_parent_timestamp
+      thread.commontable.update(updated_at: Time.now)
+    rescue
+      ''
+    end
 
     public
 
@@ -139,5 +141,4 @@ module Commontator
         thread.can_be_read_by?(user) && can_be_voted_on?
     end
   end
-
 end

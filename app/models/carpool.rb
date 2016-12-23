@@ -55,7 +55,7 @@ class Carpool < ActiveRecord::Base
         or_clauses = [
           'LOWER(carpools.from) LIKE ?',
           'LOWER(carpools.to) LIKE ?',
-          'LOWER(carpools.desc) LIKE ?',
+          'LOWER(carpools.desc) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -92,5 +92,4 @@ class Carpool < ActiveRecord::Base
   scope :via, lambda { |query|
     tagged_with(query)
   }
-
 end

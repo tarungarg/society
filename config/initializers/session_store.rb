@@ -2,7 +2,6 @@
 
 # Rails.application.config.session_store :cookie_store, key: '_society_session', domain: '.lvh.me'
 
-
 Rails.application.config.session_store :cookie_store, key: '_society_session',
                                                       domain: {
                                                         production: '.herokuapp.com',

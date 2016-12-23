@@ -1,5 +1,4 @@
 class MailboxController < BaseController
-
   def inbox
     @inbox = mailbox.inbox
     @active = :inbox

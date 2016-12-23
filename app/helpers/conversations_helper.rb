@@ -1,5 +1,4 @@
 module ConversationsHelper
-
   def recipients_options
     s = ''
     current_tenant.users.each do |user|
@@ -7,5 +6,4 @@ module ConversationsHelper
     end
     s.html_safe
   end
-
 end

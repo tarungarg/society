@@ -19,6 +19,5 @@ class Post < ActiveRecord::Base
   acts_as_readable on: :updated_at
 
   include PublicActivity::Model
-  tracked except: [:update, :destroy], owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }, recipient: Proc.new { |controller, model|  model && model.user }
-
+  tracked except: [:update, :destroy], owner: proc { |controller, _model| controller.current_user ? controller.current_user : nil }, recipient: proc { |_controller, model| model && model.user }
 end

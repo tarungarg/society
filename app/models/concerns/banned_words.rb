@@ -2,14 +2,15 @@ module BannedWords
   extend ActiveSupport::Concern
 
   def banned_urls(url)
-    if reserved.include? (url)
+    if reserved.include? url
       true
-    elsif banned.include? (url)
+    elsif banned.include? url
       true
     end
   end
+
   def reserved
-    %w{
+    %w(
       www
       admin
       cpanel
@@ -22,11 +23,11 @@ module BannedWords
       main
       app
       lrs
-    }
+    )
   end
 
   def banned
-    %w{
+    %w(
       anal
       anus
       arse
@@ -99,7 +100,6 @@ module BannedWords
       wank
       whore
       wtf
-    }
+    )
   end
-
 end

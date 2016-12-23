@@ -7,12 +7,12 @@ class ClubsController < BaseController
     @clubs = Club.all
     events = []
     @clubs.each do |club|
-      events << {id: club.id, title: "#{club.title}", start: "#{club.from_time.strftime('%Y-%m-%dT%H:%M:%S')}",end: "#{club.to_time.strftime('%Y-%m-%dT%H:%M:%S')}" }
+      events << { id: club.id, title: club.title.to_s, start: club.from_time.strftime('%Y-%m-%dT%H:%M:%S').to_s, end: club.to_time.strftime('%Y-%m-%dT%H:%M:%S').to_s }
     end
-    
+
     respond_to do |format|
-        format.html { render :index }
-        format.json { render json: events }
+      format.html { render :index }
+      format.json { render json: events }
     end
   end
 

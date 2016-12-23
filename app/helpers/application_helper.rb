@@ -42,19 +42,19 @@ module ApplicationHelper
   end
 
   def member_name
-   current_user.name
+    current_user.name
   end
 
   def member_name_and_occupation
-    "#{member_name}"
+    member_name.to_s
   end
 
   def joining_date
-    current_user.created_at.strftime("%b. %Y")
+    current_user.created_at.strftime('%b. %Y')
   end
 
   def active_page(active_page)
-    @active == active_page ? "active" : ""
+    @active == active_page ? 'active' : ''
   end
 
   def relative_time(created_at)
@@ -66,8 +66,7 @@ module ApplicationHelper
   end
 
   def randomized_bg_class
-    classes = ["label-danger", "label-info", "label-success"]
+    classes = ['label-danger', 'label-info', 'label-success']
     classes[rand(classes.size)]
   end
-
 end

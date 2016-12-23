@@ -59,9 +59,9 @@ Rails.application.routes.draw do
     resources :clubs
     resources :elections
     resources :elections_participated_users
-    get 'mailbox/inbox' => "mailbox#inbox", as: :mailbox_inbox
-    get 'mailbox/sent' => "mailbox#sent", as: :mailbox_sent
-    get 'mailbox/trash' => "mailbox#trash", as: :mailbox_trash
+    get 'mailbox/inbox' => 'mailbox#inbox', as: :mailbox_inbox
+    get 'mailbox/sent' => 'mailbox#sent', as: :mailbox_sent
+    get 'mailbox/trash' => 'mailbox#trash', as: :mailbox_trash
     resources :posts do
       member do
         get 'like'
@@ -81,7 +81,7 @@ Rails.application.routes.draw do
         put 'change_status'
       end
     end
-  
+
     mount ActionCable.server => '/cable'
     match '/websocket', to: ActionCable.server, via: %i(get post)
     mount Commontator::Engine => '/commontator'

@@ -87,24 +87,23 @@ class PostsController < BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit( :content, :user_id, {attachments: []})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    def broadcast_to_recipient(post, recipient)
-      ActionCable.server.broadcast("notification_for_user_#{ recipient.id }",
-        sender_name: recipient.name,
-        time_sent_at: formatted_time(Time.now),
-        id: post.id,
-        type: 'Like',
-        url_path: '/posts/'+(post.id).to_s
-      )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:content, :user_id, attachments: [])
+  end
 
+  def broadcast_to_recipient(post, recipient)
+    ActionCable.server.broadcast("notification_for_user_#{recipient.id}",
+                                 sender_name: recipient.name,
+                                 time_sent_at: formatted_time(Time.now),
+                                 id: post.id,
+                                 type: 'Like',
+                                 url_path: '/posts/' + post.id.to_s)
+  end
 end

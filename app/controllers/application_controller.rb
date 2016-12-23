@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if devise_controller? #and !user_signed_in?
+    if devise_controller? # and !user_signed_in?
       'login'
     else
       'application'
@@ -53,12 +53,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def set_timezone
-      Time.zone = cookies['time_zone']
-    end
+  def set_timezone
+    Time.zone = cookies['time_zone']
+  end
 
-    def set_cookie
-      cookies.permanent.signed[:user_id] = current_user.id if current_user
-    end
-
+  def set_cookie
+    cookies.permanent.signed[:user_id] = current_user.id if current_user
+  end
 end

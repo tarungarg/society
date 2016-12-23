@@ -9,7 +9,6 @@ class CreateCarpools < ActiveRecord::Migration
       t.datetime :date
       t.string :routes
 
-
       t.timestamps null: false
     end
   end

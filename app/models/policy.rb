@@ -17,5 +17,5 @@ class Policy < ActiveRecord::Base
   belongs_to :user
 
   include PublicActivity::Model
-  tracked except: :destroy, owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }, recipient: Proc.new { |controller, model|  model && model.user }
+  tracked except: :destroy, owner: proc { |controller, _model| controller.current_user ? controller.current_user : nil }, recipient: proc { |_controller, model| model && model.user }
 end
