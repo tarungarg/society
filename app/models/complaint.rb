@@ -5,9 +5,9 @@
 #  id              :integer          not null, primary key
 #  title           :string
 #  desc            :text
-#  status          :integer          default(0)
-#  random          :integer          default(0)
-#  view_publically :boolean          default(FALSE)
+#  status          :integer          default("0")
+#  random          :integer          default("0")
+#  view_publically :boolean          default("false")
 #  user_id         :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

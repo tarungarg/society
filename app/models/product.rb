@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  desc       :string
+#  desc       :text
 #  images     :json
 #  amount     :integer
 #  user_id    :integer

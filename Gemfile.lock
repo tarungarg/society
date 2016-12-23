@@ -58,6 +58,9 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     announcements (0.2.0)
       jquery-rails
       rails (>= 3.1.0)
@@ -372,6 +375,7 @@ DEPENDENCIES
   actioncable!
   acts-as-taggable-on (~> 4.0)
   acts_as_votable (~> 0.10.0)
+  annotate
   announcements
   apartment
   avatarly

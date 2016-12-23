@@ -5,10 +5,11 @@
 #  id            :integer          not null, primary key
 #  desktop_image :string
 #  mobile_image  :string
-#  mobile_key    :string
-#  desktop_key   :string
+#  mobile_url    :string
+#  desktop_url   :string
 #  desktop_size  :string
 #  mobile_size   :string
+#  area          :integer          default("0")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

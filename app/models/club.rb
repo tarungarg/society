@@ -5,9 +5,8 @@
 #  id         :integer          not null, primary key
 #  title      :string
 #  desc       :text
-#  date       :date
-#  from_time  :time
-#  to_time    :time
+#  from_time  :datetime
+#  to_time    :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

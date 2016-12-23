@@ -3,7 +3,9 @@
 # Table name: carpools
 #
 #  id         :integer          not null, primary key
-#  title      :string
+#  amount     :integer
+#  from       :string
+#  to         :string
 #  desc       :text
 #  user_id    :integer
 #  date       :datetime

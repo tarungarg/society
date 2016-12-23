@@ -16,6 +16,7 @@
 #  candidate              :boolean          default(FALSE)
 #  mob_num                :string           default("")
 #  email                  :string           default("")
+#  avatar                 :string
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -36,6 +37,7 @@
 #  invited_by_id          :integer
 #  invited_by_type        :string
 #  invitations_count      :integer          default(0)
+#  car_nums               :text             default([]), is an Array
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

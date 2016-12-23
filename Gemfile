@@ -69,6 +69,7 @@ group :development, :test do
   gem 'flamegraph'
   gem 'stackprof'
   gem 'fast_stack'
+  gem 'annotate'
 end
 
 group :development do
