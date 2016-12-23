@@ -5,7 +5,11 @@ class ProductsController < BaseController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    (@filterrific = initialize_filterrific(
+      Product,
+      params[:filterrific]
+    )) || return
+    @products = @filterrific.find.page(params[:page])
   end
 
   # GET /products/1

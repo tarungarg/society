@@ -8,6 +8,9 @@ class DashboardController < BaseController
     @policies_count = Policy.count
     @tasks = current_user.tasks.order('created_at desc')
     @members = current_tenant.users.order('created_at desc').limit(6)
+    @products = Product.order('created_at desc').limit(6)
+    @jobs = Job.order('created_at desc').limit(6)
+    @suggestions = Suggestion.order('created_at desc').limit(6)
 
     banner = Banner.where(area: 0).first
     if banner

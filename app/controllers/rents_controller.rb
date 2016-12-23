@@ -5,7 +5,11 @@ class RentsController < BaseController
   # GET /rents
   # GET /rents.json
   def index
-    @rents = Rent.all
+    (@filterrific = initialize_filterrific(
+      Rent,
+      params[:filterrific]
+    )) || return
+    @rents = @filterrific.find.page(params[:page])
   end
 
   # GET /rents/1

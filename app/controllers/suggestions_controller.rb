@@ -5,7 +5,11 @@ class SuggestionsController < BaseController
   # GET /suggestions
   # GET /suggestions.json
   def index
-    @suggestions = Suggestion.all
+    (@filterrific = initialize_filterrific(
+      Suggestion,
+      params[:filterrific]
+    )) || return
+    @suggestions = @filterrific.find.page(params[:page])
     set_advertisement(:Suggestions)
   end
 

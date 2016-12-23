@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <div class="col-sm-4">
+           <%= page_entries_info rents %>
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+          <div class="dataTables_filter">
+            <%= link_to 'New Rent', new_rent_path, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-body">
+        <table class="table table-bordered">
+          <tr>
+            <th>Name</th>
+            <th>Desc</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+          <% rents.each do |rent| %>
+            <tr>
+              <td><%= rent.name %></td>
+              <td><%= rent.desc %></td>
+              <td><%= rent.amount %></td>
+              <td>
+                <%= link_to rent, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+                <% if current_user.id == rent.user_id %>
+                  <%= link_to edit_rent_path(rent), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+                  <%= link_to rent, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="box-footer">
+        <%= will_paginate rents, renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
+  </div>
+</div>

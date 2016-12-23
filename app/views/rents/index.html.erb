@@ -4,43 +4,43 @@
   <div class="box box-warning">
     <div class="box-header with-border">
       <div class="row">
-        <div class="col-sm-4">
-        </div>
+        <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
         <div class="col-sm-4 dataTables_filter">
-          <%= link_to 'New Flat', new_rent_path, class: 'btn btn-primary' %>
+          <%#= link_to 'New Suggestion', new_suggestion_path, class: 'btn btn-primary' %>
         </div>
       </div>
     </div>
     <div class="box-body">
-      <table class="table table-bordered">
-        <tr>
-          <th>Name</th>
-          <th>Desc</th>
-          <th>Amount</th>
-          <th></th>
-        </tr>
-        <% @rents.each do |rent| %>
-          <tr>
-            <td><%= rent.name %></td>
-            <td><%= rent.desc %></td>
-            <td><%= rent.amount %></td>
-            <td>
-              <%= link_to rent, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                <i class="fa fa-eye"></i>
-              <% end %>
-              <% if current_user.id == rent.user_id %>
-                <%= link_to edit_rent_path(rent), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                  <i class="fa fa-pencil"></i>
-                <% end %>
-                <%= link_to rent, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                  <i class="fa fa-trash"></i>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
+      <div class="row">
+        <div class="tab-content">
+          <%= form_for_filterrific @filterrific do |f| %>
+            <div class="col-xs-3">
+              <label>Search:</label>
+              <%= f.text_field(:search_query, class: 'filterrific-periodically-observed form-control') %>
+            </div>
+            <div class="col-xs-3">
+              <label>Date On:</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <%= f.text_field(:date_on, class: 'js-datepicker form-control' ) %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
+
+    <div class="box-footer">
+      <%= link_to('Reset filters', reset_filterrific_url, class: 'btn btn-info') %>
+      <%= render_filterrific_spinner %>
+    </div>
+
+  </div>
+
+  <div id="filterrific_results"><%= render partial: 'rents/index', locals: { rents: @rents } %>
   </div>
 </section>
+
