@@ -22,24 +22,26 @@
           </tr>
 
           <% carpools.each do |carpool| %>
-            <tr>
-              <td><%= carpool.from %> - <%= carpool.to %></td>
-              <td><%= convert_time_to_basic carpool.date %></td>
-              <td><%= carpool.amount %></td>
-              <td style="width: 100px;">
-                <%= link_to carpool, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                  <i class="fa fa-eye"></i>
-                <% end %>
-                <%if current_user.id == carpool.user_id%>
-                  <%= link_to edit_carpool_path(carpool), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                    <i class="fa fa-pencil"></i>
+            <% cache carpool do %>
+              <tr>
+                <td><%= carpool.from %> - <%= carpool.to %></td>
+                <td><%= convert_time_to_basic carpool.date %></td>
+                <td><%= carpool.amount %></td>
+                <td style="width: 100px;">
+                  <%= link_to carpool, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                    <i class="fa fa-eye"></i>
                   <% end %>
-                  <%= link_to carpool, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do  %>
-                    <i class="fa fa-trash"></i>
+                  <%if current_user.id == carpool.user_id%>
+                    <%= link_to edit_carpool_path(carpool), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to carpool, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do  %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       </div>

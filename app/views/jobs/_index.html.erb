@@ -22,22 +22,24 @@
           </tr>
 
           <% jobs.each do |job| %>
-            <tr>
-              <td><%= truncate_text(job.title) %></td>
-              <td><%= formatted_time(job.created_at) %></td>
-              <td><%= link_to job, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                  <i class="fa fa-eye"></i>
-                <% end %>
-                <% if job.user_id == current_user.id %>
-                  <%= link_to edit_job_path(job), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                    <i class="fa fa-pencil"></i>
+            <% cache job do %>
+              <tr>
+                <td><%= truncate_text(job.title) %></td>
+                <td><%= formatted_time(job.created_at) %></td>
+                <td><%= link_to job, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                    <i class="fa fa-eye"></i>
                   <% end %>
-                  <%= link_to job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                      <i class="fa fa-trash"></i>
+                  <% if job.user_id == current_user.id %>
+                    <%= link_to edit_job_path(job), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                      <i class="fa fa-pencil"></i>
                     <% end %>
-                <% end %>
-              </td>
-            </tr>
+                    <%= link_to job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                        <i class="fa fa-trash"></i>
+                      <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       </div>

@@ -13,21 +13,23 @@
 
   <tbody>
     <% @elections_participated_users.each do |elections_participated_user| %>
-      <tr>
-        <td><%= elections_participated_user.user_id %></td>
-        <td><%= elections_participated_user.electon_id %></td>
-        <td>
-          <%= link_to elections_participated_user, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-            <i class="fa fa-eye"></i>
-          <% end %>
-          <%= link_to edit_elections_participated_user_path(elections_participated_user), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-            <i class="fa fa-pencil"></i>
-          <% end %>
-          <%= link_to elections_participated_user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-            <i class="fa fa-trash"></i>
-          <% end %>
-        </td>
-      </tr>
+      <% cache elections_participated_user do %>
+        <tr>
+          <td><%= elections_participated_user.user_id %></td>
+          <td><%= elections_participated_user.electon_id %></td>
+          <td>
+            <%= link_to elections_participated_user, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+              <i class="fa fa-eye"></i>
+            <% end %>
+            <%= link_to edit_elections_participated_user_path(elections_participated_user), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+            <%= link_to elections_participated_user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -27,40 +27,42 @@
             <th></th>
           </tr>
           <% members.each_with_index do |member, index| %>
-            <tr>
-              <td><%= index + 1  %></td>
-              <td><%= member.name %></td>
-              <td><%= member.mob_num %></td>
-              <td><%= member.blood_group %></td>
-              <td><%= member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
-              <% if params[:controller] == 'charges' %>
-                <% if @subscription_ids.include? [member.id, @charge.id]%>
-                <td>Invited</td>
+            <% cache member do %>
+              <tr>
+                <td><%= index + 1  %></td>
+                <td><%= member.name %></td>
+                <td><%= member.mob_num %></td>
+                <td><%= member.blood_group %></td>
+                <td><%= member.roles.collect{|m| m.name.camelize}.join(', ') %></td>
+                <% if params[:controller] == 'charges' %>
+                  <% if @subscription_ids.include? [member.id, @charge.id]%>
+                  <td>Invited</td>
+                  <% else %>
+                    <td><span id="<%= member.id.to_s%>_invite_<%=@charge.id.to_s%>"><%= link_to 'Invite', charges_invite_path(user_id: member.id, charge_id: @charge.id), remote: true %>
+                  <% end %>
                 <% else %>
-                  <td><span id="<%= member.id.to_s%>_invite_<%=@charge.id.to_s%>"><%= link_to 'Invite', charges_invite_path(user_id: member.id, charge_id: @charge.id), remote: true %>
-                <% end %>
-              <% else %>
-                <td><%= link_to member_path(member), class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                  <i class="fa fa-eye"></i>
-                <% end %>
-                <% if user_is_president && params[:controller] == 'members' %>
-                  <%= link_to edit_member_path(member), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                    <i class="fa fa-pencil"></i>
+                  <td><%= link_to member_path(member), class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                    <i class="fa fa-eye"></i>
                   <% end %>
-                  <%= link_to member_path(member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                    <i class="fa fa-trash"></i>
+                  <% if user_is_president && params[:controller] == 'members' %>
+                    <%= link_to edit_member_path(member), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to member_path(member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
 
-              <!-- For Election -->
-                <% if user_is_president && params[:controller] == 'elections' %>
-                 <div id="mark-as-pres-<%=member.id%>" class="pull-right">
-                    <%= render partial: 'members/partials/select_candidate', locals: { member: member} %>
-                  </div>
-                <% end %>
-                </td>
-            </tr>
+                <!-- For Election -->
+                  <% if user_is_president && params[:controller] == 'elections' %>
+                   <div id="mark-as-pres-<%=member.id%>" class="pull-right">
+                      <%= render partial: 'members/partials/select_candidate', locals: { member: member} %>
+                    </div>
+                  <% end %>
+                  </td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       </div>

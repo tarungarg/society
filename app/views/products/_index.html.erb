@@ -22,23 +22,25 @@
           </tr>
 
           <% products.each do |product| %>
-            <tr>
-              <td><%= product.name %></td>
-              <td><%= product.amount %></td>
-              <td>
-                <%= link_to product, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                  <i class="fa fa-eye"></i>
-                <% end %>
-                <% if current_user.id == product.user_id %>
-                  <%= link_to edit_product_path(product), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                    <i class="fa fa-pencil"></i>
+            <% cache product do %>
+              <tr>
+                <td><%= product.name %></td>
+                <td><%= product.amount %></td>
+                <td>
+                  <%= link_to product, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                    <i class="fa fa-eye"></i>
                   <% end %>
-                  <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                    <i class="fa fa-trash"></i>
+                  <% if current_user.id == product.user_id %>
+                    <%= link_to edit_product_path(product), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       </div>

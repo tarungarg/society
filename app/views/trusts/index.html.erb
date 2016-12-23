@@ -23,23 +23,25 @@
 
     <tbody>
       <% @trusts.each do |trust| %>
-        <tr>
-          <td><%= trust.title %></td>
-          <td><%= trust.desc %></td>
-          <td><%= trust.to_date %></td>
-          <td><%= trust.amount %></td>
-          <td>
-            <%= link_to trust, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-              <i class="fa fa-eye"></i>
-            <% end %>
-            <%= link_to edit_trust_path(trust), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-              <i class="fa fa-pencil"></i>
-            <% end %>
-            <%= link_to trust, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn bg-red btn-xs' do %>
-              <i class="fa fa-trash"></i>
-            <% end %>
-          </td>
-        </tr>
+        <% cache trust do %>
+          <tr>
+            <td><%= trust.title %></td>
+            <td><%= trust.desc %></td>
+            <td><%= trust.to_date %></td>
+            <td><%= trust.amount %></td>
+            <td>
+              <%= link_to trust, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <%= link_to edit_trust_path(trust), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+              <%= link_to trust, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn bg-red btn-xs' do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

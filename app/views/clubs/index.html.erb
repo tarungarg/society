@@ -17,22 +17,24 @@
           <th></th>
         </tr>
         <% @clubs.each do |club| %>
-          <tr>
-            <td><%= club.title %></td>
-            <td><%= basic_date_only club.from_time %></td>
-            <td><%= basic_date_only club.to_time %></td>
-            <td style="width: 100px;">
-              <%= link_to club, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                <i class="fa fa-eye"></i>
-              <% end %>
-              <%= link_to edit_club_path(club), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                <i class="fa fa-pencil"></i>
-              <% end %>
-              <%= link_to club, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                <i class="fa fa-trash"></i>
-              <% end %>
-            </td>
-          </tr>
+          <% cache club do %>
+            <tr>
+              <td><%= club.title %></td>
+              <td><%= basic_date_only club.from_time %></td>
+              <td><%= basic_date_only club.to_time %></td>
+              <td style="width: 100px;">
+                <%= link_to club, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+                <%= link_to edit_club_path(club), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+                <%= link_to club, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     </div>

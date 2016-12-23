@@ -1,1 +1,4 @@
-<%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @inbox } %>
+
+<% cache @inbox do %>
+  <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @inbox } %>
+<% end %>

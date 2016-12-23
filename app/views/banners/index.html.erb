@@ -23,22 +23,24 @@
         </tr>
 
         <% @banners.each do |banner| %>
-          <tr>
-            <td><%= banner.area %></td>
-            <td style="width: 100px;">
-              <% if user_is_president %>
-                <%= link_to banner, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                  <i class="fa fa-eye"></i>
+          <% cache banner do %>
+            <tr>
+              <td><%= banner.area %></td>
+              <td style="width: 100px;">
+                <% if user_is_president %>
+                  <%= link_to banner, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                    <i class="fa fa-eye"></i>
+                  <% end %>
+                  <%= link_to edit_banner_path(banner), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+                  <%= link_to banner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
                 <% end %>
-                <%= link_to edit_banner_path(banner), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                  <i class="fa fa-pencil"></i>
-                <% end %>
-                <%= link_to banner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                  <i class="fa fa-trash"></i>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     </div>

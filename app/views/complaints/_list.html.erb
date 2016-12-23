@@ -21,6 +21,7 @@
               <th></th>
             </tr>
             <% complaints.each do |complaint| %>
+              <% cache complaint do %>
                 <tr>
                   <td><%= truncate_text(complaint.title, 30) %>
                   <%= '<small class="label bg-green">unread</small>'.html_safe  if (@unread_complain_ids).include?(complaint.id) %>
@@ -40,6 +41,7 @@
                     <% end %>
                   </td>
                 </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>

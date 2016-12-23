@@ -18,30 +18,32 @@
           <th></th>
         </tr>
         <% @policies.each do |policy| %>
-          <tr>
-            <td>
-              <%= truncate_text(policy.name, 30) %>
-                <%= '<small class="label bg-green">unread</small>'.html_safe  if (@unread_policy_ids).include?(policy.id) %>
+          <% cache policy do %>
+            <tr>
+              <td>
+                <%= truncate_text(policy.name, 30) %>
+                  <%= '<small class="label bg-green">unread</small>'.html_safe  if (@unread_policy_ids).include?(policy.id) %>
+                </td>
+              <td>
+                <% if policy.file.url %>
+                  <%= link_to policy.file.url, class: 'btn bg-yellow btn-xs' do %>
+                    <i class="fa-cloud-download"></i>
+                  <% end %>
+                <% end %>
+                <%= link_to policy, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+                <%if user_is_president %>
+                  <%= link_to edit_policy_path(policy), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+                  <%= link_to policy, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                <% end %>
               </td>
-            <td>
-              <% if policy.file.url %>
-                <%= link_to policy.file.url, class: 'btn bg-yellow btn-xs' do %>
-                  <i class="fa-cloud-download"></i>
-                <% end %>
-              <% end %>
-              <%= link_to policy, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>
-                <i class="fa fa-eye"></i>
-              <% end %>
-              <%if user_is_president %>
-                <%= link_to edit_policy_path(policy), class: 'btn bg-primary btn-xs', placeholder: 'Edit' do %>
-                  <i class="fa fa-pencil"></i>
-                <% end %>
-                <%= link_to policy, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn bg-red btn-xs' do %>
-                  <i class="fa fa-trash"></i>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     </div>
