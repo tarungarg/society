@@ -17,12 +17,14 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-      <li>
+
+      <li class="<%= ['dashboard'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
-      <li class="treeview">
+
+      <li class="treeview <%= ['members'].include?(params[:controller]) ? 'active' : ''%>" >
         <a href="#">
           <i class="fa fa-users"></i>
           <span>Members</span>
@@ -38,7 +40,7 @@
         </ul>
       </li>
 
-      <li class="treeview">
+      <li class="treeview <%= ['complaints', 'public_complaints'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="">
           <i class="fa fa-hand-o-up"></i> <span>Complaints</span>
           <span class="pull-right-container">
@@ -52,7 +54,7 @@
         </ul>
       </li>
 
-      <li>
+      <li class="<%= ['announcements'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/announcements">
           <i class="fa  fa-bullhorn"></i>
           <span>Announcements</span>
@@ -61,7 +63,7 @@
         </a>
       </li>
 
-      <li>
+      <li class="<%= ['policies'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/policies">
           <i class="fa fa-newspaper-o"></i>
           <span>Policies</span>
@@ -69,7 +71,7 @@
       </li>
 
       <% if user_is_president %>
-        <li>
+        <li class="<%= ['banners'].include?(params[:controller]) ? 'active' : ''%>">
           <a href="/banners">
             <i class="fa fa-th"></i>
             <span>Banners</span>
@@ -77,7 +79,7 @@
         </li>
       <% end %>
 
-      <li class="treeview">
+      <li class="treeview <%= ['elections'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/elections">
           <i class="fa  fa-check-square-o"></i>
           <span>Election</span>
@@ -118,7 +120,7 @@
         </ul>
       </li>
 
-      <li class="treeview">
+      <li class="treeview <%= ['funds', 'charges'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="">
           <i class="fa  fa-money"></i> <span>Balances</span>
           <span class="pull-right-container">
@@ -127,53 +129,51 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="/funds"><i class="fa fa-circle-o"></i>Funds</a></li>
-          <li><a href="/public_complaints"><i class="fa fa-circle-o"></i> Public Complaints</a></li>
         </ul>
       </li>
 
-      <li>
+      <li class="<%= ['jobs'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/jobs">
           <i class="fa  fa-heart"></i>
           <span>Jobs</span>
         </a>
       </li>
 
-      <li>
+      <li class="<%= ['suggestions'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/suggestions">
           <i class="fa fa-sun-o"></i>
           <span>Suggestions</span>
         </a>
       </li>
 
-      <li>
+      <li class="<%= ['products'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/products">
           <i class="fa fa-columns"></i>
           <span>Buy & Sell Products</span>
         </a>
       </li>
 
-      <li>
+      <li class="<%= ['carpools'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/carpools">
           <i class="fa fa-car"></i>
           <span>Carpool</span>
         </a>
       </li>
 
-      <li>
+      <li class="<%= ['rents'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/rents">
           <i class="fa fa-home"></i>
           <span>Rent & Sale</span>
         </a>
       </li>
-
-      <li>
+      <li class="<%= ['mailbox', 'conversations'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/mailbox/inbox">
           <i class="fa fa-inbox"></i>
           <span>Inbox</span>
         </a>
       </li>
 
-      <li>
+      <li class="<%= ['clubs'].include?(params[:controller]) ? 'active' : ''%>">
         <a href="/clubs">
           <i class="fa fa-calendar"></i> <span>Calendar</span>
           <span class="pull-right-container">

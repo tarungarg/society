@@ -6,7 +6,11 @@ class JobsController < BaseController
   # GET /jobs.json
   def index
     set_advertisement(:Job)
-    @jobs = Job.all
+    (@filterrific = initialize_filterrific(
+      Job,
+      params[:filterrific]
+    )) || return
+    @jobs = @filterrific.find.page(params[:page])
   end
 
   # GET /jobs/1

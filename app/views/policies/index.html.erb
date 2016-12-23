@@ -21,7 +21,7 @@
           <tr>
             <td>
               <%= truncate_text(policy.name, 30) %>
-                <%= '<small class="label bg-green">new</small>'.html_safe  if (@unread_policy_ids).include?(policy.id) %>
+                <%= '<small class="label bg-green">unread</small>'.html_safe  if (@unread_policy_ids).include?(policy.id) %>
               </td>
             <td>
               <% if policy.file.url %>

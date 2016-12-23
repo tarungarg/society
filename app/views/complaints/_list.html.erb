@@ -22,7 +22,8 @@
             </tr>
             <% complaints.each do |complaint| %>
                 <tr>
-                  <td><%= truncate_text(complaint.title, 30) %><span class="new-tag"><%= "   New" if (@unread_complain_ids).include?(complaint.id)%></span></td>
+                  <td><%= truncate_text(complaint.title, 30) %>
+                  <%= '<small class="label bg-green">unread</small>'.html_safe  if (@unread_complain_ids).include?(complaint.id) %>
                   <td><%= basic_date_only(complaint.updated_at) %></td>
                   <td><%= complaint.status %></td>
                   <td>
