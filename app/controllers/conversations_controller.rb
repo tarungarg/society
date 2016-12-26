@@ -1,6 +1,5 @@
 class ConversationsController < BaseController
   include ApplicationHelper
-  before_create :expire_cache
 
   def new
   end
