@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  skip_before_filter :require_no_authentication, only: [:new, :create]
-  before_filter :check_if_me,  only: [:new, :create]
+  skip_before_action :require_no_authentication, only: [:new, :create]
+  before_action :check_if_me,  only: [:new, :create]
 
   def new
     build_resource({})

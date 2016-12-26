@@ -1,7 +1,7 @@
 module Commontator
   class CommentsController < Commontator::ApplicationController
-    before_filter :set_thread, only: [:new, :create]
-    before_filter :set_comment_and_thread, except: [:new, :create]
+    before_action :set_thread, only: [:new, :create]
+    before_action :set_comment_and_thread, except: [:new, :create]
 
     # GET /threads/1/comments/new
     def new
