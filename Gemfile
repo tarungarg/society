@@ -57,7 +57,13 @@ gem 'execjs'
 # gem 'sprockets-rails', '2.3.3'
 
 group :development, :test do
+  gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-faster-assets', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma', require: false
+
   gem 'byebug'
   gem 'letter_opener'
   gem 'rubocop', require: false
