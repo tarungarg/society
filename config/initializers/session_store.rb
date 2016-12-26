@@ -4,6 +4,6 @@
 
 Rails.application.config.session_store :cookie_store, key: '_society_session',
                                                       domain: {
-                                                        production: '.herokuapp.com',
+                                                        production: '.ucs-intrl.com',
                                                         development: '.lvh.me'
                                                       }.fetch(Rails.env.to_sym, :all)
