@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+  <head>
+    <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UCS International - IT Services | Software Consulting | Outsourcing </title>
+
+    <meta name="description" content="UCS International is an US based software company which ensures an optimal solution delivered at your budget and timelines.">
+    <meta name="keywords" content="bootstrap theme, portfolio template, onepage applications, mobile development, responsive, android, IOS, Java, UCS, content writing, website development, PHP, Rails, Python, Angular">
+    <meta name="author" content="UCS International">
+
+    <meta name="turbolinks-cache-control" content="no-cache">
+    
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+    <%= stylesheet_link_tag    'homepage', media: 'all' %>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+    <%= javascript_include_tag 'homepage'%>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>  
+
+  </head>
+
+  <body>
+    <!-- Navigation
+    ==========================================-->
+    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/" data-turbolinks="false" style="display: block;">
+              <img src="<%=asset_path 'logo.png'%>" class='logo' style="display: inline-block;"/>
+              <span  style="display: inline-block;">UCS</span>
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#tf-home" class="page-scroll">Home</a></li>
+            <li><a href="#tf-about" class="page-scroll">About</a></li>
+            <li><a href="#tf-team" class="page-scroll">Team</a></li>
+            <li><a href="#tf-services" class="page-scroll">Services</a></li>
+            <li><a href="#tf-works" class="page-scroll">Portfolio</a></li>
+            <li><a href="#tf-testimonials" class="page-scroll">Testimonials</a></li>
+            <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <%= yield %>
+    <div class="clearfix"></div>
+      <nav id="footer">
+          <div class="container">
+              <div class="pull-left fnav">
+                  <address>
+                      Visit us at:<br>
+                      SAMMAMISH WA 98074 USA<br>
+                      Tel: +91-7838320608 (IN), +91-9312190216(IN), +1 408-852-0463 (USA)<br>
+                  </address>
+              </div>
+      <!--             <div class="pull-left snav">
+                  <address>
+                      Visit us at:<br>
+                      463 Neelkanth Sec-13.<br>
+                      Rohini 110085<br>
+                      Delhi, India
+                  </address>
+              </div> -->
+              <div style="text-align: center;">
+                  
+              </div>
+              <div class="pull-right fnav">
+                  <p>© 2016 UCS</p>
+                  <ul class="footer-social">
+                      <li><a href="https://www.facebook.com/ucsintrl" target="_blank"><i class="fa fa-facebook"></i></a></li>
+      <!--                     <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
+                  </ul>
+              </div>
+          </div>
+      </nav>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-84801485-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

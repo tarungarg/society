@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :set_timezone, :set_cookie
+  before_action :check_user_paid_type
 
   helper_method :user_is_president
   helper_method :current_tenant
@@ -60,4 +61,15 @@ class ApplicationController < ActionController::Base
   def set_cookie
     cookies.permanent.signed[:user_id] = current_user.id if current_user
   end
+
+  def check_user_paid_type
+    if current_user
+      valid_user = User.check_user_paid_type(current_user)
+      unless valid_user
+        flash[:error] = 'Please upgrade your membership. Otherwise you will not able to access the application.'
+        sign_out current_user
+      end
+    end
+  end
+
 end

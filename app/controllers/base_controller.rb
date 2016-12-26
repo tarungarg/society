@@ -34,4 +34,5 @@ class BaseController < ApplicationController
   def conversation
     @conversation ||= mailbox.conversations.find(params[:id]) if params[:id]
   end
+
 end

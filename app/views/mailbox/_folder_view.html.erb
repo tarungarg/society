@@ -40,7 +40,7 @@
           <% end %>
         </div>
         <div class="box-footer">
-          <%= will_paginate messages, renderer: BootstrapPagination::Rails %>
+          <%= will_paginate messages, renderer: BootstrapPagination::Rails unless is_conversation%>
         </div>
       </div>
     </div>

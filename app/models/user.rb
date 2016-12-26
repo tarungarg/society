@@ -49,6 +49,13 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, UserImageUploader
 
+  enum payment_type: [:Quaterly, :Yearly]
+
+  TRIAL_PERIOD_DAYS = 90
+  QUATER_PERIOD_DAYS = 90
+  YEARLY_PERIOD_DAYS = 360
+  UPPER_LIMIT_FOR_DAYS = 15
+
   belongs_to :tenant
   has_one :society_profile, dependent: :destroy
   has_one :user_setting
@@ -69,6 +76,7 @@ class User < ActiveRecord::Base
 
   before_create :add_tenant_to_apartment
   after_create :upload_default_image
+  # after_update :update_paid_on
 
   enum profile_roles: [:president, :member, :labour, :POE]
 
@@ -194,6 +202,26 @@ class User < ActiveRecord::Base
 
   def mailboxer_email(_object)
     email
+  end
+
+  def self.check_user_paid_type(user)
+    if user.payment_type == nil && user.trial
+      user.check_trial_period
+    elsif user.payment_type != nil
+      user.validate_payment_period
+    end
+  end
+
+  def check_trial_period
+    (Date.today.to_date - self.created_at.to_date).to_i <= User::TRIAL_PERIOD_DAYS
+  end
+
+  def validate_payment_period
+    if self.payment_type == 'Quaterly'
+      (Date.today.to_date - self.paid_on.to_date).to_i <= User::QUATER_PERIOD_DAYS
+    elsif self.payment_type == 'Yearly'
+      (Date.today.to_date - self.paid_on.to_date).to_i <= User::YEARLY_PERIOD_DAYS
+    end
   end
 
   private

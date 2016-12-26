@@ -101,6 +101,10 @@ class MembersController < BaseController
     render :index
   end
 
+  def labours
+    @labours = current_tenant.users.with_role(:labour)
+  end
+
   def update_candidate
     ElectionsParticipatedUser.add_participations(params[:candidate], @member.id)
     if @member.update(candidate: params[:candidate])

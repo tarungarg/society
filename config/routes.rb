@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       collection do
         get 'emergency_contacts'
         get 'timeline'
+        get 'labours'
       end
       member do
         put 'update_candidate'

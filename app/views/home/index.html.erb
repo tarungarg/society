@@ -1,8 +1,461 @@
-<div class="row vertical-center-row">
-  <div class="text-center col-md-4 col-md-offset-4">
-    <p>
-      <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary'%>
-    </p>
-    <p>
-  </div>
+<!-- Home Page
+==========================================-->
+<div id="tf-home" class="text-center">
+    <div class="overlay">
+        <div class="content">
+            <h1>Welcome on <strong><span class="color">UCS International</span></strong></h1>
+            <p class="lead">With Great Vision and Truth - We Welcome You</p>
+            <p class="lead"><em>Our philosophy and approach serve to accelerate the timely implementation of Customer technology initiatives that enhance the overall business value for our Customers. A culture that encourages our employees to excel and execute with passion motivates us to constantly go the extra mile in our customer engagements.</em></p>
+            <a href="#tf-about" class="fa fa-angle-down page-scroll"></a>
+        </div>
+    </div>
+</div>
+
+<!-- About Us Page
+==========================================-->
+<div id="tf-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="<%= asset_path '02.png'%>" class="img-responsive">
+            </div>
+            <div class="col-md-6">
+                <div class="about-text">
+                    <div class="section-title">
+                        <h4>About us</h4>
+                        <hr>
+                        <div class="clearfix"></div>
+                    </div>
+                    <p class="intro">UCS International is leading software company who believes in solving the business problems of large Global Enterprises by providing consulting services and employing cutting edge technology. Customer satisfaction is the primary goal. We regard each of our Customers as a valued Partner and strive to establish mutually beneficial long term partnerships.</p>
+                    <p class="intro">As part of our long term partnership, we collaborate actively with the customer's IT organization in designing innovative solutions and providing implementation services employing flexible delivery models that maximize delivery efficiency while reducing costs. We love building and rebuilding brands through our specific skills (using color, fonts, and illustration). Our try is to brand companies in a way they will never forget.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Team Page
+==========================================-->
+<div id="tf-team" class="text-center">
+    <div class="overlay">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Meet <strong>Our Team</strong></h2>
+                <div class="line">
+                    <hr>
+                </div>
+            </div>
+
+            <div id="team" class="owl-carousel owl-theme row">
+                <div class="item">
+                    <div class="thumbnail">
+                        <img src="<%= asset_path 'team/01.jpg'%>" alt="..." class="img-circle team-img">
+                        <div class="caption">
+                            <h3>Ram Gopal Jain</h3>
+                            <p>CEO / Founder</p>
+                            <p>Ram Gopal Jain has working experience of 49 years after graduation in prestigious positions of Govt. of India Enterprises - Steel Authority of India Ltd. (SAIL) and Cement Corporation of India Ltd. (CCI).He visited more than 25 countries in Asia, Middle East, Europe, North America etc. to develop IMPORT and EXPORT business.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="thumbnail">
+                        <a href="http://www.upwork.com/o/profiles/users/_~01c8619f457e075be2/" target="_blank">
+                        <img src="<%= asset_path 'team/02.jpg'%>" alt="..." class="img-circle team-img"></a>
+                        <div class="caption">
+                            <h3>Tarun Garg</h3>
+                            <p>Head Of Department</p>
+                            <p>Tarun Garg is head of the software development division, he takes care of the technical and HRM aspects of the company. His forte lies in Project Management, Business Analysis, Technology Architecture & Domain expertise for software development projects in Ruby on Rails and other framework.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Services Section
+==========================================-->
+<div id="tf-services" class="text-center">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Take a look at <strong>Our Services</strong></h2>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="clearfix"></div>
+            <small><em>We provide end to end Ruby on Rails consulting to companies around the globe. We support our clients with tools and techniques and innovative approaches to solve mission critical business problems. Our mission is to revolutionize the process involved in solving the strategic or routine IT problems that effect business growth</em></small>
+        </div>
+        <div class="space"></div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 service">
+                <a href="services/web_design">
+                    <i class="fa fa-desktop"></i>
+                    <h4><strong>Web design</strong></h4>
+                    <p>‘Website Design’ helps you in marking long time impression on a visitor’s mind.</p>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 service">
+                <a href="services/mobile_development">
+                    <i class="fa fa-mobile"></i>
+                    <h4><strong>Mobile Apps</strong></h4>
+                    <p>‘Mobile Development’ helps you in increasing revenues of your company.</p>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 service">
+                <a href="services/web_development">
+                    <i class="fa fa-shield"></i>
+                    <h4><strong>WEB DEVELOPMENT</strong></h4>
+                    <p>Website Development’ is backbone of any website.</p>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 service">
+                <a href="/" data-turbolinks="false">
+                    <i class="fa fa-bullhorn"></i>
+                    <h4><strong>CONTENT WRITING</strong></h4>
+                    <p>‘Content is the King’, we help you in providing it to your valuable customers.</p>
+                </a>
+            </div>
+
+             <div class="col-md-3 col-sm-6 service">
+                <a href="http://www.autodesk.com/solutions/cad-software" data-turbolinks="false" target="_blank">
+                    <i class="fa fa-pencil"></i>
+                    <h4><strong>CAD</strong></h4>
+                    <p>CAD, or computer-aided design and drafting (CADD), is the use of computer technology for design and design documentation.</p>
+                </a>
+            </div>
+
+
+             <div class="col-md-3 col-sm-6 service">
+                <a href="/" data-turbolinks="false" target="_blank">
+                    <i class="fa fa-clock-o"></i>
+                    <h4><strong>Translation Services</strong></h4>
+                    <p>We have a well-evolved and quality-oriented document translation process.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Clients Section
+==========================================-->
+<div id="tf-clients">
+    <div class="overlay">
+        <div class="container">
+            <div class="section-title center text-center">
+                <h2>What We Think!</h2>
+                <div class="line">
+                    <hr>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="space"></div>
+            <ul class="about-list">
+                <li>
+                    <span class="fa fa-dot-circle-o"></span>
+                    <strong>Mission</strong> - <em>Our mission is to provide full satisfaction to the clients with complete transparency. We deliver uniqueness and quality.</em>
+                </li>
+                <br/>
+                <li>
+                    <span class="fa fa-dot-circle-o"></span>
+                    <strong>Skills</strong> - <em>We deals with technologies like Ruby on Rails, Node, Angular, PHP, Joomla, Drupal, Magneto, Wordpress, Mobile Platforms, Javascript, Javascript Frameworks, Designing etc. Delivering fast and excellent results.</em>
+                </li>
+                <br/>
+                <li>
+                    <span class="fa fa-dot-circle-o"></span>
+                    <strong>Clients</strong> - <em>Cost-effective solutions from our company ensure that the client gets the best services at affordable prices. Main focus is towards customer satisfaction and thus individual needs are analyzed before finalizing particular order.</em>
+                </li>
+            </ul>
+<!-- 
+            <div class="section-title center">
+                <h2>Some of <strong>our Clients</strong></h2>
+                <div class="line">
+                    <hr>
+                </div>
+            </div>
+            <div id="clients" class="owl-carousel owl-theme">
+                <div class="item">
+                    <img src="img/client/01.png">
+                </div>
+                <div class="item">
+                    <img src="img/client/02.png">
+                </div>
+                <div class="item">
+                    <img src="img/client/03.png">
+                </div>
+                <div class="item">
+                    <img src="img/client/04.png">
+                </div>
+                <div class="item">
+                    <img src="img/client/05.png">
+                </div>
+                <div class="item">
+                    <img src="img/client/06.png">
+                </div>
+                <div class="item">
+                    <img src="img/client/07.png">
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Section
+==========================================-->
+<div id="tf-works">
+    <div class="container"> <!-- Container -->
+        <div class="section-title text-center center">
+            <h2>Take a look at <strong>Some Websites</strong></h2>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="clearfix"></div>
+           <!--  <small><em>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</em></small> -->
+        </div>
+        <div class="space"></div>
+
+        <div class="categories">
+            
+            <ul class="cat">
+                <!-- <li class="pull-left"><h4>Filter by Type:</h4></li> -->
+                <li class="pull-right">
+                    <ol class="type">
+                        <!-- <li><a href="#" data-filter="*" class="active">All</a></li> -->
+<!--                             <li><a href="#" data-filter=".web">Web Design</a></li>
+                        <li><a href="#" data-filter=".photography">Photography</a></li>
+                        <li><a href="#" data-filter=".app" >Mobile App</a></li>
+                        <li><a href="#" data-filter=".branding" >Branding</a></li> -->
+                    </ol>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div id="lightbox" class="row">
+
+            <div class="col-sm-6 col-md-3 col-lg-3 branding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="http://quizzy.io" target="_blank">
+                            <div class="hover-text">
+                                <h4>Website Development</h4>
+                                <!-- <small>Branding</small> -->
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img style="height: 234px;" src="<%= asset_path 'portfolio/01.jpg'%>" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3 photography app">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="http://adeptlms.com" target="_blank">
+                            <div class="hover-text">
+                                <h4>Website Development</h4>
+                                <!-- <small>Branding</small> -->
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img style="height: 234px;" src="<%= asset_path 'portfolio/02.jpg'%>" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-sm-6 col-md-3 col-lg-3 branding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="http://creatodigital.com" target="_blank">
+                            <div class="hover-text">
+                                <h4>Web Development</h4>
+                                <small>Branding</small>
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img style="height: 234px;" src="<%= asset_path 'portfolio/03.jpg'%>" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <div class="col-sm-6 col-md-3 col-lg-3 branding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h4>Logo Design</h4>
+                                <small>Branding</small>
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img src="img/portfolio/03.jpg" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3 branding">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h4>Logo Design</h4>
+                                <small>Branding</small>
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img src="img/portfolio/04.jpg" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3 web">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h4>Logo Design</h4>
+                                <small>Branding</small>
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img src="img/portfolio/05.jpg" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3 app">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h4>Logo Design</h4>
+                                <small>Branding</small>
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img src="img/portfolio/06.jpg" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3 photography web">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h4>Logo Design</h4>
+                                <small>Branding</small>
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img src="img/portfolio/07.jpg" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3 col-lg-3 web">
+                <div class="portfolio-item">
+                    <div class="hover-bg">
+                        <a href="#">
+                            <div class="hover-text">
+                                <h4>Logo Design</h4>
+                                <small>Branding</small>
+                                <div class="clearfix"></div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                            <img src="img/portfolio/08.jpg" class="img-responsive" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+-->
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section
+==========================================-->
+<div id="tf-testimonials" class="text-center">
+    <div class="overlay">
+        <div class="container">
+            <div class="section-title center">
+                <h2><strong>Our Client's</strong> Testimonials</h2>
+                <div class="line">
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div id="testimonial" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <h5>Tarun has a good communication skill , adhere to the schedule and did more than we asked for ...Highly recommended</h5>
+                            <p><strong>Yannick M</strong>, United States.</p>
+                        </div>
+                        
+                        <div class="item">
+                            <h5>Great engineer!</h5>
+                            <p>United States, Tampa.</p>
+                        </div>
+
+
+                        <div class="item">
+                            <h5>Highly recommended...Tarun is very efficient and respect the deadline.</h5>
+                            <p>United States, san diego</p>
+                        </div>
+
+                        <div class="item">
+                            <h5>Outstanding experience, the job was completed professionally and in time.This is my third order with Tarun, I strongly recommend him.</h5>
+                            <p>United States, san diego</p>
+                        </div>
+
+                        <div class="item">
+                            <h5>Amazing work,completed the order in less than 2 hours.Very satisfied,definitely recommend him.</h5>
+                            <p>Ireland, Fermoy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section
+==========================================-->
+<div id="tf-contact" class="text-center">
+    <div class="container">
+
+        <div class="row con">
+            <div class="col-md-8 col-md-offset-2">
+
+                <div class="section-title center">
+                    <h2>Feel free to <strong>Contact Us</strong></h2>
+                    <div class="line">
+                        <hr>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p>SAMMAMISH WA 98074 USA</p><br/>
+                    <p>Email Us At: <b>info@ucs-intrl.com</b></p>
+                    <p>Tel: +91-7838320608 (IN), +91-9312190216(IN), +1 408-852-0463 (USA) </p>
+            </div>
+
+            </div>
+        </div>
+
+    </div>
 </div>

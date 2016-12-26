@@ -1,5 +1,5 @@
 document.addEventListener("turbolinks:load", function() {
-  initChatObj();
+  // initChatObj();
 });
 
 $(window).on('beforeunload', function(){
