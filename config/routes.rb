@@ -86,9 +86,9 @@ Rails.application.routes.draw do
     match '/websocket', to: ActionCable.server, via: %i(get post)
     mount Commontator::Engine => '/commontator'
     mount Ckeditor::Engine => '/ckeditor'
+    mount ActionCable.server => '/cable'
   end
 
-  mount ActionCable.server => '/cable'
   get '/' => 'home#index'
 
   constraints PublicDomainConstraint do
