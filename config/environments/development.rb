@@ -43,15 +43,18 @@ Rails.application.configure do
 
   # config.action_mailer.perform_deliveries = false
 
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'localhost:3000',
-    authentication: 'plain',
-    enable_starttls_auto: true,
-    user_name: 't.garg28@gmail.com', # you can use ordinary gmail username here
-    password: 'mirhunter1' # you can use your gmail password here, but don't push the changes
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: 587,
+  #   domain: 'localhost:3000',
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true,
+  #   user_name: 't.garg28@gmail.com', # you can use ordinary gmail username here
+  #   password: 'mirhunter1' # you can use your gmail password here, but don't push the changes
+  # }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_cable.allowed_request_origins = [/https:\/\/*.*/, /http:\/\/*.*/]
+  
 end

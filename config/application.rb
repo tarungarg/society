@@ -35,6 +35,5 @@ module Society
     # actioncable settings
     config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
     config.action_cable.url = '/cable'
-    config.action_cable.allowed_request_origins = [/https:\/\/*.*/, /http:\/\/*.*/]
   end
 end
