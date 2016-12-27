@@ -3,6 +3,7 @@ development: &development
   :port: 6379
   :timeout: 1
   :inline: true
+  :adapter: redis
 test: *development
 production: *development
 staging: *development
