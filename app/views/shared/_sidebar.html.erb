@@ -85,7 +85,7 @@
           <span>Election</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
-            <% if current_tenant.user_setting && current_tenant.user_setting.send(:voting_visible) %>
+            <% if current_tenant && current_tenant.user_setting && current_tenant.user_setting.send(:voting_visible) %>
               <small class="label pull-right bg-green">Voting Start</small>
             <% end %>
           </span>
@@ -97,7 +97,7 @@
                 <span>All Elections</span>
               </a>
             </li>
-          <% if current_tenant.user_setting && current_tenant.user_setting.send(:voting_visible) %>
+          <% if current_tenant && current_tenant.user_setting && current_tenant.user_setting.send(:voting_visible) %>
             <li>
               <a href="/votes/index">
                 <i class="fa fa-circle-o"></i>
