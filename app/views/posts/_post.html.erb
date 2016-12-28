@@ -54,12 +54,12 @@
           <div>
             <span class="pull-right text-muted">
               <span class="vote_count">
-                <%= pluralize(post.get_likes.size,'like') %>
+                <%= pluralize(post.get_likes(vote_scope: 'post_like').size,'like') %>
               </span>
             </span>
 
             <div class="votes">
-              <% if current_user.liked? post %>
+              <% if current_user.liked? post, vote_scope: 'post_like' %>
                 <%= link_to unlike_post_path(post), method: :get, remote: true, class: 'unlike_post' do %>
                   <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Unlike</button>
                 <% end %>
