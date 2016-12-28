@@ -79,6 +79,6 @@ Rails.application.configure do
 
 
   config.action_cable.url = '/cable'
-  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/, '42.104.109.114', 'http://42.104.109.114']
 
 end
