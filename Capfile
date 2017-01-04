@@ -6,7 +6,7 @@ require 'capistrano/rails/migrations'
 require 'capistrano/rails/assets'
 require 'capistrano/faster_assets'
 require 'capistrano/puma'
-require "capistrano/scm/git"
+require 'capistrano/scm/git'
 # require 'new_relic/recipes'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

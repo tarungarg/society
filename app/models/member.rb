@@ -38,6 +38,9 @@
 #  invited_by_type        :string
 #  invitations_count      :integer          default("0")
 #  car_nums               :text             default("{}"), is an Array
+#  payment_type           :integer
+#  trial                  :boolean          default("true")
+#  paid_on                :datetime
 #
 
 class Member < User

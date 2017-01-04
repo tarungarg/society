@@ -23,7 +23,6 @@ class Rent < ActiveRecord::Base
   enum flat_types: { Sale: 0, Rent: 1 }
   enum sale_bys: { Owner: 0, Agent: 1, Other: 2 }
 
-
   ####
   # filterrific gem for search sort and pagination
   ####
@@ -56,7 +55,7 @@ class Rent < ActiveRecord::Base
       terms.map do
         or_clauses = [
           'LOWER(rents.name) LIKE ?',
-          'LOWER(rents.desc) LIKE ?',
+          'LOWER(rents.desc) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -79,5 +78,4 @@ class Rent < ActiveRecord::Base
   scope :date_on, lambda { |ref_date|
     where('rents.created_at >= ?', ref_date)
   }
-
 end

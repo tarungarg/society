@@ -29,15 +29,15 @@ class Carpool < ActiveRecord::Base
     default_filter_params: { sorted_by: 'created_at_desc' },
     available_filters: [
       :sorted_by,
-      :search_query_from,
-      :search_query_to,
+      :search_from,
+      :search_to,
       :search_query,
       :via,
       :date_on
     ]
   )
 
-  scope :search_query, lambda { |query|
+  scope :search_from, lambda { |query|
     return nil if query.blank?
     # condition query, parse into individual keywords
     terms = query.to_s.downcase.split(/\s+/)
@@ -49,13 +49,35 @@ class Carpool < ActiveRecord::Base
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
-    num_or_conditions = 3
+    num_or_conditions = 1
     where(
       terms.map do
         or_clauses = [
-          'LOWER(carpools.from) LIKE ?',
-          'LOWER(carpools.to) LIKE ?',
-          'LOWER(carpools.desc) LIKE ?'
+          'LOWER(carpools.from) LIKE ?'
+        ].join(' OR ')
+        "(#{or_clauses})"
+      end.join(' AND '),
+      *terms.map { |e| [e] * num_or_conditions }.flatten
+    )
+  }
+
+  scope :search_to, lambda { |query|
+    return nil if query.blank?
+    # condition query, parse into individual keywords
+    terms = query.to_s.downcase.split(/\s+/)
+    # replace "*" with "%" for wildcard searches,
+    # append '%', remove duplicate '%'s
+    terms = terms.map do |e|
+      ('%' + e.tr('*', '%') + '%').gsub(/%+/, '%')
+    end
+    # configure number of OR conditions for provision
+    # of interpolation arguments. Adjust this if you
+    # change the number of OR conditions.
+    num_or_conditions = 1
+    where(
+      terms.map do
+        or_clauses = [
+          'LOWER(carpools.to) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -90,6 +112,6 @@ class Carpool < ActiveRecord::Base
   }
 
   scope :via, lambda { |query|
-    tagged_with(query)
+    tagged_with(query, any: true, wild: true)
   }
 end

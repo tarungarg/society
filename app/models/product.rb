@@ -49,7 +49,7 @@ class Product < ActiveRecord::Base
       terms.map do
         or_clauses = [
           'LOWER(products.name) LIKE ?',
-          'LOWER(products.desc) LIKE ?',
+          'LOWER(products.desc) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -72,5 +72,4 @@ class Product < ActiveRecord::Base
   scope :date_on, lambda { |ref_date|
     where('products.created_at >= ?', ref_date)
   }
-
 end

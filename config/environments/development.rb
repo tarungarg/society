@@ -56,5 +56,4 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_cable.url = '/cable'
   config.action_cable.allowed_request_origins = [/https:\/\/*.*/, /http:\/\/*.*/]
-  
 end

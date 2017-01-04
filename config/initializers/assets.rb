@@ -22,5 +22,4 @@ Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinne
                                                   vendor.js
                                                   login.css
                                                   homepage.css
-                                                  homepage.js
-                                                  )
+                                                  homepage.js)

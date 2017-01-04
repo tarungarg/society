@@ -47,7 +47,7 @@ class Suggestion < ActiveRecord::Base
       terms.map do
         or_clauses = [
           'LOWER(suggestions.title) LIKE ?',
-          'LOWER(suggestions.desc) LIKE ?',
+          'LOWER(suggestions.desc) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -70,5 +70,4 @@ class Suggestion < ActiveRecord::Base
   scope :date_on, lambda { |ref_date|
     where('suggestions.created_at >= ?', ref_date)
   }
-
 end

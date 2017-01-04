@@ -12,8 +12,14 @@ class BaseController < ApplicationController
 
   def get_navbar_data
     if current_user
-      @mails = mailbox.inbox(unread: true).order('created_at desc').limit(5)
-      @activities_nav = PublicActivity::Activity.order('created_at desc').where(recipient_id: current_user.id, recipient_type: 'User').limit(10)
+      @mails =
+        # Rails.cache.fetch("mails", expires_in: 12.hours) do
+        mailbox.inbox(unread: true).order('created_at desc').limit(5)
+      # end
+      @activities_nav =
+        # Rails.cache.fetch("activites", expires_in: 12.hours) do
+        PublicActivity::Activity.order('created_at desc').where(recipient_id: current_user.id, recipient_type: 'User').limit(10)
+      # end
     end
   end
 
@@ -34,5 +40,4 @@ class BaseController < ApplicationController
   def conversation
     @conversation ||= mailbox.conversations.find(params[:id]) if params[:id]
   end
-
 end

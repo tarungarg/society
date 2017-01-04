@@ -17,7 +17,6 @@ class Job < ActiveRecord::Base
   validates :title, :desc, presence: true
   mount_uploaders :files, AvatarUploader
 
-
   ####
   # filterrific gem for search sort and pagination
   ####
@@ -50,7 +49,7 @@ class Job < ActiveRecord::Base
       terms.map do
         or_clauses = [
           'LOWER(jobs.title) LIKE ?',
-          'LOWER(jobs.desc) LIKE ?',
+          'LOWER(jobs.desc) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -73,5 +72,4 @@ class Job < ActiveRecord::Base
   scope :date_on, lambda { |ref_date|
     where('jobs.created_at >= ?', ref_date)
   }
-
 end

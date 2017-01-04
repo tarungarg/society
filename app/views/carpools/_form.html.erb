@@ -1,16 +1,16 @@
 <%= simple_form_for(@carpool) do |f| %>
   <div class="box-body">
     <%= f.error_notification %>
-      <%= f.input :from, input_html: {onkeyup: "return forceLower(this);"} %>
+      <%= f.input :from %>
       <em>Should be in lower case letter</em>
-      <%= f.input :to, input_html: {onkeyup: "return forceLower(this);"} %>
+      <%= f.input :to %>
       <em>Should be in lower case letter</em>
       <%= f.input :desc %>
       <%= f.input :date, start_year: Date.today.year,
                                 end_year: Date.today.year + 1,
                                 order: [:day, :month, :year] %>
       <%= f.association :tag_list do %>
-      <%= f.input :tag_list, { multiple: true, style: "width:100%;", label: 'Pick Up Route', input_html: {onkeyup: "return forceLower(this);"} } %>
+      <%= f.input :tag_list, { multiple: true, style: "width:100%;", label: 'Pick Up Route' } %>
       <em>Please enter comma sperated routes in lower case if you want pick up eg. Going from Delhi to Patiala</em>
       <em>Pick Up Routes sonipat, panipat, ambala</em>
 

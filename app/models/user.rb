@@ -38,6 +38,9 @@
 #  invited_by_type        :string
 #  invitations_count      :integer          default("0")
 #  car_nums               :text             default("{}"), is an Array
+#  payment_type           :integer
+#  trial                  :boolean          default("true")
+#  paid_on                :datetime
 #
 
 class User < ActiveRecord::Base
@@ -205,22 +208,22 @@ class User < ActiveRecord::Base
   end
 
   def self.check_user_paid_type(user)
-    if user.payment_type == nil && user.trial
+    if user.payment_type.nil? && user.trial
       user.check_trial_period
-    elsif user.payment_type != nil
+    elsif !user.payment_type.nil?
       user.validate_payment_period
     end
   end
 
   def check_trial_period
-    (Date.today.to_date - self.created_at.to_date).to_i <= User::TRIAL_PERIOD_DAYS
+    (Date.today.to_date - created_at.to_date).to_i <= User::TRIAL_PERIOD_DAYS
   end
 
   def validate_payment_period
-    if self.payment_type == 'Quaterly'
-      (Date.today.to_date - self.paid_on.to_date).to_i <= User::QUATER_PERIOD_DAYS
-    elsif self.payment_type == 'Yearly'
-      (Date.today.to_date - self.paid_on.to_date).to_i <= User::YEARLY_PERIOD_DAYS
+    if payment_type == 'Quaterly'
+      (Date.today.to_date - paid_on.to_date).to_i <= User::QUATER_PERIOD_DAYS
+    elsif payment_type == 'Yearly'
+      (Date.today.to_date - paid_on.to_date).to_i <= User::YEARLY_PERIOD_DAYS
     end
   end
 
