@@ -210,6 +210,10 @@ GEM
     letter_opener (1.4.1)
       launchy (~> 2.2)
     libv8 (3.16.14.15)
+    lol_dba (2.1.1)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      railties (>= 3.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -422,6 +426,7 @@ DEPENDENCIES
   jquery-ui-rails
   js-routes
   letter_opener
+  lol_dba
   mailboxer
   memory_profiler
   mini_magick

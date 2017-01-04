@@ -1,0 +1,1 @@
+SELECT 'integer'::regtype::oid;

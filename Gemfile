@@ -76,6 +76,7 @@ group :development, :test do
   gem 'stackprof'
   gem 'fast_stack'
   gem 'annotate'
+  gem 'lol_dba'
 end
 
 group :development do
