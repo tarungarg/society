@@ -16,8 +16,8 @@
           <th>To time</th>
           <th></th>
         </tr>
-        <% @clubs.each do |club| %>
-          <% cache club do %>
+        <% cache [current_user.id, @clubs] do %>
+          <% @clubs.each do |club| %>
             <tr>
               <td><%= club.title %></td>
               <td><%= basic_date_only club.from_time %></td>

@@ -20,8 +20,8 @@
               <th>Status</th>
               <th></th>
             </tr>
-            <% complaints.each do |complaint| %>
-              <% cache complaint do %>
+            <% cache [current_user.id, complaints] do %>
+              <% complaints.each do |complaint| %>
                 <tr>
                   <td><%= truncate_text(complaint.title, 30) %><span class="new-tag"><%= "   New" if (@unread_complain_ids).include?(complaint.id)%></span></td>
                   <td><%= basic_date_only(complaint.updated_at) %></td>

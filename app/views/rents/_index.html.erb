@@ -21,8 +21,8 @@
             <th>Amount</th>
             <th></th>
           </tr>
-          <% rents.each do |rent| %>
-            <% cache rent do %>
+          <% cache [current_user.id, rents] do %>
+            <% rents.each do |rent| %>
               <tr>
                 <td><%= rent.name %></td>
                 <td><%= rent.desc %></td>

@@ -21,8 +21,8 @@
             <th style="width: 100px;"></th>
           </tr>
 
-          <% carpools.each do |carpool| %>
-            <% cache carpool do %>
+          <% cache [current_user.id, carpools] do %>
+            <% carpools.each do |carpool| %>
               <tr>
                 <td><%= carpool.from %> - <%= carpool.to %></td>
                 <td><%= convert_time_to_basic carpool.date %></td>

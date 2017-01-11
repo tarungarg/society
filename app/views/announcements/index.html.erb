@@ -23,8 +23,8 @@
           <th></th>
         </tr>
 
-        <% @announcements.each do |announcement| %>
-          <% cache announcement do %>
+        <% cache [current_user.id, @announcements] do %>
+          <% @announcements.each do |announcement| %>
             <tr>
               <td><%= announcement.title %> <%= '<small class="label bg-green">unread</small>'.html_safe if (@unread_announcement_ids).include?(announcement.id)%></td>
 

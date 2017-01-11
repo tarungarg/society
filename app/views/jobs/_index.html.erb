@@ -21,8 +21,8 @@
             <th></th>
           </tr>
 
-          <% jobs.each do |job| %>
-            <% cache job do %>
+          <% cache [current_user.id, jobs] do %>
+            <% jobs.each do |job| %>
               <tr>
                 <td><%= truncate_text(job.title) %></td>
                 <td><%= formatted_time(job.created_at) %></td>

@@ -8,8 +8,8 @@
             <th>Number</th>
             <th colspan="3"></th>
           </tr>
-          <% @epu.each do |epu| %>
-            <% cache epu do %>
+          <% cache [current_user.id, @epu] do %>
+            <% @epu.each do |epu| %>
               <tr>
                 <td><%= epu.user.name %></td>
                 <td><%= epu.user.mob_num %></td>

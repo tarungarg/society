@@ -17,8 +17,8 @@
           <th>Name</th>
           <th></th>
         </tr>
-        <% @policies.each do |policy| %>
-          <% cache policy do %>
+        <% cache [current_user.id, @policies] do %>
+          <% @policies.each do |policy| %>
             <tr>
               <td>
                 <%= truncate_text(policy.name, 30) %>

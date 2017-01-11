@@ -22,8 +22,8 @@
           <th style="width: 100px;"></th>
         </tr>
 
-        <% @banners.each do |banner| %>
-          <% cache banner do %>
+        <% cache [current_user.id, @banners] do %>
+          <% @banners.each do |banner| %>
             <tr>
               <td><%= banner.area %></td>
               <td style="width: 100px;">

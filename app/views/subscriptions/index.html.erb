@@ -13,8 +13,8 @@
   </thead>
 
   <tbody>
-    <% @subscriptions.each do |subscription| %>
-      <% cache subscription do %>
+    <% cache [current_user.id, @subscriptions] do %>
+      <% @subscriptions.each do |subscription| %>
         <tr>
           <td><%= subscription.charge_id %></td>
           <td><%= subscription.user_id %></td>

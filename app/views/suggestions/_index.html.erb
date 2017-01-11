@@ -19,8 +19,8 @@
             <th>Title</th>
             <th></th>
           </tr>
-          <% suggestions.each do |suggestion| %>
-            <% cache suggestion do %>
+          <% cache [current_user.id, suggestions] do %>
+            <% suggestions.each do |suggestion| %>
               <tr>
                 <td><%= truncate_text(suggestion.title) %></td>
                 <td><%= link_to suggestion, class: 'btn bg-yellow btn-xs', placeholder: 'Show' do %>

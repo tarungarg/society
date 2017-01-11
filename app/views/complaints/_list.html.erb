@@ -20,8 +20,8 @@
               <th>Status</th>
               <th></th>
             </tr>
-            <% complaints.each do |complaint| %>
-              <% cache complaint do %>
+            <% cache [current_user.id, complaints] do %>
+              <% complaints.each do |complaint| %>
                 <tr>
                   <td><%= truncate_text(complaint.title, 30) %>
                   <%= '<small class="label bg-green">unread</small>'.html_safe  if (@unread_complain_ids).include?(complaint.id) %>

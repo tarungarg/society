@@ -22,8 +22,8 @@
         <th></th>
       </tr>
 
-      <% funds.each do |fund| %>
-        <% cache fund do %>
+      <% cache [current_user.id, funds] do %>
+        <% funds.each do |fund| %>
           <tr>
             <td><%= truncate_text(fund.title, 20) %></td>
             <td><%= truncate_text(fund.desc, 50) %></td>

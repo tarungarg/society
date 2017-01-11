@@ -22,8 +22,8 @@
     </thead>
 
     <tbody>
-      <% @trusts.each do |trust| %>
-        <% cache trust do %>
+      <% cache [current_user.id, @trusts] do %>
+        <% @trusts.each do |trust| %>
           <tr>
             <td><%= trust.title %></td>
             <td><%= trust.desc %></td>

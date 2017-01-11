@@ -28,8 +28,8 @@
         </thead>
 
         <tbody>
-          <% @charges.each do |charge| %>
-            <% cache charge do %>
+          <% cache [current_user.id, @charges] do %>
+            <% @charges.each do |charge| %>
               <%if user_is_president || @charge_ids.include?(charge.id) %>
                 <tr>
                   <td><%= charge.from_date %></td>

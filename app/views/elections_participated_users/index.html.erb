@@ -12,8 +12,8 @@
   </thead>
 
   <tbody>
-    <% @elections_participated_users.each do |elections_participated_user| %>
-      <% cache elections_participated_user do %>
+    <% cache [current_user.id, @elections_participated_users] do %>
+      <% @elections_participated_users.each do |elections_participated_user| %>
         <tr>
           <td><%= elections_participated_user.user_id %></td>
           <td><%= elections_participated_user.electon_id %></td>
