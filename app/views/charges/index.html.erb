@@ -12,7 +12,7 @@
   <div class="box box-warning">
     <div class="box-header with-border">
       <div class="pull-right">
-        <%= link_to 'New Charge', new_charge_path, class: 'btn btn-primary' %>
+        <%= link_to 'New Charge', new_charge_path, class: 'btn btn-primary'  if user_is_president %>
       </div>
     </div>
     <div class="box-body">
@@ -30,7 +30,6 @@
         <tbody>
           <% cache [current_user.id, @charges] do %>
             <% @charges.each do |charge| %>
-              <%if user_is_president || @charge_ids.include?(charge.id) %>
                 <tr>
                   <td><%= charge.from_date %></td>
                   <!-- <td><%#= charge.to_date %></td> -->
@@ -51,7 +50,6 @@
                     <% end %>
                   </td>
                 </tr>
-              <% end %>
             <% end %>
           <% end %>
         </tbody>

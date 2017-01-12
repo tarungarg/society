@@ -1,4 +1,5 @@
 class FundsController < BaseController
+  load_and_authorize_resource
   before_action :set_fund, only: [:show, :edit, :update, :destroy]
 
   # GET /funds

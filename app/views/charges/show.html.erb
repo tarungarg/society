@@ -44,16 +44,10 @@
     </div>
 
     <div class="box-footer">
-      <%= link_to 'Edit', edit_charge_path(@charge), class: 'btn btn-success' %>
+      <%= link_to 'Edit', edit_charge_path(@charge), class: 'btn btn-success'   if user_is_president %>
       <%= link_to 'Back', charges_path, class: 'btn btn-success' %>
     </div>
 
   </div>
-
-  <% if user_is_president %>
-    <%= link_to 'Invite All', charges_invite_all_path(charge_id: @charge.id), remote: :true %>
-    <br>
-    <%= render "members/index"%>
-  <% end %>
 
 </section>

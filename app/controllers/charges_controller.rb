@@ -1,4 +1,5 @@
 class ChargesController < BaseController
+  load_and_authorize_resource
   before_action :set_charge, only: [:show, :edit, :update, :destroy]
   before_action :list_users, only: [:show, :new]
 
