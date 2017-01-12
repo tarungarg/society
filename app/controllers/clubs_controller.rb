@@ -1,4 +1,5 @@
 class ClubsController < BaseController
+  load_and_authorize_resource
   before_action :set_club, only: [:show, :edit, :update, :destroy]
 
   # GET /clubs
@@ -34,6 +35,7 @@ class ClubsController < BaseController
   # POST /clubs.json
   def create
     @club = Club.new(club_params)
+    @club.user_id = current_user.id
 
     respond_to do |format|
       if @club.save
