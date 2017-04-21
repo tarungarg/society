@@ -149,9 +149,17 @@ $.AdminLTE.options = {
  * functions and plugins as specified by the
  * options above.
  */
+"use strict";
 document.addEventListener("turbolinks:load", function() {
-  "use strict";
+  ass();
+});
 
+$(document).on('page:change', function(event) {
+  // idempotent function
+  ass();
+});
+
+function ass(){
   //Fix for IE page transitions
   $("body").removeClass("hold-transition");
 
@@ -231,8 +239,7 @@ document.addEventListener("turbolinks:load", function() {
     });
 
   });
-});
-
+}
 /* ----------------------------------
  * - Initialize the AdminLTE Object -
  * ----------------------------------
