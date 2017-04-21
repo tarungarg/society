@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_timezone, :set_cookie
-  before_action :check_user_paid_type
+  # before_action :check_user_paid_type
 
   helper_method :user_is_president
   helper_method :current_tenant
